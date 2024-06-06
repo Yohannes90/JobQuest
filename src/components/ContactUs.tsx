@@ -1,6 +1,6 @@
 const ContactUs: React.FC = () => {
   return (
-    <div className="bg-gray-100 py-16">
+    <div className="bg-gray-100 py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <h2 className="text-3xl font-extrabold text-gray-900">Contact Us</h2>
@@ -9,7 +9,7 @@ const ContactUs: React.FC = () => {
           </p>
         </div>
         <div className="mt-8 sm:mt-12 lg:mt-16">
-          <div className="max-w-4xl mx-auto bg-white p-12 rounded-lg shadow-lg">
+          <div className="max-w-7xl mx-auto bg-white p-12 rounded-lg shadow-lg">
             <form className="space-y-8">
               <div className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
                 <div>
@@ -24,14 +24,24 @@ const ContactUs: React.FC = () => {
                 </div>
                 <div>
                   <input
-                    type="email"
-                    name="email"
-                    id="email"
-                    placeholder="Email"
+                    type="tel"
+                    name="phone"
+                    id="phone"
+                    placeholder="Phone Number"
                     className="block w-full px-5 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
                     required
                   />
                 </div>
+              </div>
+              <div>
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  placeholder="Email"
+                  className="block w-full px-5 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                  required
+                />
               </div>
               <div>
                 <textarea

@@ -1,0 +1,81 @@
+interface ServiceCategory {
+  title: string;
+  services: string[];
+}
+
+const serviceCategories: ServiceCategory[] = [
+  {
+    title: "Organizational support",
+    services: [
+      "Establishment and Licensing support",
+      "Organizational policy development",
+      "Organizational manual development",
+    ],
+  },
+  {
+    title: "Program based support",
+    services: [
+      "Project design to implementation",
+      "MEL planning",
+      "Portfolio Architect",
+    ],
+  },
+  {
+    title: "Human Resource support",
+    services: [
+      "Volunteer mobilization",
+      "Access to potential interns",
+      "Headhunting",
+    ],
+  },
+  {
+    title: "Standardization",
+    services: ["SDG alignment"],
+  },
+  {
+    title: "Grant Management",
+    services: ["Grant Management support"],
+  },
+];
+
+const Services: React.FC = () => {
+  return (
+    <div className="bg-gray-50 py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-extrabold text-gray-900">
+            Our Services
+          </h2>
+          <p className="mt-4 text-lg text-gray-600">
+            Comprehensive support to enhance your organizational capabilities.
+          </p>
+        </div>
+        <div className="grid gap-12 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1">
+          {serviceCategories.map((category, index) => (
+            <div
+              key={index}
+              className="bg-white p-8 rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300 ease-in-out"
+            >
+              <h3 className="text-2xl font-semibold text-gray-900 mb-6">
+                {category.title}
+              </h3>
+              <ul className="space-y-3">
+                {category.services.map((service, serviceIndex) => (
+                  <li
+                    key={serviceIndex}
+                    className="text-gray-700 flex items-start"
+                  >
+                    <span className="mr-2 text-blue-500 font-bold">●</span>
+                    <span>{service}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Services;
