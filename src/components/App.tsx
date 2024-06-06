@@ -1,18 +1,20 @@
 import "../styles/App.css";
+import ContactUs from "./ContactUs";
+import Partners from "./Partners";
+import Testimonials from "./Testimonials";
+import Footer from "./Footer";
 
-function App() {
+const App: React.FC = () => {
   return (
-    <>
-      <div className="flex items-center justify-center min-h-screen bg-gray-100">
-        <h1 className="text-4xl font-bold text-blue-500">
-          Hello, Tailwind CSS!
-        </h1>
+    <div className="flex flex-col min-h-screen w-full border-2">
+      <div className="flex-grow w-full">
+        <Partners />
+        <Testimonials />
+        <ContactUs />
       </div>
-      <div className="">
-        <h1 className="">Hello, Tailwind CSS!</h1>
-      </div>
-    </>
+      <Footer />
+    </div>
   );
-}
+};
 
 export default App;
