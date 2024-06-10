@@ -40,12 +40,10 @@ const serviceCategories: ServiceCategory[] = [
 
 const Services: React.FC = () => {
   return (
-    <div className="bg-gray-50 py-12 border-2">
+    <div className="bg-gray-50 py-12 min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-extrabold text-gray-900">
-            Our Services
-          </h2>
+          <h2 className="text-3xl font-bold text-green-950">Our Services</h2>
           <p className="mt-4 text-lg text-gray-600">
             Comprehensive support to enhance your organizational capabilities.
           </p>
@@ -56,17 +54,19 @@ const Services: React.FC = () => {
               key={index}
               className="bg-white p-8 rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300 ease-in-out"
             >
-              <h3 className="text-2xl font-semibold text-gray-900 mb-6">
+              <h3 className="text-2xl font-semibold text-black mb-6 text-start">
                 {category.title}
               </h3>
               <ul className="space-y-3">
                 {category.services.map((service, serviceIndex) => (
                   <li
                     key={serviceIndex}
-                    className="text-gray-700 flex items-start"
+                    className="text-gray-700 flex items-start justify-start"
                   >
-                    <span className="mr-2 text-blue-500 font-bold">●</span>
-                    <span>{service}</span>
+                    <span className="mr-2 text-green-900 text-sm font-bold text-center">
+                    -
+                    </span>
+                    <span className="text-center">{service}</span>
                   </li>
                 ))}
               </ul>

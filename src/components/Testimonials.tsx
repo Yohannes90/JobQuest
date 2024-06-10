@@ -41,9 +41,9 @@ const Testimonials: React.FC = () => {
   return (
     <div className="bg-gray-100 py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-extrabold text-center text-gray-900 mb-4">
+        {/* <h2 className="text-3xl font-bold text-center text-green-950 mb-4">
           Testimonials
-        </h2>
+        </h2> */}
         <p className="text-lg text-center text-gray-600 mb-12">
           Here's what our clients say about us
         </p>
