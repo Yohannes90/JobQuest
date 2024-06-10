@@ -40,8 +40,8 @@ const serviceCategories: ServiceCategory[] = [
 
 const Services: React.FC = () => {
   return (
-    <div className="bg-gray-50 py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="bg-gray-50 py-12 border-2">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-extrabold text-gray-900">
             Our Services
@@ -50,7 +50,7 @@ const Services: React.FC = () => {
             Comprehensive support to enhance your organizational capabilities.
           </p>
         </div>
-        <div className="grid gap-12 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1">
+        <div className="grid gap-12 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
           {serviceCategories.map((category, index) => (
             <div
               key={index}
