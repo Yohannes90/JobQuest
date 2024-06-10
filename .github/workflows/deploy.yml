@@ -22,26 +22,46 @@ jobs:
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
 
-      - name: Build project
-        run: npm run build
+      - name: Build project for GitHub Pages
+        run: |
+          cp .env.gh-pages .env
+          npm run build
+        env:
+          VITE_BASE_PATH: '/harWebsite/'
 
-      - name: Upload production-ready build files
+      - name: Upload production-ready build files for GitHub Pages
         uses: actions/upload-artifact@v2
         with:
-          name: production-files
+          name: production-files-gh-pages
           path: ./dist
 
-  deploy:
-    name: Deploy
+      # - name: Build project for cPanel
+      #   run: |
+      #     cp .env.cpanel .env
+      #     npm run build
+      #   env:
+      #     VITE_BASE_PATH: '/test.harconsultancy.org/'
+
+      # - name: Upload production-ready build files for cPanel
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #     name: production-files-cpanel
+      #     path: ./dist
+
+  deploy-gh-pages:
+    name: Deploy to GitHub Pages
     needs: build
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
 
     steps:
-      - name: Download artifact
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Download artifact for GitHub Pages
         uses: actions/download-artifact@v2
         with:
-          name: production-files
+          name: production-files-gh-pages
           path: ./dist
 
       - name: Deploy to GitHub Pages
