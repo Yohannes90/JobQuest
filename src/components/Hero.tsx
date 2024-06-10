@@ -1,3 +1,5 @@
+import heroImage from "/hero.jpg";
+
 const Hero = () => {
   return (
     <>
@@ -23,7 +25,7 @@ const Hero = () => {
           </p>
         </div>
         <div className="grid h-fit flex-grow card w-1/2 bg-gray-50 text-black  rounded-box place-items-center p-0 mx-5 self-center">
-          <img src="/hero.jpg" alt="" className="h-fit w-fit" />
+          <img src={heroImage} alt="" className="h-fit w-fit" />
         </div>
       </div>
     </>
