@@ -1,6 +1,7 @@
 {
   "name": "harwebsite",
   "private": true,
+  "homepage": "https://yohannes90.github.io/harWebsite/",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
