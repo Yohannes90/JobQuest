@@ -15,9 +15,9 @@ const App: React.FC = () => {
         <Navbar />
         <Hero />
         <Vision_Mission />
+        <Partners />
         <Services />
         <Testimonials />
-        <Partners />
         <ContactUs />
       </div>
       <Footer />

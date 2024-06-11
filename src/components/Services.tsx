@@ -63,10 +63,10 @@ const Services: React.FC = () => {
                     key={serviceIndex}
                     className="text-gray-700 flex items-start justify-start"
                   >
-                    <span className="mr-2 text-green-900 text-sm font-bold text-center">
+                    <span className="mr-2 text-green-900 text-sm font-bold">
                     -
                     </span>
-                    <span className="text-center">{service}</span>
+                    <span>{service}</span>
                   </li>
                 ))}
               </ul>

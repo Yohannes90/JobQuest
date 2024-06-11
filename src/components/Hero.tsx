@@ -14,7 +14,7 @@ const Hero = () => {
       </div>
       <div className="flex w-full min-h-screen bg-gray-50">
         <div className="grid h-fit w-1/2 flex-grow card bg-gray-50 text-black rounded-box place-items-center mx-5 self-center">
-          <p className="tracking-wider text-justify leading-6 text-base">
+          <p className="tracking-wider text-justify leading-loose text-base font-normal lg:text-lg">
             Welcome to Har Consultancy, your partner in transformation and
             growth. We are a licensed social enterprise and consultancy firm
             dedicated to empowering CSOs, startups, and social enterprises in
