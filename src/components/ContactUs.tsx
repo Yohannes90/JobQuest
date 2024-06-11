@@ -1,14 +1,14 @@
 const ContactUs: React.FC = () => {
   return (
-    <div className="bg-gray-100 py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="bg-gray-50 py-12 min-h-screen">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col">
         <div className="text-center">
-          <h2 className="text-3xl font-extrabold text-gray-900">Contact Us</h2>
-          <p className="mt-4 text-lg text-gray-600">
+          <h2 className="text-3xl font-bold text-green-950">Contact Us</h2>
+          <p className="mt-4 text-lg text-gray-600 font-thin">
             We'd love to hear from you. Fill out the form below to get in touch.
           </p>
         </div>
-        <div className="mt-8 sm:mt-12 lg:mt-16">
+        <div className="mt-8 sm:mt-12 lg:mt-16 lg:w-3/4 self-center">
           <div className="max-w-7xl mx-auto bg-white p-12 rounded-lg shadow-lg">
             <form className="space-y-8">
               <div className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
@@ -18,7 +18,7 @@ const ContactUs: React.FC = () => {
                     name="name"
                     id="name"
                     placeholder="Name"
-                    className="block w-full px-5 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                    className="block w-full px-5 py-3 border bg-slate-50 text-black outline-none border-gray-300 rounded-md shadow-sm focus:ring-green-900 focus:border-green-900"
                     required
                   />
                 </div>
@@ -28,7 +28,7 @@ const ContactUs: React.FC = () => {
                     name="phone"
                     id="phone"
                     placeholder="Phone Number"
-                    className="block w-full px-5 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                    className="block w-full bg-slate-50 text-black outline-none px-5 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-green-900 focus:border-green-900"
                     required
                   />
                 </div>
@@ -39,7 +39,7 @@ const ContactUs: React.FC = () => {
                   name="email"
                   id="email"
                   placeholder="Email"
-                  className="block w-full px-5 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                  className="block w-full bg-slate-50 text-black outline-none px-5 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-green-900 focus:border-green-900"
                   required
                 />
               </div>
@@ -49,14 +49,14 @@ const ContactUs: React.FC = () => {
                   id="message"
                   placeholder="Message"
                   rows={6}
-                  className="block w-full px-5 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                  className="block w-full bg-slate-50 text-black outline-none px-5 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-green-900 focus:border-green-900"
                   required
                 />
               </div>
-              <div>
+              <div className="flex w-full justify-center">
                 <button
                   type="submit"
-                  className="w-full inline-flex justify-center py-3 px-6 border border-transparent text-lg font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+                  className="w-1/2 py-3 px-6 outline-none text-lg font-medium rounded-md text-white bg-green-600 hover:bg-green-700"
                 >
                   Submit
                 </button>

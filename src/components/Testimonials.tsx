@@ -44,7 +44,7 @@ const Testimonials: React.FC = () => {
         {/* <h2 className="text-3xl font-bold text-center text-green-950 mb-4">
           Testimonials
         </h2> */}
-        <p className="text-lg text-center text-gray-600 mb-12">
+        <p className="text-lg text-center text-gray-600 mb-12 font-thin">
           Here's what our clients say about us
         </p>
         <div className="grid gap-8 lg:grid-cols-3">
