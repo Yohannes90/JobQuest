@@ -7,27 +7,28 @@ interface Partner {
 const partners: Partner[] = [
   {
     name: "Partner 1",
-    logo: "/cisco.svg",
+    logo: "cisco.svg",
     url: "https://partner1.com",
   },
   {
     name: "Partner 2",
-    logo: "/citi.svg",
+    logo: "citi.svg",
     url: "https://partner2.com",
   },
   {
     name: "Partner 3",
-    logo: "/samsung.svg",
+    logo: "samsung.svg",
     url: "https://partner3.com",
   },
   {
     name: "Partner 4",
-    logo: "/att.svg",
+    logo: "att.svg",
     url: "https://partner4.com",
   },
 ];
 
 const Partners: React.FC = () => {
+  const basePath = import.meta.env.VITE_BASE_PATH || "";
   return (
     <div className="bg-gray-50 py-16 pb-52">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -50,7 +51,7 @@ const Partners: React.FC = () => {
             >
               <div className="flex justify-center mb-4">
                 <img
-                  src={partner.logo}
+                  src={`${basePath}${partner.logo}`}
                   alt={partner.name}
                   className="h-20 w-20 object-contain"
                 />

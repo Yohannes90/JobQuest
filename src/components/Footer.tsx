@@ -28,7 +28,10 @@ const Footer: React.FC = () => {
             <a href="/services" className="text-green-950 hover:text-gray-400">
               Services
             </a>
-            <a href="/testimonials" className="text-green-950 hover:text-gray-400">
+            <a
+              href="/testimonials"
+              className="text-green-950 hover:text-gray-400"
+            >
               Testimonials
             </a>
             <a href="/contact" className="text-green-950 hover:text-gray-400">

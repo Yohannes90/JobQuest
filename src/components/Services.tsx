@@ -64,7 +64,7 @@ const Services: React.FC = () => {
                     className="text-gray-700 flex items-start justify-start"
                   >
                     <span className="mr-2 text-green-900 text-sm font-bold">
-                    -
+                      -
                     </span>
                     <span>{service}</span>
                   </li>
