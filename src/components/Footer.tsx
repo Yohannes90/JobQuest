@@ -54,7 +54,7 @@ const Footer: React.FC = () => {
             </a>
           </div>
         </div>
-        <div className="mt-8 text-center text-sm text-gray-400">
+        <div className="mt-8 ml-4 pl-6 text-center text-sm text-gray-400">
           <p>&copy; 2024 Har Consultancy. All rights reserved.</p>
         </div>
       </div>
