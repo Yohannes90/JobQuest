@@ -3,7 +3,7 @@ import heroImage from "/hero.jpg";
 const Hero = () => {
   return (
     <>
-      <div className="hero min-h-screen bg-gray-50">
+      <div id="hero" className="hero min-h-screen bg-gray-100">
         <div className="hero-content text-center">
           <div className="max-w-md">
             <h1 className="text-5xl text-green-950 my-20 font-thin tracking-wider">

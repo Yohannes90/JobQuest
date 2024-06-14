@@ -1,27 +1,45 @@
 import "../styles/App.css";
-import ContactUs from "./ContactUs";
-import Partners from "./Partners";
-import Testimonials from "./Testimonials";
+import React, { Suspense, lazy } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Footer from "./Footer";
-import Services from "./Services";
 import Navbar from "./Navbar";
-import Hero from "./Hero";
-import Vision_Mission from "./Vision_Mission";
+
+// Lazy load components for improved performance
+const Hero = lazy(() => import("./Hero"));
+const AboutUs = lazy(() => import("./Vision_Mission"));
+const Services = lazy(() => import("./Services"));
+const Testimonials = lazy(() => import("./Testimonials"));
+const ContactUs = lazy(() => import("./ContactUs"));
+const Partners = lazy(() => import("./Partners"));
 
 const App: React.FC = () => {
   return (
-    <div className="flex flex-col min-h-screen">
-      <div className="flex-grow">
-        <Navbar />
-        <Hero />
-        <Vision_Mission />
-        <Partners />
-        <Services />
-        <Testimonials />
-        <ContactUs />
+    <Router>
+      <div className="flex flex-col min-h-screen">
+        <div className="flex-grow">
+          <Navbar />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <>
+                    <Hero />
+                    <AboutUs />
+                    <Services />
+                    <Partners />
+                    <Testimonials />
+                    <ContactUs />
+                  </>
+                }
+              />
+              {/* Additional routes if needed */}
+            </Routes>
+          </Suspense>
+        </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
+    </Router>
   );
 };
 

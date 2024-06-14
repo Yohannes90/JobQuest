@@ -30,16 +30,14 @@ const partners: Partner[] = [
 const Partners: React.FC = () => {
   const basePath = import.meta.env.VITE_BASE_PATH || "";
   return (
-    <div className="bg-gray-50 py-16 pb-52">
+    <div id="partners" className="bg-gray-100 py-16 pb-52">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* <div className="text-center">
-          <h2 className="text-3xl font-bold text-green-950">
-            Our Partners
-          </h2>
+        <div className="text-center">
+          <h2 className="text-3xl font-bold text-green-950">Our Partners</h2>
           <p className="mt-4 text-lg text-gray-600 font-thin">
             We are proud to collaborate with our trusted partners.
           </p>
-        </div> */}
+        </div>
         <div className="mt-12 grid gap-8 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1">
           {partners.map((partner, index) => (
             <a
