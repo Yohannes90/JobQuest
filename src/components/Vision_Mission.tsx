@@ -4,7 +4,6 @@ import AOS from "aos";
 const Vision_Mission = () => {
   useEffect(() => {
     AOS.init();
-    AOS.refresh();
   }, []);
   return (
     <div

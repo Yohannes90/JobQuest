@@ -4,7 +4,6 @@ import AOS from "aos";
 const ContactUs: React.FC = () => {
   useEffect(() => {
     AOS.init();
-    AOS.refresh();
   }, []);
   return (
     <div

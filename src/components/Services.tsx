@@ -44,7 +44,6 @@ const serviceCategories: ServiceCategory[] = [
 const Services: React.FC = () => {
   useEffect(() => {
     AOS.init();
-    AOS.refresh();
   }, []);
   return (
     <div

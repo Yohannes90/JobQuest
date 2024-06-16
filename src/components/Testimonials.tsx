@@ -43,7 +43,6 @@ const testimonials: Testimonial[] = [
 const Testimonials: React.FC = () => {
   useEffect(() => {
     AOS.init();
-    AOS.refresh();
   }, []);
   return (
     <div id="testimonials" className="bg-gray-50 py-12" data-aos="fade-up">

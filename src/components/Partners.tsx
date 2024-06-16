@@ -34,7 +34,6 @@ const Partners: React.FC = () => {
   const basePath = import.meta.env.VITE_BASE_PATH || "";
   useEffect(() => {
     AOS.init();
-    AOS.refresh();
   }, []);
   return (
     <div id="partners" className="bg-gray-100 py-16 pb-52" data-aos="fade-up">

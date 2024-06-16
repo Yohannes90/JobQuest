@@ -5,7 +5,6 @@ import heroImage from "/hero.jpg";
 const Hero = () => {
   useEffect(() => {
     AOS.init();
-    AOS.refresh();
   }, []);
   return (
     <div className="w-full">
