@@ -20,20 +20,12 @@ const App: React.FC = () => {
           <Navbar />
           <Suspense fallback={<div>Loading...</div>}>
             <Routes>
-              <Route
-                path="/"
-                element={
-                  <>
-                    <Hero />
-                    <AboutUs />
-                    <Services />
-                    <Partners />
-                    <Testimonials />
-                    <ContactUs />
-                  </>
-                }
-              />
-              {/* Additional routes if needed */}
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<AboutUs />} />
+              <Route path="/services" element={<Services />} />
+              <Route path="/testimonials" element={<Testimonials />} />
+              <Route path="/contact" element={<ContactUs />} />
+              <Route path="/partners" element={<Partners />} />
             </Routes>
           </Suspense>
         </div>
@@ -42,5 +34,15 @@ const App: React.FC = () => {
     </Router>
   );
 };
+const Home: React.FC = () => (
+  <>
+    <Hero />
+    <AboutUs />
+    <Services />
+    <Partners />
+    <Testimonials />
+    <ContactUs />
+  </>
+);
 
 export default App;
