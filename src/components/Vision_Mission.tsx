@@ -2,7 +2,7 @@ const Vision_Mission = () => {
   return (
     <div
       id="vision-mission"
-      className="flex w-full min-h-screen justify-center bg-gray-100 z-0"
+      className="grid md:grid-cols-2  w-fit min-h-screen bg-gray-100 z-0"
     >
       <div className="grid h-fit flex-grow card bg-gray-50 text-black rounded-box place-items-center mx-5 self-center">
         <h2 className="text-3xl text-green-950 mb-10 tracking-widest">

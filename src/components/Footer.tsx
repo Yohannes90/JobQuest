@@ -18,28 +18,18 @@ const Footer: React.FC = () => {
               Har Consultancy.
             </a>
           </div>
-          <div className="space-x-6 mb-4 md:mb-0">
-            <a href="#" className="text-green-950 hover:text-gray-400">
-              Home
-            </a>
+          <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 my-10 sm:my-0">
+            <a href="#" className="text-center text-green-950 hover:text-gray-400">Home</a>
             <a
               href="#vision-mission"
-              className="text-green-950 hover:text-gray-400"
-            >
-              About Us
-            </a>
-            <a href="#services" className="text-green-950 hover:text-gray-400">
-              Services
-            </a>
+              className="text-center text-green-950 hover:text-gray-400"
+            >About Us</a>
+            <a href="#services" className="text-center text-green-950 hover:text-gray-400">Services</a>
             <a
               href="#testimonials"
-              className="text-green-950 hover:text-gray-400"
-            >
-              Testimonials
-            </a>
-            <a href="#contact" className="text-green-950 hover:text-gray-400">
-              Contact
-            </a>
+              className="text-center text-green-950 hover:text-gray-400"
+            >Testimonials</a>
+            <a href="#contact" className="text-center text-green-950 hover:text-gray-400">Contact</a>
           </div>
           <div className="flex space-x-6">
             <a

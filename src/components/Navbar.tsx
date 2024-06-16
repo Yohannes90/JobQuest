@@ -2,9 +2,9 @@ import companyLogo from "/icon.png";
 
 const Navbar = () => {
   return (
-    <div className="navbar h-20 bg-gray-50 fixed px-20 z-10">
+    <div className="navbar h-20 bg-gray-50 fixed px-10 z-10 w-full">
       <div className="navbar-start">
-        <img src={companyLogo} alt="logo" className="w-8 h-9 mx-5" />
+        <img src={companyLogo} alt="logo" className="w-8 h-9 mx-2" />
         <a
           href="#hero"
           className="btn btn-ghost text-green-950 text-xl hover:text-green-950"
@@ -12,7 +12,7 @@ const Navbar = () => {
           Har Consultancy
         </a>
       </div>
-      <div className="navbar-end pr-20">
+      <div className="hidden lg:flex navbar-end pr-20 ">
         <a
           href="#hero"
           className="btn btn-ghost text-green-950 hover:text-green-950 text-base"
@@ -43,6 +43,23 @@ const Navbar = () => {
         >
           Contact Us
         </a>
+      </div>
+      <div className="navbar-end lg:hidden">
+        <button className="btn btn-outline border-transparent text-harPrimary hover:bg-harSecondary hover:text-white">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="black"
+            viewBox="0 0 24 24"
+            className="inline-block w-5 h-5 stroke-current"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            ></path>
+          </svg>
+        </button>
       </div>
     </div>
   );
