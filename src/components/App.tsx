@@ -18,6 +18,7 @@ const App: React.FC = () => {
       <div className="flex flex-col min-h-screen">
         <div className="flex-grow">
           <Navbar />
+          <Hero />
           <Suspense fallback={<div>Loading...</div>}>
             <Routes>
               <Route path="/" element={<Home />} />
