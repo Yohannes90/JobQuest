@@ -1,18 +1,18 @@
-import { useEffect } from "react";
-import AOS from "aos";
+// import { useEffect } from "react";
+// import AOS from "aos";
 import heroImage from "/hero.jpg";
 
 const Hero = () => {
-  useEffect(() => {
-    AOS.init();
-    AOS.refresh();
-  }, []);
+  // useEffect(() => {
+  //   AOS.init();
+  //   AOS.refresh();
+  // }, []);
   return (
     <div className="w-full">
       <div
         id="hero"
         className="hero min-h-screen bg-gray-100"
-        data-aos="fade-down"
+        // data-aos="fade-down"
       >
         <div className="hero-content text-center">
           <div className="max-w-md">
@@ -25,7 +25,7 @@ const Hero = () => {
       <div className=" grid md:grid-cols-2 w-full min-h-screen bg-gray-50">
         <div
           className="h-fit flex-grow card bg-gray-50 text-black rounded-box place-items-center self-center"
-          data-aos="fade-right"
+          // data-aos="fade-right"
         >
           <p className="tracking-wider text-justify leading-loose text-base font-normal lg:text-lg">
             Welcome to Har Consultancy, your partner in transformation and
@@ -39,7 +39,7 @@ const Hero = () => {
         </div>
         <div
           className="h-fit flex-grow card bg-gray-50 text-black  rounded-box place-items-center p-0 mx-5 self-center"
-          data-aos="fade-left"
+          // data-aos="fade-left"
         >
           <img src={heroImage} alt="" className="h-fit w-fit" />
         </div>
