@@ -14,11 +14,10 @@ const Partners = lazy(() => import("./Partners"));
 
 const App: React.FC = () => {
   return (
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <div className="flex flex-col min-h-screen">
         <div className="flex-grow">
           <Navbar />
-          <Hero />
           <Suspense fallback={<div>Loading...</div>}>
             <Routes>
               <Route path="/" element={<Home />} />
@@ -35,6 +34,7 @@ const App: React.FC = () => {
     </Router>
   );
 };
+
 const Home: React.FC = () => (
   <>
     <Hero />
