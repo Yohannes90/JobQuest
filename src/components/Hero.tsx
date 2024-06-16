@@ -2,7 +2,7 @@ import heroImage from "/hero.jpg";
 
 const Hero = () => {
   return (
-    <>
+    <div className="w-full">
       <div id="hero" className="hero min-h-screen bg-gray-100">
         <div className="hero-content text-center">
           <div className="max-w-md">
@@ -12,8 +12,8 @@ const Hero = () => {
           </div>
         </div>
       </div>
-      <div className="flex w-full min-h-screen bg-gray-50">
-        <div className="grid h-fit w-1/2 flex-grow card bg-gray-50 text-black rounded-box place-items-center mx-5 self-center">
+      <div className=" grid md:grid-cols-2 w-full min-h-screen bg-gray-50">
+        <div className="h-fit flex-grow card bg-gray-50 text-black rounded-box place-items-center self-center">
           <p className="tracking-wider text-justify leading-loose text-base font-normal lg:text-lg">
             Welcome to Har Consultancy, your partner in transformation and
             growth. We are a licensed social enterprise and consultancy firm
@@ -24,11 +24,11 @@ const Hero = () => {
             establishment and licensing support, and headhunting.
           </p>
         </div>
-        <div className="grid h-fit flex-grow card w-1/2 bg-gray-50 text-black  rounded-box place-items-center p-0 mx-5 self-center">
+        <div className="h-fit flex-grow card bg-gray-50 text-black  rounded-box place-items-center p-0 mx-5 self-center">
           <img src={heroImage} alt="" className="h-fit w-fit" />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
