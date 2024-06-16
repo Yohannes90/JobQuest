@@ -1,3 +1,7 @@
+import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 interface Partner {
   name: string;
   logo: string;
@@ -29,8 +33,12 @@ const partners: Partner[] = [
 
 const Partners: React.FC = () => {
   const basePath = import.meta.env.VITE_BASE_PATH || "";
+  useEffect(() => {
+    AOS.init();
+    AOS.refresh();
+  }, []);
   return (
-    <div id="partners" className="bg-gray-100 py-16 pb-52">
+    <div id="partners" className="bg-gray-100 py-16 pb-52" data-aos="fade-up">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <h2 className="text-3xl font-bold text-green-950">Our Partners</h2>
@@ -46,6 +54,7 @@ const Partners: React.FC = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="bg-white p-6 rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl"
+              data-aos="fade-right"
             >
               <div className="flex justify-center mb-4">
                 <img

@@ -1,3 +1,7 @@
+import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 interface Testimonial {
   name: string;
   position: string;
@@ -38,8 +42,12 @@ const testimonials: Testimonial[] = [
 ];
 
 const Testimonials: React.FC = () => {
+  useEffect(() => {
+    AOS.init();
+    AOS.refresh();
+  }, []);
   return (
-    <div id="testimonials" className="bg-gray-50 py-12">
+    <div id="testimonials" className="bg-gray-50 py-12" data-aos="fade-up">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* <h2 className="text-3xl font-bold text-center text-green-950 mb-4">
           Testimonials
@@ -49,7 +57,11 @@ const Testimonials: React.FC = () => {
         </p>
         <div className="grid gap-8 lg:grid-cols-3">
           {testimonials.map((testimonial, index) => (
-            <div key={index} className="bg-white p-6 rounded-lg shadow-lg">
+            <div
+              key={index}
+              className="bg-white p-6 rounded-lg shadow-lg"
+              data-aos="fade-right"
+            >
               <p className="text-gray-700 mb-4">"{testimonial.testimonial}"</p>
               <div className="flex items-center">
                 <img

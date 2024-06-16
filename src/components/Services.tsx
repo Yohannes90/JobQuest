@@ -1,3 +1,7 @@
+import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 interface ServiceCategory {
   title: string;
   services: string[];
@@ -39,8 +43,16 @@ const serviceCategories: ServiceCategory[] = [
 ];
 
 const Services: React.FC = () => {
+  useEffect(() => {
+    AOS.init();
+    AOS.refresh();
+  }, []);
   return (
-    <div id="services" className="bg-gray-50 py-12 min-h-screen">
+    <div
+      id="services"
+      className="bg-gray-50 py-12 min-h-screen"
+      data-aos="fade-up"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-green-950">Our Services</h2>
@@ -53,6 +65,7 @@ const Services: React.FC = () => {
             <div
               key={index}
               className="bg-white p-8 rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300 ease-in-out"
+              data-aos="fade-right"
             >
               <h3 className="text-2xl font-semibold text-black mb-6 text-start">
                 {category.title}
@@ -64,7 +77,7 @@ const Services: React.FC = () => {
                     className="text-gray-700 flex items-start justify-start"
                   >
                     <span className="mr-2 text-green-900 text-sm font-bold">
-                      -
+                      *
                     </span>
                     <span>{service}</span>
                   </li>

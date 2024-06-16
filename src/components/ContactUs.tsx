@@ -1,6 +1,18 @@
+import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 const ContactUs: React.FC = () => {
+  useEffect(() => {
+    AOS.init();
+    AOS.refresh();
+  }, []);
   return (
-    <div id="contact" className="bg-gray-100 py-12 min-h-screen">
+    <div
+      id="contact"
+      className="bg-gray-100 py-12 min-h-screen"
+      data-aos="fade-up"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col">
         <div className="text-center">
           <h2 className="text-3xl font-bold text-green-950">Contact Us</h2>
@@ -8,7 +20,10 @@ const ContactUs: React.FC = () => {
             We'd love to hear from you. Fill out the form below to get in touch.
           </p>
         </div>
-        <div className="mt-8 sm:mt-12 lg:mt-16 lg:w-3/4 self-center">
+        <div
+          className="mt-8 sm:mt-12 lg:mt-16 lg:w-3/4 self-center"
+          data-aos="fade-right"
+        >
           <div className="max-w-7xl mx-auto bg-white p-12 rounded-lg shadow-lg">
             <form className="space-y-8">
               <div className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
