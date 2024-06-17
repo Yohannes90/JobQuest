@@ -8,11 +8,10 @@ const ContactUs: React.FC = () => {
   return (
     <div
       id="contact"
-      className="bg-gray-100 py-12 min-h-screen"
-      data-aos="fade-up"
+      className="bg-gray-100 py-12 min-h-screen pt-28"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col">
-        <div className="text-center">
+        <div className="text-center" data-aos="fade-up">
           <h2 className="text-3xl font-bold text-green-950">Contact Us</h2>
           <p className="mt-4 text-lg text-gray-600 font-thin">
             We'd love to hear from you. Fill out the form below to get in touch.
@@ -61,7 +60,7 @@ const ContactUs: React.FC = () => {
                   name="message"
                   id="message"
                   placeholder="Message"
-                  rows={6}
+                  rows={4}
                   className="block w-full bg-slate-50 text-black outline-none px-5 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-green-900 focus:border-green-900"
                   required
                 />
