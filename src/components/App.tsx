@@ -13,19 +13,27 @@ const ContactUs = lazy(() => import("./ContactUs"));
 const Partners = lazy(() => import("./Partners"));
 
 const App: React.FC = () => {
+  const basePath = import.meta.env.VITE_BASE_PATH || "";
   return (
-    <Router>
+    <Router basename={basePath}>
       <div className="flex flex-col min-h-screen">
         <div className="flex-grow">
           <Navbar />
           <Suspense fallback={<div>Loading...</div>}>
             <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<AboutUs />} />
-              <Route path="/services" element={<Services />} />
-              <Route path="/partners" element={<Partners />} />
-              <Route path="/testimonials" element={<Testimonials />} />
-              <Route path="/contact" element={<ContactUs />} />
+              <Route
+                path="/"
+                element={
+                  <>
+                    <Hero />
+                    <AboutUs />
+                    <Services />
+                    <Partners />
+                    <Testimonials />
+                    <ContactUs />
+                  </>
+                } />
+              {/* additional routes here */}
           </Routes>
           </Suspense>
         </div>
@@ -34,16 +42,5 @@ const App: React.FC = () => {
     </Router>
   );
 };
-
-const Home: React.FC = () => (
-  <>
-    <Hero />
-    <AboutUs />
-    <Services />
-    <Partners />
-    <Testimonials />
-    <ContactUs />
-  </>
-);
 
 export default App;
