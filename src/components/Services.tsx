@@ -46,10 +46,7 @@ const Services: React.FC = () => {
     AOS.init();
   }, []);
   return (
-    <div
-      id="services"
-      className="bg-gray-50 py-12 min-h-screen pt-24"
-    >
+    <div id="services" className="bg-gray-50 py-12 min-h-screen pt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
         <div className="text-center mb-12" data-aos="fade-up">
           <h2 className="text-3xl font-bold text-green-950">Our Services</h2>
@@ -71,12 +68,24 @@ const Services: React.FC = () => {
                 {category.services.map((service, serviceIndex) => (
                   <li
                     key={serviceIndex}
-                    className="text-gray-700 flex items-start justify-start"
+                    className="flex items-start justify-start"
                   >
-                    <span className="mr-2 text-green-900 text-sm font-bold">
-                      *
+                    <svg
+                      className="w-6 h-6 mr-2 text-green-600 flex-shrink-0 mt-0.5"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="3"
+                        d="M5 13l4 4L19 7"
+                      ></path>
+                    </svg>
+                    <span className="text-gray-700 text-sm font-medium">
+                      {service}
                     </span>
-                    <span>{service}</span>
                   </li>
                 ))}
               </ul>

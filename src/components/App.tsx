@@ -32,9 +32,10 @@ const App: React.FC = () => {
                     <Testimonials />
                     <ContactUs />
                   </>
-                } />
+                }
+              />
               {/* additional routes here */}
-          </Routes>
+            </Routes>
           </Suspense>
         </div>
         <Footer />
