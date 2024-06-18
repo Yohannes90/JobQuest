@@ -45,21 +45,44 @@ const Navbar = () => {
         </a>
       </div>
       <div className="navbar-end lg:hidden">
-        <button className="btn btn-outline border-transparent text-harPrimary hover:bg-harSecondary hover:text-white">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="black"
-            viewBox="0 0 24 24"
-            className="inline-block w-5 h-5 stroke-current"
+        <div className="dropdown">
+          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden text-harPrimary">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M4 6h16M4 12h8m-8 6h16"
+              />
+            </svg>
+          </div>
+          <ul
+            tabIndex={0}
+            className="menu menu-md dropdown-content mt-3 -left-20 z-[1] py-2 shadow bg-gray-50 rounded-box w-52"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M4 6h16M4 12h16M4 18h16"
-            ></path>
-          </svg>
-        </button>
+            <li>
+              <a href="#hero" className="text-harPrimary hover:text-harSecondary">Home</a>
+            </li>
+            <li>
+              <a href="#vision-mission" className="text-harPrimary hover:text-harSecondary">About us</a>
+            </li>
+            <li>
+              <a href="#services" className="text-harPrimary hover:text-harSecondary">Services</a>
+            </li>
+            <li>
+              <a href="#testimonials" className="text-harPrimary hover:text-harSecondary">Testimonial</a>
+            </li>
+            <li>
+              <a href="#contact" className="text-harPrimary hover:text-harSecondary">Contact us</a>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   );
