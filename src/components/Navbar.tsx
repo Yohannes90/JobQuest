@@ -1,4 +1,5 @@
 import companyLogo from "/icon.png";
+import '../styles/custom-hover.css'
 
 const Navbar = () => {
   return (
@@ -15,7 +16,7 @@ const Navbar = () => {
       <div className="hidden lg:flex navbar-end pr-20 ">
         <a
           href="#hero"
-          className="btn btn-ghost text-green-950 hover:text-green-950 text-base"
+          className="btn btn-ghost text-green-950 hover:text-green-950 text-base custom-"
         >
           Home
         </a>

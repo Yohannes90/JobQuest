@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* this is used for styling the underline in the navbars  */
+
+@layer components {
+  .custom-hover-style {
+    @apply relative hover:text-green-950 hover:bg-green-950 hover:border-green-950 hover:shadow-lg hover:opacity-75 hover:scale-105;
+  }
+  
+  .custom-hover-style::after {
+    content: '';
+    background-color: var(--tw-bg-opacity, 1) ? theme('colors.harPrimary');
+    height: 3px;
+    width: 0%;
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    border-radius: 0.5rem;
+    transition: width 0.3s ease-in-out;
+  }
+
+  .custom-hover-style:hover::after {
+    width: 100%;
+  }
+}
