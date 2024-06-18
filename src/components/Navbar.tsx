@@ -1,5 +1,5 @@
 import companyLogo from "/icon.png";
-import '../styles/custom-hover.css'
+import "../styles/custom-hover.css";
 
 const Navbar = () => {
   return (
@@ -16,38 +16,42 @@ const Navbar = () => {
       <div className="hidden lg:flex navbar-end pr-20 ">
         <a
           href="#hero"
-          className="btn btn-ghost text-green-950 hover:text-green-950 text-base custom-"
+          className="btn btn-ghost p-0 mx-3 hover:bg-transparent relative text-harPrimary hover:text-harSecondary text-base custom-hover-style"
         >
           Home
         </a>
         <a
           href="#vision-mission"
-          className="btn btn-ghost text-green-950 hover:text-green-950 text-base"
+          className="btn btn-ghost p-0 mx-4 text-green-950 hover:text-harSecondary text-base hover:bg-transparent relative custom-hover-style"
         >
           About us
         </a>
         <a
           href="#services"
-          className="btn btn-ghost text-green-950 hover:text-green-950 text-base"
+          className="btn btn-ghost p-0 mx-4 text-green-950 hover:text-harSecondary text-base hover:bg-transparent relative custom-hover-style"
         >
           Services
         </a>
         <a
           href="#testimonials"
-          className="btn btn-ghost text-green-950 hover:text-green-950 text-base"
+          className="btn btn-ghost p-0 mx-4 text-green-950 hover:text-harSecondary text-base hover:bg-transparent relative custom-hover-style"
         >
           Testimonials
         </a>
         <a
           href="#contact"
-          className="btn btn-ghost text-green-950 hover:text-green-950 text-base"
+          className="btn btn-ghost p-0 mx-4 text-green-950 hover:text-harSecondary text-base hover:bg-transparent relative custom-hover-style"
         >
           Contact Us
         </a>
       </div>
       <div className="navbar-end lg:hidden">
         <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden text-harPrimary">
+          <div
+            tabIndex={0}
+            role="button"
+            className="btn btn-ghost lg:hidden text-harPrimary"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
@@ -68,19 +72,44 @@ const Navbar = () => {
             className="menu menu-md dropdown-content mt-3 -left-20 z-[1] py-2 shadow bg-gray-50 rounded-box w-52"
           >
             <li>
-              <a href="#hero" className="text-harPrimary hover:text-harSecondary">Home</a>
+              <a
+                href="#hero"
+                className="text-harPrimary hover:text-harSecondary"
+              >
+                Home
+              </a>
             </li>
             <li>
-              <a href="#vision-mission" className="text-harPrimary hover:text-harSecondary">About us</a>
+              <a
+                href="#vision-mission"
+                className="text-harPrimary hover:text-harSecondary"
+              >
+                About us
+              </a>
             </li>
             <li>
-              <a href="#services" className="text-harPrimary hover:text-harSecondary">Services</a>
+              <a
+                href="#services"
+                className="text-harPrimary hover:text-harSecondary"
+              >
+                Services
+              </a>
             </li>
             <li>
-              <a href="#testimonials" className="text-harPrimary hover:text-harSecondary">Testimonial</a>
+              <a
+                href="#testimonials"
+                className="text-harPrimary hover:text-harSecondary"
+              >
+                Testimonial
+              </a>
             </li>
             <li>
-              <a href="#contact" className="text-harPrimary hover:text-harSecondary">Contact us</a>
+              <a
+                href="#contact"
+                className="text-harPrimary hover:text-harSecondary"
+              >
+                Contact us
+              </a>
             </li>
           </ul>
         </div>
