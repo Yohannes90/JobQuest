@@ -1,3 +1,4 @@
+import HeroNavBtn from "./HeroNavBtn";
 import heroImage from "/hero.jpg";
 
 const Hero = () => {
@@ -28,6 +29,7 @@ const Hero = () => {
           <img src={heroImage} alt="" className="h-fit w-fit" />
         </div>
       </div>
+      <HeroNavBtn />
     </div>
   );
 };

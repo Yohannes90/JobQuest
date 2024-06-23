@@ -2,10 +2,10 @@ const Vision_Mission = () => {
   return (
     <div
       id="vision-mission"
-      className="grid md:grid-cols-2  w-fit min-h-screen bg-gray-100 z-0"
+      className="grid md:grid-cols-2 w-fit min-h-screen bg-gray-50 z-0"
     >
-      <div className="grid h-fit flex-grow card bg-gray-50 text-black rounded-box place-items-center mx-5 self-center">
-        <h2 className="text-3xl text-green-950 mb-10 tracking-widest">
+      <div className="grid h-fit flex-grow card bg-gray-50 text-black rounded-box place-items-center mx-5 self-start">
+        <h2 className="pb-1 border-b-4 border-harSecondary text-3xl text-green-950 mb-10 tracking-widest">
           VISION
         </h2>
         <p className="tracking-wider text-justify leading-loose text-base font-normal lg:text-lg bg-gray-50">
@@ -22,8 +22,8 @@ const Vision_Mission = () => {
         </p>
       </div>
 
-      <div className="grid h-fit flex-grow card bg-gray-50 text-black rounded-box place-items-center mx-5 self-center">
-        <h2 className="text-3xl text-green-950 mb-10 tracking-widest">
+      <div className="grid h-fit flex-grow card bg-gray-50 text-black rounded-box place-items-center mx-5 self-start">
+        <h2 className="pb-1 border-b-4 border-harSecondary text-3xl text-green-950 mb-10 tracking-widest">
           MISSION
         </h2>
         <p className="tracking-wider text-justify leading-loose text-base font-normal lg:text-lg  bg-gray-50">
