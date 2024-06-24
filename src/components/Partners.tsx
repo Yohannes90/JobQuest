@@ -38,8 +38,8 @@ const Partners: React.FC = () => {
   return (
     <div id="partners" className="bg-gray-100 py-16 pb-52 pt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center" data-aos="fade-up">
-          <h2 className="text-3xl font-bold text-green-950">Our Partners</h2>
+        <div className="text-center">
+          <h2 className="text-3xl text-green-950">Our Partners</h2>
           <p className="mt-4 text-lg text-gray-600 font-thin">
             We are proud to collaborate with our trusted partners.
           </p>

@@ -8,10 +8,13 @@ const HeroNavBtn = () => {
       console.log("ScrollY: ", window.scrollY); // Debugging log
       console.log("Window innerHeight: ", window.innerHeight); // Debugging log
 
-      if (window.scrollY >= window.innerHeight && scrollY <= (window.innerHeight + 20)) {
+      if (
+        window.scrollY >= window.innerHeight &&
+        scrollY <= window.innerHeight + 20
+      ) {
         setUpBtn(true);
         setDownBtn(false);
-      } else if(scrollY < window.innerHeight){
+      } else if (scrollY < window.innerHeight) {
         setUpBtn(false);
         setDownBtn(true);
       } else {
@@ -38,7 +41,7 @@ const HeroNavBtn = () => {
           onClick={scrollDown}
         >
           <svg
-          className="self-center"
+            className="self-center"
             xmlns="http://www.w3.org/2000/svg"
             height="35px"
             viewBox="0 -960 960 960"
@@ -55,7 +58,7 @@ const HeroNavBtn = () => {
           onClick={scrollUp}
         >
           <svg
-          className="self-center"
+            className="self-center"
             xmlns="http://www.w3.org/2000/svg"
             height="35px"
             viewBox="0 -960 960 960"
