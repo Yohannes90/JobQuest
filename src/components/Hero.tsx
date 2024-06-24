@@ -42,7 +42,7 @@ const Hero = () => {
           className="h-fit flex-grow card bg-gray-50 text-black  rounded-box place-items-center p-0 mx-5 self-center"
           data-aos="fade-left"
         >
-          <img src={heroImage} alt="" className="h-fit w-fit" />
+          <img src={heroImage} alt="People working collaboratively in a team setting" className="h-fit w-fit rounded-lg shadow-lg" />
         </div>
       </div>
       <HeroNavBtn />
