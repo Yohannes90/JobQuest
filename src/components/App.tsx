@@ -13,8 +13,9 @@ const ContactUs = lazy(() => import("./ContactUs"));
 const Partners = lazy(() => import("./Partners"));
 
 const App: React.FC = () => {
+  const basePath = import.meta.env.VITE_BASE_PATH || "";
   return (
-    <Router>
+    <Router basename={basePath}>
       <div className="flex flex-col min-h-screen">
         <div className="flex-grow">
           <Navbar />
@@ -33,7 +34,7 @@ const App: React.FC = () => {
                   </>
                 }
               />
-              {/* Additional routes if needed */}
+              {/* additional routes here */}
             </Routes>
           </Suspense>
         </div>
