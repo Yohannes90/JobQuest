@@ -1,5 +1,7 @@
+import HeroNavBtn from "./HeroNavBtn";
 import { useEffect } from "react";
 import AOS from "aos";
+
 import heroImage from "/hero.jpg";
 
 const Hero = () => {
@@ -43,6 +45,7 @@ const Hero = () => {
           <img src={heroImage} alt="" className="h-fit w-fit" />
         </div>
       </div>
+      <HeroNavBtn />
     </div>
   );
 };

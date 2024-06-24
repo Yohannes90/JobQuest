@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* this is used for styling the underline in the navbars  */
+.custom-hover-style{
+    @apply after:content-[''] after:bg-harPrimary after:h-[3px] after:w-[0%] after:left-0 after:-bottom-[1px] after:rounded-xl after:absolute after:duration-300 hover:after:w-[100%]
+}

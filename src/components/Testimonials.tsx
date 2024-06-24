@@ -45,14 +45,11 @@ const Testimonials: React.FC = () => {
     AOS.init();
   }, []);
   return (
-    <div id="testimonials" className="bg-gray-50 py-12 pt-24">
-      <div
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
-        data-aos="fade-up"
-      >
-        {/* <h2 className="text-3xl font-bold text-center text-green-950 mb-4">
+    <div id="testimonials" className="bg-gray-50 py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 className="text-3xl font-bold text-center text-green-950 mb-4">
           Testimonials
-        </h2> */}
+        </h2>
         <p className="text-lg text-center text-gray-600 mb-12 font-thin">
           Here's what our clients say about us
         </p>
