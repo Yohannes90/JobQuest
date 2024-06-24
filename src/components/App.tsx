@@ -12,7 +12,18 @@ const Testimonials = lazy(() => import("./Testimonials"));
 const ContactUs = lazy(() => import("./ContactUs"));
 const Partners = lazy(() => import("./Partners"));
 
+/**
+ * Main application component.
+ * Renders the entire application structure including navigation, lazy-loaded routes,
+ * and a footer.
+ *
+ * @returns JSX element representing the entire application layout.
+ */
 const App: React.FC = () => {
+  /**
+   * Base path for the router
+   * @type {string}
+   */
   const basePath = import.meta.env.VITE_BASE_PATH || "";
   return (
     <Router basename={basePath}>

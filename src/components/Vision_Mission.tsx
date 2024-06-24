@@ -1,14 +1,26 @@
 import { useEffect } from "react";
 import AOS from "aos";
 
+/**
+ * Vision and Mission Component.
+ * Displays the vision and mission statements of Har Consultancy.
+ * Utilizes AOS for animations on component mount.
+ *
+ * @component
+ * @example
+ * return (
+ *   <VisionMission />
+ * )
+ * @returns {JSX.Element} The rendered Vision and Mission component
+ */
 const Vision_Mission = () => {
   useEffect(() => {
-    AOS.init();
+    AOS.init(); // Initialize AOS for animations
   }, []);
   return (
     <div
       id="vision-mission"
-      className="grid md:grid-cols-2 w-fit min-h-screen bg-gray-50 z-0"
+      className="grid md:grid-cols-2 w-fit pb-52 pt-24 min-h-screen bg-gray-50 z-0"
     >
       <div
         className="grid h-fit flex-grow card bg-gray-50 text-black rounded-box place-items-center mx-5 self-start"

@@ -3,6 +3,22 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTwitter, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import companyLogo from "/icon.png";
 
+/**
+ * Footer component
+ *
+ * This component renders the footer section of the website which includes:
+ * - Company logo and name
+ * - Navigation links to different sections of the website
+ * - Social media icons with links to respective profiles
+ * - Copyright information
+ *
+ * @component
+ * @example
+ * return (
+ *   <Footer />
+ * )
+ * @returns {JSX.Element} The rendered Footer component
+ */
 const Footer: React.FC = () => {
   return (
     <footer className="bg-gray-50 text-white pt-12 pb-5 w-full">

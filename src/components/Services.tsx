@@ -1,11 +1,17 @@
 import { useEffect } from "react";
 import AOS from "aos";
 
+/**
+ * Interface representing a service category with title and services array.
+ */
 interface ServiceCategory {
-  title: string;
-  services: string[];
+  title: string; // The title of the service category.
+  services: string[]; // Array of services offered within the category.
 }
 
+/**
+ * Array of service category objects containing title and services offered.
+ */
 const serviceCategories: ServiceCategory[] = [
   {
     title: "Organizational support",
@@ -41,9 +47,20 @@ const serviceCategories: ServiceCategory[] = [
   },
 ];
 
+/**
+ * Services component displaying categorized services with animations.
+ * Uses AOS (Animate On Scroll) for animations.
+ *
+ * @component
+ * @example
+ * return (
+ *   <Services />
+ * )
+ * @returns {JSX.Element} The rendered Services component
+ */
 const Services: React.FC = () => {
   useEffect(() => {
-    AOS.init();
+    AOS.init(); // Initialize AOS for animations
   }, []);
   return (
     <div id="services" className="bg-gray-50 py-12 min-h-screen pt-24">

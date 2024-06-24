@@ -5,15 +5,23 @@ import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import "leaflet-defaulticon-compatibility";
 
+/**
+ * ContactUs component
+ *
+ * This component renders the contact us section including a form and a map.
+ * It initializes AOS (Animate On Scroll) for animations.
+ *
+ * @returns {JSX.Element} The rendered ContactUs component
+ */
 const ContactUs: React.FC = () => {
   useEffect(() => {
-    AOS.init();
+    AOS.init(); // Initialize AOS for animations
   }, []);
 
   return (
     <div id="contact" className="bg-gray-100 py-16 min-h-screen pt-28">
       <div className="container mx-auto px-6 sm:px-8 lg:px-12 flex flex-col">
-        <div className="text-center" data-aos="fade-up">
+        <div className="text-center">
           <h2 className="text-3xl text-green-900">Contact Us</h2>
           <p className="mt-4 text-lg text-gray-700 font-light">
             We'd love to hear from you. Fill out the form below to get in touch.

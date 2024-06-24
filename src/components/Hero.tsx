@@ -1,12 +1,29 @@
 import HeroNavBtn from "./HeroNavBtn";
 import { useEffect } from "react";
 import AOS from "aos";
-
 import heroImage from "/hero.jpg";
 
+/**
+ * Hero component
+ *
+ * This component renders the hero section of the website which includes:
+ * - A title with the text "POTENTIAL MADE REAL"
+ * - An introduction text about Har Consultancy
+ * - An image representing people working collaboratively
+ * - Navigation buttons for the hero section
+ *
+ * The component also initializes the AOS (Animate on Scroll) library for animations.
+ *
+ * @component
+ * @example
+ * return (
+ *   <Hero />
+ * )
+ * @returns {JSX.Element} The rendered Hero component
+ */
 const Hero = () => {
   useEffect(() => {
-    AOS.init();
+    AOS.init(); // Initialize AOS for animations
   }, []);
   return (
     <div className="w-full">
@@ -39,10 +56,14 @@ const Hero = () => {
           </p>
         </div>
         <div
-          className="h-fit flex-grow card bg-gray-50 text-black  rounded-box place-items-center p-0 mx-5 self-center"
+          className="h-fit flex-grow card bg-gray-50 text-black rounded-box place-items-center p-0 mx-5 self-center"
           data-aos="fade-left"
         >
-          <img src={heroImage} alt="People working collaboratively in a team setting" className="h-fit w-fit rounded-lg shadow-lg" />
+          <img
+            src={heroImage}
+            alt="People working collaboratively in a team setting"
+            className="h-fit w-fit rounded-lg shadow-lg"
+          />
         </div>
       </div>
       <HeroNavBtn />
