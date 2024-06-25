@@ -9,7 +9,7 @@ const ContactUs: React.FC = () => {
   }, []);
 
   return (
-    <div id="contact" className="bg-gray-100 py-12 min-h-screen pt-28">
+    <div id="contact" className="overflow-x-hidden bg-gray-100 py-12 min-h-screen pt-28">
       <div className=" mx-auto px-4 sm:px-6 lg:px-8 flex flex-col">
         <div className="text-center" data-aos="fade-up">
           <h2 className="text-3xl font-bold text-green-950">Contact Us</h2>

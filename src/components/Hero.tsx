@@ -9,7 +9,7 @@ const Hero = () => {
     AOS.init();
   }, []);
   return (
-    <div className="w-full">
+    <div className="w-full overflow-x-hidden">
       <div
         id="hero"
         className="hero min-h-screen bg-gray-100"
