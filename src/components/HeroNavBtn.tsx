@@ -29,7 +29,7 @@ const HeroNavBtn = () => {
   };
   const scrollUp = () => {
     window.scrollBy({ top: -window.innerHeight, behavior: "smooth" });
-  };
+  }; 
   return (
     <div>
       {downBtn && (
