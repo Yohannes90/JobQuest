@@ -1,11 +1,17 @@
 import { useEffect } from "react";
 import AOS from "aos";
 
+/**
+ * Interface representing a service category with title and services array.
+ */
 interface ServiceCategory {
-  title: string;
-  services: string[];
+  title: string; // The title of the service category.
+  services: string[]; // Array of services offered within the category.
 }
 
+/**
+ * Array of service category objects containing title and services offered.
+ */
 const serviceCategories: ServiceCategory[] = [
   {
     title: "Organizational support",
@@ -41,15 +47,26 @@ const serviceCategories: ServiceCategory[] = [
   },
 ];
 
+/**
+ * Services component displaying categorized services with animations.
+ * Uses AOS (Animate On Scroll) for animations.
+ *
+ * @component
+ * @example
+ * return (
+ *   <Services />
+ * )
+ * @returns {JSX.Element} The rendered Services component
+ */
 const Services: React.FC = () => {
   useEffect(() => {
-    AOS.init();
+    AOS.init(); // Initialize AOS for animations
   }, []);
   return (
     <div id="services" className="bg-gray-50 py-12 min-h-screen pt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
-        <div className="text-center mb-12" data-aos="fade-up">
-          <h2 className="text-3xl font-bold text-green-950">Our Services</h2>
+        <div className="text-center mb-12">
+          <h2 className="text-3xl text-green-950">Our Services</h2>
           <p className="mt-4 text-lg text-gray-600">
             Comprehensive support to enhance your organizational capabilities.
           </p>

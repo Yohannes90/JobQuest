@@ -1,6 +1,19 @@
 import companyLogo from "/icon.png";
 import "../styles/custom-hover.css";
 
+/**
+ * Navbar component
+ *
+ * This component represents the navigation bar of the application,
+ * containing links to different sections and a dropdown menu for smaller screens.
+ *
+ * @component
+ * @example
+ * return (
+ *   <Navbar />
+ * )
+ * @returns {JSX.Element} The rendered Navbar component
+ */
 const Navbar = () => {
   return (
     <div className="navbar h-20 bg-gray-50 fixed px-10 z-10 w-full">

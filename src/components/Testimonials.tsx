@@ -1,15 +1,21 @@
 import { useEffect } from "react";
 import AOS from "aos";
 
+/**
+ * Interface representing a testimonial provided by a client.
+ */
 interface Testimonial {
-  name: string;
-  position: string;
-  image: string;
-  testimonial: string;
-  personLink: string;
-  companyLink: string;
+  name: string; // The name of the person providing the testimonial.
+  position: string; // The position of the person at their company.
+  image: string; // URL of the person's image.
+  testimonial: string; // The actual testimonial text.
+  personLink: string; // URL to the person's LinkedIn profile.
+  companyLink: string; // URL to the person's company website.
 }
 
+/**
+ * Array of testimonial objects containing details of each testimonial.
+ */
 const testimonials: Testimonial[] = [
   {
     name: "John Dyree",
@@ -40,14 +46,25 @@ const testimonials: Testimonial[] = [
   },
 ];
 
+/**
+ * Testimonials component displaying client testimonials with animations.
+ * Uses AOS (Animate On Scroll) for animations.
+ *
+ * @component
+ * @example
+ * return (
+ *   <Testimonials />
+ * )
+ * @returns {JSX.Element} The rendered Testimonials component
+ */
 const Testimonials: React.FC = () => {
   useEffect(() => {
-    AOS.init();
+    AOS.init(); // Initialize AOS for animations
   }, []);
   return (
-    <div id="testimonials" className="bg-gray-50 py-12">
+    <div id="testimonials" className="bg-gray-50 pb-52 pt-24 py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-bold text-center text-green-950 mb-4">
+        <h2 className="text-3xl text-center text-green-950 mb-4">
           Testimonials
         </h2>
         <p className="text-lg text-center text-gray-600 mb-12 font-thin">

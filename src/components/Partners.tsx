@@ -1,12 +1,18 @@
 import { useEffect } from "react";
 import AOS from "aos";
 
+/**
+ * Interface representing a partner with name, logo, and URL.
+ */
 interface Partner {
-  name: string;
-  logo: string;
-  url: string;
+  name: string; // The name of the partner.
+  logo: string; // The filename of the partner's logo.
+  url: string; // The URL linking to the partner's website.
 }
 
+/**
+ * Array of partner objects containing details of each partner.
+ */
 const partners: Partner[] = [
   {
     name: "Partner 1",
@@ -30,16 +36,27 @@ const partners: Partner[] = [
   },
 ];
 
+/**
+ * Partners component displaying a grid of partner logos with links.
+ * Uses AOS (Animate On Scroll) for animations.
+ *
+ * @component
+ * @example
+ * return (
+ *   <Partners />
+ * )
+ * @returns {JSX.Element} The rendered Partners component
+ */
 const Partners: React.FC = () => {
   const basePath = import.meta.env.VITE_BASE_PATH || "";
   useEffect(() => {
-    AOS.init();
+    AOS.init(); // Initialize AOS for animations
   }, []);
   return (
     <div id="partners" className="bg-gray-100 py-16 pb-52 pt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center" data-aos="fade-up">
-          <h2 className="text-3xl font-bold text-green-950">Our Partners</h2>
+        <div className="text-center">
+          <h2 className="text-3xl text-green-950">Our Partners</h2>
           <p className="mt-4 text-lg text-gray-600 font-thin">
             We are proud to collaborate with our trusted partners.
           </p>

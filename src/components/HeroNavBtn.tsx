@@ -1,5 +1,22 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
+/**
+ * HeroNavBtn component
+ *
+ * This component renders navigation buttons for scrolling up and down the hero section.
+ * The buttons appear based on the current scroll position of the window.
+ * - When the user scrolls down past the hero section, an up button appears.
+ * - When the user is at the top of the page, a down button appears.
+ *
+ * The component also initializes scroll event listeners to handle the visibility of the buttons.
+ *
+ * @component
+ * @example
+ * return (
+ *   <HeroNavBtn />
+ * )
+ * @returns {JSX.Element} The rendered HeroNavBtn component
+ */
 const HeroNavBtn = () => {
   const [downBtn, setDownBtn] = useState(false);
   const [upBtn, setUpBtn] = useState(false);
@@ -8,10 +25,13 @@ const HeroNavBtn = () => {
       console.log("ScrollY: ", window.scrollY); // Debugging log
       console.log("Window innerHeight: ", window.innerHeight); // Debugging log
 
-      if (window.scrollY >= window.innerHeight && scrollY <= (window.innerHeight + 20)) {
+      if (
+        window.scrollY >= window.innerHeight &&
+        scrollY <= window.innerHeight + 20
+      ) {
         setUpBtn(true);
         setDownBtn(false);
-      } else if(scrollY < window.innerHeight){
+      } else if (scrollY < window.innerHeight) {
         setUpBtn(false);
         setDownBtn(true);
       } else {
@@ -24,9 +44,15 @@ const HeroNavBtn = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+  /**
+   * Scrolls the window down by the height of the window
+   */
   const scrollDown = () => {
     window.scrollBy({ top: window.innerHeight, behavior: "smooth" });
   };
+  /**
+   * Scrolls the window up by the height of the window
+   */
   const scrollUp = () => {
     window.scrollBy({ top: -window.innerHeight, behavior: "smooth" });
   }; 
@@ -38,7 +64,7 @@ const HeroNavBtn = () => {
           onClick={scrollDown}
         >
           <svg
-          className="self-center"
+            className="self-center"
             xmlns="http://www.w3.org/2000/svg"
             height="35px"
             viewBox="0 -960 960 960"
@@ -55,7 +81,7 @@ const HeroNavBtn = () => {
           onClick={scrollUp}
         >
           <svg
-          className="self-center"
+            className="self-center"
             xmlns="http://www.w3.org/2000/svg"
             height="35px"
             viewBox="0 -960 960 960"

@@ -2,10 +2,20 @@ import { useEffect } from "react";
 import AOS from "aos";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
+import "leaflet-defaulticon-compatibility";
 
+/**
+ * ContactUs component
+ *
+ * This component renders the contact us section including a form and a map.
+ * It initializes AOS (Animate On Scroll) for animations.
+ *
+ * @returns {JSX.Element} The rendered ContactUs component
+ */
 const ContactUs: React.FC = () => {
   useEffect(() => {
-    AOS.init();
+    AOS.init(); // Initialize AOS for animations
   }, []);
 
   return (
@@ -14,12 +24,13 @@ const ContactUs: React.FC = () => {
         <div className="text-center" data-aos="fade-up">
           <h2 className="text-3xl font-bold text-green-950">Contact Us</h2>
           <p className="mt-4 text-lg text-gray-600 font-thin">
+
             We'd love to hear from you. Fill out the form below to get in touch.
           </p>
         </div>
-        <div className="mt-8 sm:mt-12 lg:mt-16 lg:flex lg:space-x-8">
+        <div className="mt-12 sm:mt-16 lg:mt-20 lg:flex lg:space-x-12">
           <div
-            className="lg:w-1/2 sm:w-full bg-white p-12 rounded-lg shadow-lg"
+            className="lg:w-1/2 sm:w-full bg-white p-10 rounded-lg shadow-lg"
             data-aos="fade-right"
           >
             <form className="space-y-8">
@@ -30,7 +41,7 @@ const ContactUs: React.FC = () => {
                     name="name"
                     id="name"
                     placeholder="Name"
-                    className="block w-full px-5 py-3 border bg-slate-50 text-black outline-none border-gray-300 rounded-md shadow-sm focus:ring-green-900 focus:border-green-900"
+                    className="block w-full px-5 py-3 border bg-gray-50 text-gray-800 outline-none border-gray-300 rounded-md shadow-sm focus:ring-green-900 focus:border-green-900"
                     required
                   />
                 </div>
@@ -40,7 +51,7 @@ const ContactUs: React.FC = () => {
                     name="phone"
                     id="phone"
                     placeholder="Phone Number"
-                    className="block w-full bg-slate-50 text-black outline-none px-5 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-green-900 focus:border-green-900"
+                    className="block w-full bg-gray-50 text-gray-800 outline-none px-5 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-green-900 focus:border-green-900"
                     required
                   />
                 </div>
@@ -51,7 +62,7 @@ const ContactUs: React.FC = () => {
                   name="email"
                   id="email"
                   placeholder="Email"
-                  className="block w-full bg-slate-50 text-black outline-none px-5 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-green-900 focus:border-green-900"
+                  className="block w-full bg-gray-50 text-gray-800 outline-none px-5 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-green-900 focus:border-green-900"
                   required
                 />
               </div>
@@ -61,21 +72,24 @@ const ContactUs: React.FC = () => {
                   id="message"
                   placeholder="Message"
                   rows={4}
-                  className="block w-full bg-slate-50 text-black outline-none px-5 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-green-900 focus:border-green-900"
+                  className="block w-full bg-gray-50 text-gray-800 outline-none px-5 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-green-900 focus:border-green-900"
                   required
                 />
               </div>
               <div className="flex w-full justify-center">
                 <button
                   type="submit"
-                  className="w-1/2 py-3 px-6 outline-none text-lg font-medium rounded-md text-white bg-green-600 hover:bg-green-700"
+                  className="w-1/2 py-3 px-6 outline-none text-lg font-medium rounded-md text-white bg-green-600 hover:bg-green-700 transition duration-200"
                 >
                   Submit
                 </button>
               </div>
             </form>
           </div>
-          <div className="lg:w-1/2 sm:w-full h-98" data-aos="fade-left">
+          <div
+            className="lg:w-1/2 sm:w-full h-96 mt-10 lg:mt-0"
+            data-aos="fade-left"
+          >
             <MapContainer
               center={[9.0120691, 38.7473818]}
               zoom={15}

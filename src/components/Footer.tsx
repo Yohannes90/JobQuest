@@ -3,6 +3,22 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTwitter, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import companyLogo from "/icon.png";
 
+/**
+ * Footer component
+ *
+ * This component renders the footer section of the website which includes:
+ * - Company logo and name
+ * - Navigation links to different sections of the website
+ * - Social media icons with links to respective profiles
+ * - Copyright information
+ *
+ * @component
+ * @example
+ * return (
+ *   <Footer />
+ * )
+ * @returns {JSX.Element} The rendered Footer component
+ */
 const Footer: React.FC = () => {
   return (
     <footer className="bg-gray-50 text-white pt-12 pb-5 w-full">
@@ -20,18 +36,36 @@ const Footer: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 my-10">
-            <a href="#" className="text-center text-green-950 hover:text-gray-400">Home</a>
+            <a
+              href="#"
+              className="text-center text-green-950 hover:text-gray-400"
+            >
+              Home
+            </a>
             <a
               href="#vision-mission"
               className="text-center text-green-950 hover:text-harSecondary"
-            >About Us</a>
-            <a href="#services" className="text-center text-green-950 hover:text-harSecondary">Services</a>
+            >
+              About Us
+            </a>
+            <a
+              href="#services"
+              className="text-center text-green-950 hover:text-harSecondary"
+            >
+              Services
+            </a>
             <a
               href="#testimonials"
               className="text-center text-green-950 hover:text-harSecondary"
-            >Testimonials</a>
-            <a href="#contact" className="text-center text-green-950 hover:text-harSecondary">Contact</a>
-
+            >
+              Testimonials
+            </a>
+            <a
+              href="#contact"
+              className="text-center text-green-950 hover:text-harSecondary"
+            >
+              Contact
+            </a>
           </div>
           <div className="flex space-x-6">
             <a
