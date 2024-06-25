@@ -26,7 +26,7 @@ const Hero = () => {
     AOS.init(); // Initialize AOS for animations
   }, []);
   return (
-    <div className="w-full">
+    <div className="w-full overflow-x-hidden">
       <div
         id="hero"
         className="hero min-h-screen bg-gray-100"
