@@ -1,10 +1,16 @@
+import { useEffect } from "react";
+import AOS from "aos";
+
 const Vision_Mission = () => {
+  useEffect(() => {
+    AOS.init();
+  }, []);
   return (
     <div
       id="vision-mission"
       className="grid md:grid-cols-2 w-fit min-h-screen bg-gray-50 z-0"
     >
-      <div className="grid h-fit flex-grow card bg-gray-50 text-black rounded-box place-items-center mx-5 self-start">
+      <div className="grid h-fit flex-grow card bg-gray-50 text-black rounded-box place-items-center mx-5 self-start" data-aos="fade-right">
         <h2 className="pb-1 border-b-4 border-harSecondary text-3xl text-green-950 mb-10 tracking-widest">
           VISION
         </h2>
@@ -22,7 +28,7 @@ const Vision_Mission = () => {
         </p>
       </div>
 
-      <div className="grid h-fit flex-grow card bg-gray-50 text-black rounded-box place-items-center mx-5 self-start">
+      <div className="grid h-fit flex-grow card bg-gray-50 text-black rounded-box place-items-center mx-5 self-start" data-aos="fade-left">
         <h2 className="pb-1 border-b-4 border-harSecondary text-3xl text-green-950 mb-10 tracking-widest">
           MISSION
         </h2>

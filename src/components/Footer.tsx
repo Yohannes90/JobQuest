@@ -18,6 +18,7 @@ const Footer: React.FC = () => {
               Har Consultancy.
             </a>
           </div>
+
           <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 my-10">
             <a href="#" className="text-center text-green-950 hover:text-gray-400">Home</a>
             <a
@@ -30,6 +31,7 @@ const Footer: React.FC = () => {
               className="text-center text-green-950 hover:text-harSecondary"
             >Testimonials</a>
             <a href="#contact" className="text-center text-green-950 hover:text-harSecondary">Contact</a>
+
           </div>
           <div className="flex space-x-6">
             <a
