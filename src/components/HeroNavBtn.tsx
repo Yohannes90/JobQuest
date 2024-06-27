@@ -26,18 +26,14 @@ const HeroNavBtn = () => {
       console.log("Window innerHeight: ", window.innerHeight); // Debugging log
 
       if (
-        window.scrollY >= window.innerHeight &&
-        scrollY <= window.innerHeight + 20
+        window.scrollY >= window.innerHeight
       ) {
         setUpBtn(true);
         setDownBtn(false);
       } else if (scrollY < window.innerHeight) {
         setUpBtn(false);
         setDownBtn(true);
-      } else {
-        setUpBtn(false);
-        setDownBtn(false);
-      }
+      } 
     };
     window.addEventListener("scroll", handleScroll);
     return () => {
@@ -54,7 +50,7 @@ const HeroNavBtn = () => {
    * Scrolls the window up by the height of the window
    */
   const scrollUp = () => {
-    window.scrollBy({ top: -window.innerHeight, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }; 
   return (
     <div>
