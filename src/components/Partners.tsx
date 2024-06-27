@@ -16,22 +16,22 @@ interface Partner {
 const partners: Partner[] = [
   {
     name: "Partner 1",
-    logo: "cisco.svg",
-    url: "https://partner1.com",
+    logo: "safelightLogo.PNG",
+    url: "https://safelightet.org",
   },
   {
     name: "Partner 2",
-    logo: "citi.svg",
+    logo: "lenegeLogo.png",
     url: "https://partner2.com",
   },
   {
     name: "Partner 3",
-    logo: "samsung.svg",
-    url: "https://partner3.com",
+    logo: "safelightLogo.PNG",
+    url: "https://safelightet.org",
   },
   {
     name: "Partner 4",
-    logo: "att.svg",
+    logo: "lenegeLogo.png",
     url: "https://partner4.com",
   },
 ];
@@ -56,7 +56,7 @@ const Partners: React.FC = () => {
     <div id="partners" className="bg-gray-100 py-16 pb-52 pt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
-          <h2 className="text-3xl text-green-950">Our Partners</h2>
+          <h2 className="uppercase text-3xl text-green-950">Our Partners</h2>
           <p className="mt-4 text-lg text-gray-600 font-thin">
             We are proud to collaborate with our trusted partners.
           </p>
@@ -75,7 +75,9 @@ const Partners: React.FC = () => {
                 <img
                   src={`${basePath}${partner.logo}`}
                   alt={partner.name}
-                  className="h-20 w-20 object-contain"
+                  className="
+                  // h-25 w-25
+                  h-[200px] w-[300px] object-contain"
                 />
               </div>
               {/* <div className="text-center">

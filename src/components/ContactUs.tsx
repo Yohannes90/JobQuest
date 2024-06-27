@@ -19,12 +19,14 @@ const ContactUs: React.FC = () => {
   }, []);
 
   return (
-    <div id="contact" className="overflow-x-hidden bg-gray-100 py-12 min-h-screen pt-28">
+    <div
+      id="contact"
+      className="overflow-x-hidden bg-gray-100 py-12 min-h-screen pt-28"
+    >
       <div className=" mx-auto px-4 sm:px-6 lg:px-8 flex flex-col">
         <div className="text-center" data-aos="fade-up">
           <h2 className="uppercase text-3xl text-green-950">Contact Us</h2>
           <p className="mt-4 text-lg text-gray-600 font-thin">
-
             We'd love to hear from you. Fill out the form below to get in touch.
           </p>
         </div>
