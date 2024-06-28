@@ -21,7 +21,7 @@ const Vision_Mission = () => {
   return (
     <div
       id="vision-mission"
-      className="overflow-x-hidden grid md:grid-cols-2 w-fit min-h-screen bg-gray-50 z-0"
+      className="overflow-x-hidden grid md:grid-cols-2 w-fit min-h-screen bg-gray-50 z-0 pt-24"
     >
       <div
         className="grid order-2 md:order-1 h-fit flex-grow card bg-gray-50 text-black rounded-box place-items-center mx-5 self-start"
@@ -35,14 +35,14 @@ const Vision_Mission = () => {
         data-aos="fade-left"
       >
         <h2 className="pb-1 my-5 text-3xl text-green-950 mb-10 tracking-widest">
-          <span className="border-b-4 border-harSecondary">VI</span>SION
+          VISION
         </h2>
         <p className="tracking-wider text-justify leading-loose text-base font-normal lg:text-lg bg-gray-50">
           Empowering impact organizations in Ethiopia to maximize their
           potential through strategic consulting services.
         </p>
         <h2 className="pb-1 mt-16 text-3xl text-green-950 mb-10 tracking-widest">
-          <span className="border-b-4 border-harSecondary">MI</span>SSION
+          MISSION
         </h2>
         <p className="tracking-wider text-justify leading-loose text-base font-normal lg:text-lg  bg-gray-50">
           {" "}
