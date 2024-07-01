@@ -15,24 +15,44 @@ interface Partner {
  */
 const partners: Partner[] = [
   {
-    name: "Partner 1",
+    name: "Safe Light Initiative",
     logo: "safelightLogo.PNG",
     url: "https://safelightet.org",
   },
   {
-    name: "Partner 2",
+    name: "Lenege",
     logo: "lenegeLogo.png",
     url: "https://partner2.com",
   },
   {
-    name: "Partner 3",
-    logo: "safelightLogo.PNG",
-    url: "https://safelightet.org",
+    name: "Creative Hub",
+    logo: "creativeHubLogo.png",
+    url: "https://creativehub.et/",
   },
   {
-    name: "Partner 4",
-    logo: "lenegeLogo.png",
-    url: "https://partner4.com",
+    name: "Social Enterprise Ethiopia",
+    logo: "socialEnterpriseEthiopiaLogo.png",
+    url: "https://socialenterpriseethiopia.org/",
+  },
+  {
+    name: "Bright Hope",
+    logo: "brightHopeLogo.png",
+    url: "https://www.brighthope.org/",
+  },
+  {
+    name: "Efuye Gela",
+    logo: "efuyeGelaLogo.png",
+    url: "https://efuyegela.com/",
+  },
+  {
+    name: "Healing Valves",
+    logo: "healingValvesLogo1.png",
+    url: "https://www.healingvalves.org/",
+  },
+  {
+    name: "Yango",
+    logo: "yangoLogo.png",
+    url: "https://yango.com/en_et/",
   },
 ];
 
