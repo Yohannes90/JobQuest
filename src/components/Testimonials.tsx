@@ -35,15 +35,15 @@ const testimonials: Testimonial[] = [
     personLink: "https://linkedin.com/in/janesmith",
     companyLink: "https://companyB.com",
   },
-  {
-    name: "Alice Johnson",
-    position: "Manager, Company C",
-    image: "https://via.placeholder.com/100",
-    testimonial:
-      "Har Consultancy has been an invaluable partner in our mission to serve the community. As a non-profit organization, finding the right funding opportunities is always a challenge. The team at Har Consultancy went above and beyond to help us secure significant funds and navigate the complex grant application process. Their dedication, expertise, and passion for our cause were evident in every interaction. Thanks to their support, we can continue making a positive impact in our community. We are deeply grateful for their partnership and highly recommend their services.",
-    personLink: "https://linkedin.com/in/alicejohnson",
-    companyLink: "https://companyC.com",
-  },
+  // {
+  //   name: "Alice Johnson",
+  //   position: "Manager, Company C",
+  //   image: "https://via.placeholder.com/100",
+  //   testimonial:
+  //     "Har Consultancy has been an invaluable partner in our mission to serve the community. As a non-profit organization, finding the right funding opportunities is always a challenge. The team at Har Consultancy went above and beyond to help us secure significant funds and navigate the complex grant application process. Their dedication, expertise, and passion for our cause were evident in every interaction. Thanks to their support, we can continue making a positive impact in our community. We are deeply grateful for their partnership and highly recommend their services.",
+  //   personLink: "https://linkedin.com/in/alicejohnson",
+  //   companyLink: "https://companyC.com",
+  // },
 ];
 
 /**
@@ -70,7 +70,7 @@ const Testimonials: React.FC = () => {
         <p className="text-lg text-center text-gray-600 mb-12 font-thin">
           Here's what our clients say about us
         </p>
-        <div className="grid gap-8 lg:grid-cols-3">
+        <div className="grid gap-8 lg:grid-cols-2 text-justify">
           {testimonials.map((testimonial, index) => (
             <div
               key={index}

@@ -34,26 +34,26 @@ const partners: Partner[] = [
     logo: "socialEnterpriseEthiopiaLogo.png",
     url: "https://socialenterpriseethiopia.org/",
   },
-  {
-    name: "Bright Hope",
-    logo: "brightHopeLogo.png",
-    url: "https://www.brighthope.org/",
-  },
-  {
-    name: "Efuye Gela",
-    logo: "efuyeGelaLogo.png",
-    url: "https://efuyegela.com/",
-  },
-  {
-    name: "Healing Valves",
-    logo: "healingValvesLogo1.png",
-    url: "https://www.healingvalves.org/",
-  },
-  {
-    name: "Yango",
-    logo: "yangoLogo.png",
-    url: "https://yango.com/en_et/",
-  },
+  // {
+  //   name: "Bright Hope",
+  //   logo: "brightHopeLogo.png",
+  //   url: "https://www.brighthope.org/",
+  // },
+  // {
+  //   name: "Efuye Gela",
+  //   logo: "efuyeGelaLogo.png",
+  //   url: "https://efuyegela.com/",
+  // },
+  // {
+  //   name: "Healing Valves",
+  //   logo: "healingValvesLogo1.png",
+  //   url: "https://www.healingvalves.org/",
+  // },
+  // {
+  //   name: "Yango",
+  //   logo: "yangoLogo.png",
+  //   url: "https://yango.com/en_et/",
+  // },
 ];
 
 /**
