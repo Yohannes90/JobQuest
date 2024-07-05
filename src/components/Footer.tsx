@@ -1,6 +1,6 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTwitter, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import { faXTwitter, faLinkedin, faWhatsapp, faTelegram } from "@fortawesome/free-brands-svg-icons";
 import companyLogo from "/icon.png";
 
 /**
@@ -25,13 +25,12 @@ const Footer: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="flex items-center text-lg font-semibold mb-4 md:mb-0">
-            <img
-              src={companyLogo}
-              alt="Company Logo"
-              className="h-8 w-8 mr-2"
-            />
             <a href="#" className="text-green-950 hover:text-harSecondary">
-              Har Consultancy.
+              <img
+                src={companyLogo}
+                alt="Company Logo"
+                className="w-40 h-14 mx-2"
+              />
             </a>
           </div>
 
@@ -74,7 +73,7 @@ const Footer: React.FC = () => {
               rel="noopener noreferrer"
               className="text-green-950 hover:text-gray-400"
             >
-              <FontAwesomeIcon icon={faTwitter} size="lg" />
+              <FontAwesomeIcon icon={faXTwitter} size="lg" />
             </a>
             <a
               href="https://www.linkedin.com/company/har-consultancy/"
@@ -83,6 +82,22 @@ const Footer: React.FC = () => {
               className="text-green-950 hover:text-gray-400"
             >
               <FontAwesomeIcon icon={faLinkedin} size="lg" />
+            </a>
+            <a
+              href="https://www.linkedin.com/company/har-consultancy/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-green-950 hover:text-gray-400"
+            >
+              <FontAwesomeIcon icon={faWhatsapp} size="lg" />
+            </a>
+            <a
+              href="https://www.linkedin.com/company/har-consultancy/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-green-950 hover:text-gray-400"
+            >
+              <FontAwesomeIcon icon={faTelegram} size="lg" />
             </a>
           </div>
         </div>
