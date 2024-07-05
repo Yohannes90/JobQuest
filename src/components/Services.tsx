@@ -1,5 +1,14 @@
 import { useEffect } from "react";
 import AOS from "aos";
+import {
+  faBuilding,
+  faClipboardList,
+  faUsers,
+  faGlobe,
+  faHandsHelping,
+} from "@fortawesome/free-solid-svg-icons";
+import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 /**
  * Interface representing a service category with title and services array.
@@ -7,6 +16,7 @@ import AOS from "aos";
 interface ServiceCategory {
   title: string; // The title of the service category.
   services: string[]; // Array of services offered within the category.
+  icon: IconDefinition;
 }
 
 /**
@@ -20,6 +30,7 @@ const serviceCategories: ServiceCategory[] = [
       "Organizational policy development",
       "Organizational manual development",
     ],
+    icon: faBuilding,
   },
   {
     title: "Program based support",
@@ -28,6 +39,7 @@ const serviceCategories: ServiceCategory[] = [
       "MEL planning",
       "Portfolio Architect",
     ],
+    icon: faClipboardList,
   },
   {
     title: "Human Resource support",
@@ -36,14 +48,17 @@ const serviceCategories: ServiceCategory[] = [
       "Access to potential interns",
       "Headhunting",
     ],
+    icon: faUsers,
   },
   {
     title: "Standardization",
     services: ["SDG alignment"],
+    icon: faGlobe,
   },
   {
     title: "Grant Management",
     services: ["Grant Management support"],
+    icon: faHandsHelping,
   },
 ];
 
@@ -73,39 +88,41 @@ const Services: React.FC = () => {
         </div>
         <div className="grid gap-12 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
           {serviceCategories.map((category, index) => (
-            <div
-              key={index}
-              className="bg-white p-8 rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300 ease-in-out"
-              data-aos="fade-right"
-            >
-              <h3 className="text-2xl font-semibold text-black mb-6 text-start">
-                {category.title}
-              </h3>
-              <ul className="space-y-3">
-                {category.services.map((service, serviceIndex) => (
-                  <li
-                    key={serviceIndex}
-                    className="flex items-start justify-start"
-                  >
-                    <svg
-                      className="w-6 h-6 mr-2 text-green-600 flex-shrink-0 mt-0.5"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
+            <div data-aos="fade-right">
+              <div
+                key={index}
+                className="bg-white p-8 rounded-lg text-black transition duration-500 ease-in-out hover:-translate-y-1 hover:bg-harPrimary hover:text-white shadow-xl"
+              >
+                <h3 className="text-2xl font-semibold mb-6 text-start">
+                  <span className="font-normal mr-5">
+                    <FontAwesomeIcon icon={category.icon} />
+                  </span>
+                  {category.title}
+                </h3>
+                <ul className="space-y-3">
+                  {category.services.map((service, serviceIndex) => (
+                    <li
+                      key={serviceIndex}
+                      className="flex items-start justify-start"
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="3"
-                        d="M5 13l4 4L19 7"
-                      ></path>
-                    </svg>
-                    <span className="text-gray-700 text-sm font-medium">
-                      {service}
-                    </span>
-                  </li>
-                ))}
-              </ul>
+                      <svg
+                        className="w-6 h-6 mr-2 text-green-600 flex-shrink-0 mt-0.5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="3"
+                          d="M5 13l4 4L19 7"
+                        ></path>
+                      </svg>
+                      <span className="text-sm font-medium">{service}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           ))}
         </div>
