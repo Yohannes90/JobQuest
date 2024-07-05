@@ -170,16 +170,16 @@ const partners: Partner[] = [
     logo: "efuyeGelaLogo.png",
     url: "https://efuyegela.com/",
   },
-  {
-    name: "Healing Valves",
-    logo: "healingValvesLogo1.png",
-    url: "https://www.healingvalves.org/",
-  },
-  {
-    name: "Yango",
-    logo: "yangoLogo.png",
-    url: "https://yango.com/en_et/",
-  },
+  // {
+  //   name: "Healing Valves",
+  //   logo: "healingValvesLogo1.png",
+  //   url: "https://www.healingvalves.org/",
+  // },
+  // {
+  //   name: "Yango",
+  //   logo: "yangoLogo.png",
+  //   url: "https://yango.com/en_et/",
+  // },
 ];
 
 /**
