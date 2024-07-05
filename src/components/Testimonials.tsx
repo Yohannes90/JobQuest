@@ -18,32 +18,32 @@ interface Testimonial {
  */
 const testimonials: Testimonial[] = [
   {
-    name: "John Dyree",
-    position: "CEO, Company A",
+    name: "Yeabsera Wendosen",
+    position: "Program coordinator, Company A",
     image: "https://via.placeholder.com/100",
     testimonial:
-      "This company provided excellent service and support. Highly recommend!",
+      "Har Consultancy has been an invaluable partner in our mission to serve the community. As a non-profit organization, finding the right funding opportunities is always a challenge. The team at Har Consultancy went above and beyond to help us secure significant funds and navigate the complex grant application process. Their dedication, expertise, and passion for our cause were evident in every interaction. Thanks to their support, we can continue making a positive impact in our community. We are deeply grateful for their partnership and highly recommend their services.",
     personLink: "https://linkedin.com/in/johndyree",
     companyLink: "https://companyA.com",
   },
   {
-    name: "Jane Smith",
-    position: "CTO, Company B",
+    name: "Dr. Zekarias",
+    position: "Vice president, HVE",
     image: "https://via.placeholder.com/100",
     testimonial:
-      "Professional and efficient. Their solutions exceeded our expectations.",
+      "Our collaboration with Har Consultancy on our recent project was a truly rewarding experience. From the very beginning, their team demonstrated exceptional skill and dedication. They provided valuable insights that helped us overcome challenges and achieve our project goals efficiently. The synergy between our teams was seamless, and the results exceeded our expectations. Har Consultancy's commitment to excellence and their genuine investment in our success made a significant difference. We look forward to partnering with them on future projects and highly recommend their services.",
     personLink: "https://linkedin.com/in/janesmith",
     companyLink: "https://companyB.com",
   },
-  {
-    name: "Alice Johnson",
-    position: "Manager, Company C",
-    image: "https://via.placeholder.com/100",
-    testimonial:
-      "Outstanding experience. Their team is skilled and very helpful.",
-    personLink: "https://linkedin.com/in/alicejohnson",
-    companyLink: "https://companyC.com",
-  },
+  // {
+  //   name: "Alice Johnson",
+  //   position: "Manager, Company C",
+  //   image: "https://via.placeholder.com/100",
+  //   testimonial:
+  //     "Har Consultancy has been an invaluable partner in our mission to serve the community. As a non-profit organization, finding the right funding opportunities is always a challenge. The team at Har Consultancy went above and beyond to help us secure significant funds and navigate the complex grant application process. Their dedication, expertise, and passion for our cause were evident in every interaction. Thanks to their support, we can continue making a positive impact in our community. We are deeply grateful for their partnership and highly recommend their services.",
+  //   personLink: "https://linkedin.com/in/alicejohnson",
+  //   companyLink: "https://companyC.com",
+  // },
 ];
 
 /**
@@ -64,21 +64,20 @@ const Testimonials: React.FC = () => {
   return (
     <div id="testimonials" className="bg-gray-50 pb-52 pt-24 py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl text-center text-green-950 mb-4">
+        <h2 className="uppercase text-3xl text-center text-green-950 mb-4">
           Testimonials
         </h2>
         <p className="text-lg text-center text-gray-600 mb-12 font-thin">
           Here's what our clients say about us
         </p>
-        <div className="grid gap-8 lg:grid-cols-3">
+        <div className="grid gap-8 lg:grid-cols-2 text-justify">
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
               className="bg-white p-6 rounded-lg shadow-lg"
               data-aos="fade-right"
             >
-              <p className="text-gray-700 mb-4">"{testimonial.testimonial}"</p>
-              <div className="flex items-center">
+              <div className="flex items-center mb-4">
                 <img
                   src={testimonial.image}
                   alt={testimonial.name}
@@ -105,6 +104,7 @@ const Testimonials: React.FC = () => {
                   </p>
                 </div>
               </div>
+              <p className="text-gray-700">"{testimonial.testimonial}"</p>
             </div>
           ))}
         </div>

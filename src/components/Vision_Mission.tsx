@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import AOS from "aos";
+import vmImage from "/vm_pic.jpg";
 
 /**
  * Vision and Mission Component.
@@ -20,49 +21,33 @@ const Vision_Mission = () => {
   return (
     <div
       id="vision-mission"
-      className="overflow-x-hidden grid md:grid-cols-2 w-fit min-h-screen bg-gray-50 z-0"
+      className="overflow-x-hidden grid md:grid-cols-2 w-fit min-h-screen bg-gray-50 z-0 pt-24"
     >
       <div
-        className="grid h-fit flex-grow card bg-gray-50 text-black rounded-box place-items-center mx-5 self-start"
+        className="grid order-2 md:order-1 h-fit flex-grow card bg-gray-50 text-black rounded-box place-items-center mx-5 self-start"
         data-aos="fade-right"
       >
-        <h2 className="pb-1 border-b-4 border-harSecondary text-3xl text-green-950 mb-10 tracking-widest">
-          VISION
-        </h2>
-        <p className="tracking-wider text-justify leading-loose text-base font-normal lg:text-lg bg-gray-50">
-          At Har Consultancy, we envision a future where every community
-          organization in Ethiopia is a beacon of strength and sustainability,
-          driving transformative change and creating lasting impact. Our
-          commitment is to be the trusted partner in this journey, providing
-          comprehensive support and expertise to CSOs, startups, and social
-          enterprises. By empowering these organizations with tailored strategic
-          planning, innovative program design and implementation, we aim to
-          build a resilient network that thrives and flourishes. Together, we
-          will shape a vibrant and prosperous Ethiopia, where empowered
-          communities lead the way to sustainable development and progress.
-        </p>
+        <img className="rounded-xl shadow-md" src={vmImage} alt="" />
       </div>
 
       <div
-        className="grid h-fit flex-grow card bg-gray-50 text-black rounded-box place-items-center mx-5 self-start"
+        className="grid order-1 md:order-2 h-fit flex-grow card bg-gray-50 text-black rounded-box place-items-center mx-5 self-start"
         data-aos="fade-left"
       >
-        <h2 className="pb-1 border-b-4 border-harSecondary text-3xl text-green-950 mb-10 tracking-widest">
+        <h2 className="pb-1 my-5 text-3xl text-green-950 mb-10 tracking-widest">
+          VISION
+        </h2>
+        <p className="tracking-wider text-justify leading-loose text-base font-normal lg:text-lg bg-gray-50">
+          Empowering impact organizations in Ethiopia to maximize their
+          potential through strategic consulting services.
+        </p>
+        <h2 className="pb-1 mt-16 text-3xl text-green-950 mb-10 tracking-widest">
           MISSION
         </h2>
         <p className="tracking-wider text-justify leading-loose text-base font-normal lg:text-lg  bg-gray-50">
           {" "}
-          Har Consultancy is dedicated to empowering community organizations,
-          startups, and social enterprises in Ethiopia by providing
-          comprehensive, tailored support and expertise. Our mission is to
-          foster sustainable growth and impactful change through strategic
-          planning, innovative program design and implementation, robust
-          capacity building, enhanced branding and visibility, and essential
-          establishment and licensing support. We strive to strengthen and
-          elevate our clients, enabling them to drive positive transformation
-          and contribute meaningfully to the sustainable development and
-          prosperity of Ethiopia.Empowering impact organizations in Ethiopia to
-          maximize their potential through strategic consulting services.
+          Building a network of strong and sustainable community organizations
+          in Ethiopia, driving positive change and lasting impact.
         </p>
       </div>
     </div>
