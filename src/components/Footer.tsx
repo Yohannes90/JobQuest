@@ -1,7 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXTwitter, faLinkedin, faWhatsapp, faTelegram } from "@fortawesome/free-brands-svg-icons";
-import companyLogo from "/icon.png";
+import companyLogo from "/harLogo.png";
 
 /**
  * Footer component

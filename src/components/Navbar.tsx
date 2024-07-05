@@ -1,4 +1,4 @@
-import companyLogo from "/icon.png";
+import companyLogo from "/harLogo.png";
 import "../styles/custom-hover.css";
 
 /**
