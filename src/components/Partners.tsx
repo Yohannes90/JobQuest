@@ -221,14 +221,14 @@ const Partners: React.FC = () => {
   };
 
   return (
-    <div id="partners" className="bg-gray-100 py-10">
+    <div id="partners" className="bg-harPrimary pt-2 pb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center">
+        {/* <div className="text-center">
           <h2 className="uppercase text-3xl text-harPrimary">Our Partners</h2>
           <p className="mt-4 text-lg text-gray-600 font-thin">
             We are proud to collaborate with our trusted partners.
           </p>
-        </div>
+        </div> */}
         <div className="mt-8" data-aos="fade-up">
           <Slider {...settings}>
             {partners.map((partner, index) => (
