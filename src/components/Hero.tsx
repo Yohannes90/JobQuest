@@ -1,7 +1,7 @@
 import HeroNavBtn from "./HeroNavBtn";
 import { useEffect } from "react";
 import AOS from "aos";
-import heroImage from "/newImageHero.jpg";
+import heroImage from "/hero.jpg";
 
 /**
  * Hero component
