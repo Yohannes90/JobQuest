@@ -115,12 +115,6 @@
 
 // export default Partners;
 
-
-
-
-
-
-
 import { useEffect } from "react";
 import AOS from "aos";
 import Slider from "react-slick";
@@ -148,7 +142,7 @@ const partners: Partner[] = [
   {
     name: "Lenege",
     logo: "lenegeLogo.png",
-    url: "https://partner2.com",
+    url: "https://et.linkedin.com/company/lenege-tech",
   },
   {
     name: "Creative Hub",
@@ -160,11 +154,11 @@ const partners: Partner[] = [
     logo: "socialEnterpriseEthiopiaLogo.png",
     url: "https://socialenterpriseethiopia.org/",
   },
-  {
-    name: "Bright Hope",
-    logo: "brightHopeLogo.png",
-    url: "https://www.brighthope.org/",
-  },
+  // {
+  //   name: "Bright Hope",
+  //   logo: "brightHopeLogo.png",
+  //   url: "https://www.brighthope.org/",
+  // },
   {
     name: "Efuye Gela",
     logo: "efuyeGelaLogo.png",
@@ -207,7 +201,7 @@ const Partners: React.FC = () => {
     slidesToShow: 4,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 100,
+    autoplaySpeed: 200,
     responsive: [
       {
         breakpoint: 768,
@@ -227,10 +221,10 @@ const Partners: React.FC = () => {
   };
 
   return (
-    <div id="partners" className="bg-gray-100 py-16 pb-52 pt-24">
+    <div id="partners" className="bg-gray-100 py-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
-          <h2 className="uppercase text-3xl text-green-950">Our Partners</h2>
+          <h2 className="uppercase text-3xl text-harPrimary">Our Partners</h2>
           <p className="mt-4 text-lg text-gray-600 font-thin">
             We are proud to collaborate with our trusted partners.
           </p>

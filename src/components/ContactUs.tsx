@@ -5,7 +5,12 @@ import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import "leaflet-defaulticon-compatibility";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXTwitter, faLinkedin, faWhatsapp, faTelegram } from "@fortawesome/free-brands-svg-icons";
+import {
+  faXTwitter,
+  faLinkedin,
+  faWhatsapp,
+  faTelegram,
+} from "@fortawesome/free-brands-svg-icons";
 
 /**
  * ContactUs component
@@ -24,13 +29,16 @@ const ContactUs: React.FC = () => {
     <div id="contact" className="bg-gray-100 py-12 min-h-screen pt-28">
       <div className="mx-auto px-4 sm:px-6 lg:px-8 flex flex-col max-w-7xl">
         <div className="text-center" data-aos="fade-up">
-          <h2 className="uppercase text-3xl text-green-950">Contact Us</h2>
+          <h2 className="uppercase text-3xl text-harPrimary">Contact Us</h2>
           <p className="mt-4 text-lg text-gray-600 font-thin">
             We'd love to hear from you. Fill out the form below to get in touch.
           </p>
         </div>
-        <div className="mt-12 sm:mt-16 lg:mt-20 lg:flex lg:space-x-12">
-          <div className="lg:w-2/3 sm:w-full bg-white p-10 rounded-lg shadow-lg" data-aos="fade-right">
+        <div className="mt-12 sm:mt-16 lg:mt-12 lg:flex lg:space-x-12">
+          <div
+            className="lg:w-2/3 sm:w-full bg-white p-10 rounded-lg shadow-lg"
+            data-aos="fade-right"
+          >
             <form className="space-y-8">
               <div className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
                 <div>
@@ -77,55 +85,77 @@ const ContactUs: React.FC = () => {
               <div className="flex w-full justify-center">
                 <button
                   type="submit"
-                  className="w-1/2 py-3 px-6 outline-none text-lg font-medium rounded-md text-white bg-green-600 hover:bg-harSecondary transition duration-200"
+                  className="w-1/2 py-3 px-6 outline-none text-lg font-medium rounded-md text-white bg-harPrimary hover:bg-harSecondary transition duration-200"
                 >
                   Submit
                 </button>
               </div>
             </form>
           </div>
-          <div className="lg:w-1/3 sm:w-full bg-white p-10 rounded-lg shadow-lg mt-10 lg:mt-0" data-aos="fade-left">
+          <div
+            className="lg:w-1/3 sm:w-full bg-harPrimary p-10 rounded-lg shadow-lg mt-10 lg:mt-0"
+            data-aos="fade-left"
+          >
             <div className="mb-6">
-              <h5 className="text-lg text-green-950 font-semibold mb-2">Address:</h5>
-              <p className="text-lg text-gray-600">Ras Abebe Aregay Street, Kirkos, Ethiopia</p>
+              <h5 className="text-lg text-white font-semibold mb-2">
+                Address:
+              </h5>
+              <p className="text-lg text-white">
+                Ras Abebe Aregay Street, Kirkos, Ethiopia
+              </p>
             </div>
             <div className="mb-6">
-              <h5 className="text-lg text-green-950 font-semibold mb-2">Phone:</h5>
-              <p className="text-lg text-gray-600">+251 123 456 789</p>
+              <h5 className="text-lg text-white font-semibold mb-2">Phone:</h5>
+              <p className="text-lg text-white">+251 123 456 789</p>
             </div>
             <div className="mb-6">
-              <h5 className="text-lg text-green-950 font-semibold mb-2">Email:</h5>
-              <p><a className="text-lg text-gray-600" href="mailto:name@email.com">info@harconsultancy.org</a></p>
+              <h5 className="text-lg text-white font-semibold mb-2">Email:</h5>
+              <p>
+                <a className="text-lg text-white" href="mailto:name@email.com">
+                  info@harconsultancy.org
+                </a>
+              </p>
             </div>
             <div className="mb-6">
-              <h5 className="text-lg text-green-950 font-semibold mb-2">Socials:</h5>
+              <h5 className="text-lg text-white font-semibold mb-2">
+                Socials:
+              </h5>
               <div className="flex space-x-4">
-                <a href="https://x.com/consult_Har" className="text-gray-600 hover:text-harSecondary">
+                <a
+                  href="https://x.com/consult_Har"
+                  className="text-white hover:text-harSecondary"
+                >
                   <FontAwesomeIcon icon={faXTwitter} size="xl" />
                 </a>
-                <a href="https://www.linkedin.com/company/har-consultancy/" className="text-gray-600 hover:text-harSecondary">
+                <a
+                  href="https://www.linkedin.com/company/har-consultancy/"
+                  className="text-white hover:text-harSecondary"
+                >
                   <FontAwesomeIcon icon={faLinkedin} size="xl" />
                 </a>
-                <a href="#" className="text-gray-600 hover:text-harSecondary">
+                <a href="#" className="text-white hover:text-harSecondary">
                   <FontAwesomeIcon icon={faWhatsapp} size="xl" />
                 </a>
-                <a href="#" className="text-gray-600 hover:text-harSecondary">
+                <a href="#" className="text-white hover:text-harSecondary">
                   <FontAwesomeIcon icon={faTelegram} size="xl" />
                 </a>
               </div>
             </div>
           </div>
         </div>
-        <div className="mt-10" data-aos="fade-up">
-          <MapContainer center={[9.0120691, 38.7473818]} zoom={16} scrollWheelZoom={false} className="h-64 rounded-lg shadow-lg">
+        <div className="mt-10">
+          <MapContainer
+            center={[9.0120691, 38.7473818]}
+            zoom={16}
+            scrollWheelZoom={false}
+            className="h-64 rounded-lg shadow-lg"
+          >
             <TileLayer
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             />
             <Marker position={[9.0120691, 38.7473818]}>
-              <Popup>
-                Your Business Location
-              </Popup>
+              <Popup>Your Business Location</Popup>
             </Marker>
           </MapContainer>
         </div>

@@ -1,6 +1,11 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXTwitter, faLinkedin, faWhatsapp, faTelegram } from "@fortawesome/free-brands-svg-icons";
+import {
+  faXTwitter,
+  faLinkedin,
+  faWhatsapp,
+  faTelegram,
+} from "@fortawesome/free-brands-svg-icons";
 import companyLogo from "/harLogo.png";
 
 /**
@@ -71,7 +76,7 @@ const Footer: React.FC = () => {
               href="https://x.com/consult_Har"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-green-950 hover:text-gray-400"
+              className="text-harPrimary hover:text-harSecondary"
             >
               <FontAwesomeIcon icon={faXTwitter} size="lg" />
             </a>
@@ -79,7 +84,7 @@ const Footer: React.FC = () => {
               href="https://www.linkedin.com/company/har-consultancy/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-green-950 hover:text-gray-400"
+              className="text-harPrimary hover:text-harSecondary"
             >
               <FontAwesomeIcon icon={faLinkedin} size="lg" />
             </a>
@@ -87,7 +92,7 @@ const Footer: React.FC = () => {
               href="https://www.linkedin.com/company/har-consultancy/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-green-950 hover:text-gray-400"
+              className="text-harPrimary hover:text-harSecondary"
             >
               <FontAwesomeIcon icon={faWhatsapp} size="lg" />
             </a>
@@ -95,7 +100,7 @@ const Footer: React.FC = () => {
               href="https://www.linkedin.com/company/har-consultancy/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-green-950 hover:text-gray-400"
+              className="text-harPrimary hover:text-harSecondary"
             >
               <FontAwesomeIcon icon={faTelegram} size="lg" />
             </a>

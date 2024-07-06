@@ -30,18 +30,18 @@ const Vision_Mission = () => {
         <img className="rounded-xl shadow-md" src={vmImage} alt="" />
       </div>
 
-      <div
+      {/* <div
         className="grid order-1 md:order-2 h-fit flex-grow card bg-gray-50 text-black rounded-box place-items-center mx-5 self-start"
         data-aos="fade-left"
       >
-        <h2 className="pb-1 my-5 text-3xl text-green-950 mb-10 tracking-widest">
+        <h2 className="pb-1 my-5 text-3xl text-harPrimary mb-10 tracking-widest">
           VISION
         </h2>
         <p className="tracking-wider text-justify leading-loose text-base font-normal lg:text-lg bg-gray-50">
           Empowering impact organizations in Ethiopia to maximize their
           potential through strategic consulting services.
         </p>
-        <h2 className="pb-1 mt-16 text-3xl text-green-950 mb-10 tracking-widest">
+        <h2 className="pb-1 mt-16 text-3xl text-harPrimary mb-10 tracking-widest">
           MISSION
         </h2>
         <p className="tracking-wider text-justify leading-loose text-base font-normal lg:text-lg  bg-gray-50">
@@ -49,6 +49,32 @@ const Vision_Mission = () => {
           Building a network of strong and sustainable community organizations
           in Ethiopia, driving positive change and lasting impact.
         </p>
+      </div> */}
+      <div
+        className="grid order-1 md:order-2 h-fit flex-grow card bg-gray-50 text-black rounded-box place-items-center mx-5 self-start"
+        data-aos="fade-left"
+      >
+        <div className="flex flex-col md:flex-row space-y-10 md:space-y-0 md:space-x-10 mt-32">
+          <div className="flex flex-col items-center flex-1">
+            <h2 className="pb-1 my-5 text-3xl text-harPrimary mb-10 tracking-widest">
+              VISION
+            </h2>
+            <p className="tracking-wider text-justify leading-loose text-base font-normal lg:text-lg bg-gray-50">
+              Empowering impact organizations in Ethiopia to maximize their
+              potential through strategic consulting services.
+            </p>
+          </div>
+          <div className="flex flex-col items-center flex-1">
+            <h2 className="pb-1 my-5 text-3xl text-harPrimary mb-10 tracking-widest">
+              MISSION
+            </h2>
+            <p className="tracking-wider text-justify leading-loose text-base font-normal lg:text-lg bg-gray-50">
+              Building a network of strong and sustainable community
+              organizations in Ethiopia, driving positive change and lasting
+              impact.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );

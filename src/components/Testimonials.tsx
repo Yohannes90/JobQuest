@@ -22,7 +22,7 @@ const testimonials: Testimonial[] = [
     position: "Program coordinator, Company A",
     image: "https://via.placeholder.com/100",
     testimonial:
-      "Har Consultancy has been an invaluable partner in our mission to serve the community. As a non-profit organization, finding the right funding opportunities is always a challenge. The team at Har Consultancy went above and beyond to help us secure significant funds and navigate the complex grant application process. Their dedication, expertise, and passion for our cause were evident in every interaction. Thanks to their support, we can continue making a positive impact in our community. We are deeply grateful for their partnership and highly recommend their services.",
+      "Har Consultancy's support in securing funding for our non-profit organization was exceptional. Their expertise and dedication made a significant impact, enabling us to continue serving the community effectively.",
     personLink: "https://linkedin.com/in/johndyree",
     companyLink: "https://companyA.com",
   },
@@ -31,19 +31,19 @@ const testimonials: Testimonial[] = [
     position: "Vice president, HVE",
     image: "https://via.placeholder.com/100",
     testimonial:
-      "Our collaboration with Har Consultancy on our recent project was a truly rewarding experience. From the very beginning, their team demonstrated exceptional skill and dedication. They provided valuable insights that helped us overcome challenges and achieve our project goals efficiently. The synergy between our teams was seamless, and the results exceeded our expectations. Har Consultancy's commitment to excellence and their genuine investment in our success made a significant difference. We look forward to partnering with them on future projects and highly recommend their services.",
+      "The collaboration with Har Consultancy on our project was truly rewarding. Their valuable insights and commitment to excellence exceeded our expectations, leading to successful outcomes. We highly recommend their services.",
     personLink: "https://linkedin.com/in/janesmith",
     companyLink: "https://companyB.com",
   },
-  // {
-  //   name: "Alice Johnson",
-  //   position: "Manager, Company C",
-  //   image: "https://via.placeholder.com/100",
-  //   testimonial:
-  //     "Har Consultancy has been an invaluable partner in our mission to serve the community. As a non-profit organization, finding the right funding opportunities is always a challenge. The team at Har Consultancy went above and beyond to help us secure significant funds and navigate the complex grant application process. Their dedication, expertise, and passion for our cause were evident in every interaction. Thanks to their support, we can continue making a positive impact in our community. We are deeply grateful for their partnership and highly recommend their services.",
-  //   personLink: "https://linkedin.com/in/alicejohnson",
-  //   companyLink: "https://companyC.com",
-  // },
+  {
+    name: "Simon Getnet",
+    position: "CEO, Lenege",
+    image: "testimonial-3.jpeg",
+    testimonial:
+      "Har Consultancy's partnership with Legnege Tech has been transformative, driving client success with strategic guidance and seamless integration, leading to increased satisfaction, retention, and business growth.",
+    personLink: "https://et.linkedin.com/in/simeongetnet",
+    companyLink: "https://et.linkedin.com/company/lenege-tech",
+  },
 ];
 
 /**
@@ -64,13 +64,13 @@ const Testimonials: React.FC = () => {
   return (
     <div id="testimonials" className="bg-gray-50 pb-52 pt-24 py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="uppercase text-3xl text-center text-green-950 mb-4">
+        <h2 className="uppercase text-3xl text-center text-harPrimary mb-4">
           Testimonials
         </h2>
         <p className="text-lg text-center text-gray-600 mb-12 font-thin">
           Here's what our clients say about us
         </p>
-        <div className="grid gap-8 lg:grid-cols-2 text-justify">
+        <div className="grid gap-8 lg:grid-cols-3 text-justify">
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
@@ -81,13 +81,13 @@ const Testimonials: React.FC = () => {
                 <img
                   src={testimonial.image}
                   alt={testimonial.name}
-                  className="w-10 h-10 rounded-full mr-4"
+                  className="w-20 h-20 rounded-full mr-6"
                 />
                 <div>
-                  <h3 className="text-lg font-semibold">
+                  <h3 className="text-lg font-semibold mb-1">
                     <a
                       href={testimonial.personLink}
-                      className="text-gray-900 hover:text-blue-500"
+                      className="text-gray-900 hover:text-harSecondary"
                       style={{ textDecoration: "none" }}
                     >
                       {testimonial.name}
@@ -96,7 +96,7 @@ const Testimonials: React.FC = () => {
                   <p className="text-gray-600 text-sm">
                     <a
                       href={testimonial.companyLink}
-                      className="text-gray-600 hover:text-blue-500"
+                      className="text-gray-600 hover:text-harSecondary"
                       style={{ textDecoration: "none" }}
                     >
                       {testimonial.position}
