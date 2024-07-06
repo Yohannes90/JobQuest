@@ -1,39 +1,43 @@
-import React, { useState, useEffect } from "react";
 import HeroNavBtn from "./HeroNavBtn";
-import Slide1 from "/slide1.jpg"; 
-import Slide2 from "/slide2.jpg"; 
-import Slide3 from "/slide3.jpg"; 
+import { useEffect } from "react";
+import AOS from "aos";
 import heroImage from "/hero.jpg";
 
-
-const Carousel: React.FC = () => {
-  const slides = [
-    <img src={Slide1} className="min-h-screen" alt="Slide 1" />,
-    <img src={Slide2} className="min-h-screen" alt="Slide 2" />,
-    <img src={Slide3} className="min-h-screen" alt="Slide 3" />,
-  ];
-
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const totalSlides = slides.length;
-
+/**
+ * Hero component
+ *
+ * This component renders the hero section of the website which includes:
+ * - A title with the text "POTENTIAL MADE REAL"
+ * - An introduction text about Har Consultancy
+ * - An image representing people working collaboratively
+ * - Navigation buttons for the hero section
+ *
+ * The component also initializes the AOS (Animate on Scroll) library for animations.
+ *
+ * @component
+ * @example
+ * return (
+ *   <Hero />
+ * )
+ * @returns {JSX.Element} The rendered Hero component
+ */
+const Hero = () => {
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setCurrentSlide((prevSlide) => (prevSlide + 1) % totalSlides);
-    }, 3000); // Change slide every 3000 milliseconds (3 seconds)
-
-    return () => clearTimeout(timer);
-  }, [currentSlide, totalSlides]);
-
+    AOS.init(); // Initialize AOS for animations
+  }, []);
   return (
-    <div className="overflow-hidden">
-      <div className="relative bg-gray-50 overflow-hidden w-full h-screen">
-        <div className="absolute -top-28 w-full h-full flex items-center justify-center">
-          {slides[currentSlide]}
-        </div>
-        <div className="absolute flex justify-center items-center w-full h-screen">
-          <h1 className="z-0 text-6xl w-fit backdrop-blur-sm text-white font-thin text-stroke mt-24 text-start tracking-widest">
-            POTENTIAL MADE REAL
-          </h1>
+    <div className="w-full overflow-x-hidden">
+      <div
+        id="hero"
+        className="hero min-h-screen bg-gray-100"
+        data-aos="fade-down"
+      >
+        <div className="hero-content text-center">
+          <div className="max-w-md">
+            <h1 className="text-5xl text-green-950 my-20 font-thin tracking-wider">
+              POTENTIAL MADE REAL
+            </h1>
+          </div>
         </div>
       </div>
       <div className=" grid md:grid-cols-2 w-full min-h-screen bg-gray-50">
@@ -67,4 +71,4 @@ const Carousel: React.FC = () => {
   );
 };
 
-export default Carousel;
+export default Hero;

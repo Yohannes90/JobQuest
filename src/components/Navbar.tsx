@@ -16,7 +16,7 @@ import "../styles/custom-hover.css";
  */
 const Navbar = () => {
   return (
-    <div className="navbar h-20 bg-gray-50 fixed px-10 z-10 w-full">
+    <div className="navbar h-20 bg-gray-50 fixed px-10 z-20 w-full">
       <div className="navbar-start">
         <img src={companyLogo} alt="logo" className="w-8 h-9 mx-2" />
         <a
