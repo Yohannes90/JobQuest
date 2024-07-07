@@ -34,14 +34,14 @@ const Vision_Mission = () => {
         className="grid order-1 md:order-2 h-fit flex-grow card bg-gray-50 text-black rounded-box place-items-center mx-5 self-start"
         data-aos="fade-left"
       >
-        <h2 className="pb-1 my-5 text-3xl text-green-950 mb-10 tracking-widest">
+        <h2 className="pb-1 my-5 text-3xl text-harPrimary mb-10 tracking-widest">
           VISION
         </h2>
         <p className="tracking-wider text-justify leading-loose text-base font-normal lg:text-lg bg-gray-50">
           Empowering impact organizations in Ethiopia to maximize their
           potential through strategic consulting services.
         </p>
-        <h2 className="pb-1 mt-16 text-3xl text-green-950 mb-10 tracking-widest">
+        <h2 className="pb-1 mt-16 text-3xl text-harPrimary mb-10 tracking-widest">
           MISSION
         </h2>
         <p className="tracking-wider text-justify leading-loose text-base font-normal lg:text-lg  bg-gray-50">

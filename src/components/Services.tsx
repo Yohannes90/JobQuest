@@ -81,7 +81,7 @@ const Services: React.FC = () => {
     <div id="services" className="bg-gray-50 py-12 min-h-screen pt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
         <div className="text-center mb-12">
-          <h2 className="uppercase text-3xl text-green-950">Our Services</h2>
+          <h2 className="uppercase text-3xl text-harPrimary">Our Services</h2>
           <p className="mt-4 text-lg text-gray-600">
             Comprehensive support to enhance your organizational capabilities.
           </p>
@@ -91,9 +91,9 @@ const Services: React.FC = () => {
             <div data-aos="fade-right">
               <div
                 key={index}
-                className="bg-white p-8 rounded-lg text-black transition duration-500 ease-in-out hover:-translate-y-1 hover:bg-harPrimary hover:text-white shadow-xl"
+                className="bg-white p-8 rounded-lg text-black transition duration-500 ease-in-out hover:-translate-y-1 hover:bg-harSecondary hover:text-white shadow-xl"
               >
-                <h3 className="text-2xl font-semibold mb-6 text-start">
+                <h3 className="text-2xl font-semibold mb-6 text-start text-harPrimary">
                   <span className="font-normal mr-5">
                     <FontAwesomeIcon icon={category.icon} />
                   </span>
@@ -106,7 +106,7 @@ const Services: React.FC = () => {
                       className="flex items-start justify-start"
                     >
                       <svg
-                        className="w-6 h-6 mr-2 text-green-600 flex-shrink-0 mt-0.5"
+                        className="w-6 h-6 mr-2 text-harPrimary flex-shrink-0 mt-0.5"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"

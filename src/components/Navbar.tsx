@@ -1,4 +1,4 @@
-import companyLogo from "/icon.png";
+import companyLogo from "/harLogo.png";
 import "../styles/custom-hover.css";
 
 /**
@@ -18,12 +18,11 @@ const Navbar = () => {
   return (
     <div className="navbar h-20 bg-gray-50 fixed px-10 z-20 w-full">
       <div className="navbar-start">
-        <img src={companyLogo} alt="logo" className="w-8 h-9 mx-2" />
         <a
           href="#hero"
-          className="btn btn-ghost text-green-950 text-xl hover:text-green-950"
+          className="text-green-950 text-xl hover:text-harSecondary"
         >
-          Har Consultancy
+          <img src={companyLogo} alt="logo" className="w-40 h-14 mx-2" />
         </a>
       </div>
       <div className="hidden lg:flex navbar-end pr-20 ">
