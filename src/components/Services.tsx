@@ -91,10 +91,10 @@ const Services: React.FC = () => {
             <div data-aos="fade-right">
               <div
                 key={index}
-                className="bg-white p-8 rounded-lg text-black transition duration-500 ease-in-out hover:-translate-y-1 hover:bg-harPrimary hover:text-white shadow-xl"
+                className="bg-white p-8 rounded-lg text-harPrimary transition duration-500 ease-in-out hover:-translate-y-1 hover:bg-harPrimary hover:text-white shadow-xl"
               >
-                <h3 className="text-2xl font-semibold mb-6 text-start text-harPrimary">
-                  <span className="font-normal mr-5">
+                <h3 className="text-2xl font-semibold mb-6 text-start ">
+                  <span className="font-normal mr-5 hover:text-white">
                     <FontAwesomeIcon icon={category.icon} />
                   </span>
                   {category.title}
@@ -106,7 +106,7 @@ const Services: React.FC = () => {
                       className="flex items-start justify-start"
                     >
                       <svg
-                        className="w-6 h-6 mr-2 text-harPrimary flex-shrink-0 mt-0.5"
+                        className="w-6 h-6 mr-2 text-harSecondary flex-shrink-0 mt-0.5"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
