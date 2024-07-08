@@ -91,7 +91,7 @@ const Services: React.FC = () => {
             <div data-aos="fade-right">
               <div
                 key={index}
-                className="bg-white p-8 rounded-lg text-black transition duration-500 ease-in-out hover:-translate-y-1 hover:bg-harSecondary hover:text-white shadow-xl"
+                className="bg-white p-8 rounded-lg text-black transition duration-500 ease-in-out hover:-translate-y-1 hover:bg-harPrimary hover:text-white shadow-xl"
               >
                 <h3 className="text-2xl font-semibold mb-6 text-start text-harPrimary">
                   <span className="font-normal mr-5">
