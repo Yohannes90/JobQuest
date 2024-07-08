@@ -10,5 +10,14 @@ export default {
       }
     },
   },
-  plugins: [require("daisyui")],
+  plugins: [
+    require("daisyui"),
+    function({addUtilities}){
+      addUtilities({
+        '.text-stroke': {
+          '-webkit-text-stroke': '1px white'
+        }
+      })
+    },
+  ],
 };
