@@ -19,7 +19,7 @@ const Carousel: React.FC = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setCurrentSlide((prevSlide) => (prevSlide + 1) % totalSlides);
-    }, 3000); // Change slide every 3000 milliseconds (3 seconds)
+    }, 4000); // Change slide every 4000 milliseconds (3 seconds)
 
     return () => clearTimeout(timer);
   }, [currentSlide, totalSlides]);
@@ -30,8 +30,8 @@ const Carousel: React.FC = () => {
         <div className="absolute blur-sm -top-28 w-full h-full flex items-center justify-center">
           {slides[currentSlide]}
         </div>
-        <div className="absolute flex justify-center items-center w-full h-screen">
-          <h1 className="z-0 text-6xl w-fit backdrop-blur-sm text-white font-normal text-stroke mt-24 text-start tracking-widest">
+        <div className="absolute flex justify-center items-end w-full h-screen">
+          <h1 className="z-0 text-5xl w-fit text-white mb-44 font-normal mt-24 text-start tracking-widest">
             POTENTIAL MADE REAL
           </h1>
         </div>

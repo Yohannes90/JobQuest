@@ -15,7 +15,7 @@ export default {
     function({addUtilities}){
       addUtilities({
         '.text-stroke': {
-          '-webkit-text-stroke': '0.3px black'
+          '-webkit-text-stroke': '1px white'
         }
       })
     },
