@@ -18,15 +18,19 @@
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@types/react-leaflet": "^3.0.0",
     "aos": "^2.3.4",
+    "clsx": "^2.1.1",
+    "framer-motion": "^11.2.14",
     "leaflet": "^1.9.4",
     "leaflet-defaulticon-compatibility": "^0.1.2",
+    "mini-svg-data-uri": "^1.4.4",
     "prettier": "^3.2.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-leaflet": "^4.2.1",
     "react-router-dom": "^6.23.1",
     "react-slick": "^0.30.2",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "tailwind-merge": "^2.4.0"
   },
   "devDependencies": {
     "@types/aos": "^3.0.7",

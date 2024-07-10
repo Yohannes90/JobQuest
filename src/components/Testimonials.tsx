@@ -62,7 +62,7 @@ const Testimonials: React.FC = () => {
     AOS.init(); // Initialize AOS for animations
   }, []);
   return (
-    <div id="testimonials" className="bg-gray-50 pb-52 pt-24 py-12">
+    <div id="testimonials" className="overflow-hidden bg-gray-50 pb-52 pt-24 py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="uppercase text-3xl text-center text-harPrimary mb-4">
           Testimonials

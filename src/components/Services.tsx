@@ -78,7 +78,7 @@ const Services: React.FC = () => {
     AOS.init(); // Initialize AOS for animations
   }, []);
   return (
-    <div id="services" className="bg-gray-50 py-12 min-h-screen pt-24">
+    <div id="services" className="overflow-hidden bg-gray-50 py-12 min-h-screen pt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
         <div className="text-center mb-12">
           <h2 className="uppercase text-3xl text-harPrimary">Our Services</h2>

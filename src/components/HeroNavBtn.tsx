@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-
+import { HoverBorderGradient } from "./ui/hover-border-gradient";
 /**
  * HeroNavBtn component
  *
@@ -22,9 +22,6 @@ const HeroNavBtn = () => {
   const [upBtn, setUpBtn] = useState(false);
   useEffect(() => {
     const handleScroll = () => {
-      console.log("ScrollY: ", window.scrollY); // Debugging log
-      console.log("Window innerHeight: ", window.innerHeight); // Debugging log
-
       if (window.scrollY >= window.innerHeight) {
         setUpBtn(true);
         setDownBtn(false);
@@ -43,7 +40,7 @@ const HeroNavBtn = () => {
    */
   const scrollDown = () => {
     window.scrollBy({ top: window.innerHeight, behavior: "smooth" });
-  };
+  }
   /**
    * Scrolls the window up by the height of the window
    */
@@ -51,23 +48,21 @@ const HeroNavBtn = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
   return (
-    <div>
+    <>
       {downBtn && (
-        <button
-          className="flex justify-center bg-harPrimary z-10 p-0 fixed bottom-14 right-14 h-14 w-14"
-          onClick={scrollDown}
-        >
-          <svg
-            className="self-center"
-            xmlns="http://www.w3.org/2000/svg"
-            height="35px"
-            viewBox="0 -960 960 960"
-            width="35px"
-            fill="white"
+        <div className="fixed bottom-10 left-1/2 -translate-x-1/2 flex justify-center text-center">
+          <HoverBorderGradient
+            containerClassName="rounded-full"
+            as="button"
+            className="dark:bg-black bg-white text-black dark:text-white flex items-center space-x-2"
+            onClick={scrollDown}
           >
-            <path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" />
-          </svg>
-        </button>
+            
+            {/* <span>Welcome</span> */}
+            <DownArrow />
+            <span>Scroll down</span>
+          </HoverBorderGradient>
+        </div>
       )}
       {upBtn && (
         <button
@@ -86,7 +81,21 @@ const HeroNavBtn = () => {
           </svg>
         </button>
       )}
-    </div>
+    </>
+  );
+};
+
+const DownArrow = () => {
+  return (
+    <svg
+      className="self-center dark:fill-white fill-black"
+      xmlns="http://www.w3.org/2000/svg"
+      height="35px"
+      viewBox="0 -960 960 960"
+      width="35px"
+    >
+      <path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" />
+    </svg>
   );
 };
 
