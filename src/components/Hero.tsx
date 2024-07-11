@@ -25,7 +25,7 @@ const Carousel: React.FC = () => {
   }, [currentSlide, totalSlides]);
 
   return (
-    <div className="overflow-hidden">
+    <div id="hero" className="overflow-hidden">
       <div className="relative bg-gray-50 overflow-hidden w-full h-screen">
         <div className="absolute blur-sm -top-28 w-full h-full flex items-center justify-center">
           {slides[currentSlide]}
