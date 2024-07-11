@@ -3,7 +3,7 @@ name: Deploy
 on:
   push:
     branches:
-      - main
+      - animateV0
 
 jobs:
   build:
@@ -70,24 +70,24 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
 
-  deploy-cpanel:
-    name: Deploy to cPanel
-    needs: build
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
+  # deploy-cpanel:
+  #   name: Deploy to cPanel
+  #   needs: build
+  #   runs-on: ubuntu-latest
+  #   if: github.ref == 'refs/heads/main'
 
-    steps:
-      - name: Download artifact for cPanel
-        uses: actions/download-artifact@v2
-        with:
-          name: production-files-cpanel
-          path: ./dist
+  #   steps:
+  #     - name: Download artifact for cPanel
+  #       uses: actions/download-artifact@v2
+  #       with:
+  #         name: production-files-cpanel
+  #         path: ./dist
 
-      - name: Deploy via FTP
-        uses: SamKirkland/FTP-Deploy-Action@4.3.0
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./dist/
-          server-dir: /public_html/
+  #     - name: Deploy via FTP
+  #       uses: SamKirkland/FTP-Deploy-Action@4.3.0
+  #       with:
+  #         server: ${{ secrets.FTP_SERVER }}
+  #         username: ${{ secrets.FTP_USERNAME }}
+  #         password: ${{ secrets.FTP_PASSWORD }}
+  #         local-dir: ./dist/
+  #         server-dir: /public_html/
