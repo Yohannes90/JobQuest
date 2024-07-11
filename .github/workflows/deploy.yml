@@ -3,91 +3,17 @@ name: Deploy
 on:
   push:
     branches:
-      - main
+      - animateV0.0
 
 jobs:
-  build:
-    name: Build
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
+      - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Setup Node
-        uses: actions/setup-node@v1
-        with:
-          node-version: 16
-
-      - name: Install dependencies
-        uses: bahmutov/npm-install@v1
-
-      - name: Build project for GitHub Pages
+      - name: Deploy to server
         run: |
-          cp .env.gh-pages .env
-          npm run build
-        env:
-          VITE_BASE_PATH: '/harWebsite/'
-
-      - name: Upload production-ready build files for GitHub Pages
-        uses: actions/upload-artifact@v2
-        with:
-          name: production-files-gh-pages
-          path: ./dist
-
-      - name: Build project for cPanel
-        run: |
-          cp .env.cpanel .env
-          npm run build
-        env:
-          VITE_BASE_PATH: '/'
-
-      - name: Upload production-ready build files for cPanel
-        uses: actions/upload-artifact@v2
-        with:
-          name: production-files-cpanel
-          path: ./dist
-
-  deploy-gh-pages:
-    name: Deploy to GitHub Pages
-    needs: build
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
-
-    steps:
-      # - name: Checkout repo
-      #   uses: actions/checkout@v2
-
-      - name: Download artifact for GitHub Pages
-        uses: actions/download-artifact@v2
-        with:
-          name: production-files-gh-pages
-          path: ./dist
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
-
-  deploy-cpanel:
-    name: Deploy to cPanel
-    needs: build
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
-
-    steps:
-      - name: Download artifact for cPanel
-        uses: actions/download-artifact@v2
-        with:
-          name: production-files-cpanel
-          path: ./dist
-
-      - name: Deploy via FTP
-        uses: SamKirkland/FTP-Deploy-Action@4.3.0
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./dist/
-          server-dir: /public_html/
+          echo "Deploying branch: ${GITHUB_REF##*/}"
+          # Add your deployment commands here
