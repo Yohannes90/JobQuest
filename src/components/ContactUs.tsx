@@ -51,7 +51,7 @@ const ContactUs: React.FC = () => {
         formData,
         "OJbylDnVpUFDkG0yk", // replace with your user ID
       )
-      .then((response) => {
+      .then(() => {
         toast.success("Message sent successfully!");
         setFormData({
           name: "",
@@ -60,7 +60,7 @@ const ContactUs: React.FC = () => {
           message: "",
         });
       })
-      .catch((err) => {
+      .catch(() => {
         toast.error("Failed to send message. Please try again.");
       });
   };
