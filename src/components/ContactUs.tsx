@@ -1,4 +1,5 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import emailjs from "emailjs-com";
 import AOS from "aos";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
@@ -11,6 +12,8 @@ import {
   faWhatsapp,
   faTelegram,
 } from "@fortawesome/free-brands-svg-icons";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 /**
  * ContactUs component
@@ -25,9 +28,47 @@ const ContactUs: React.FC = () => {
     AOS.init(); // Initialize AOS for animations
   }, []);
 
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    message: "",
+  });
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    emailjs
+      .send(
+        "service_ntwmp2d", // replace with your service ID
+        "template_hii7y5l", // replace with your template ID
+        formData,
+        "OJbylDnVpUFDkG0yk", // replace with your user ID
+      )
+      .then((response) => {
+        toast.success("Message sent successfully!");
+        setFormData({
+          name: "",
+          phone: "",
+          email: "",
+          message: "",
+        });
+      })
+      .catch((err) => {
+        toast.error("Failed to send message. Please try again.");
+      });
+  };
+
   return (
     <div id="contact" className="bg-gray-100 py-12 min-h-screen pt-28">
       <div className="mx-auto px-4 sm:px-6 lg:px-8 flex flex-col max-w-7xl">
+        <ToastContainer />
         <div className="text-center" data-aos="fade-up">
           <h2 className="uppercase text-3xl text-harPrimary">Contact Us</h2>
           <p className="mt-4 text-lg text-gray-600 font-thin">
@@ -39,7 +80,7 @@ const ContactUs: React.FC = () => {
             className="lg:w-2/3 sm:w-full bg-white p-10 rounded-lg shadow-lg"
             data-aos="fade-right"
           >
-            <form className="space-y-8">
+            <form className="space-y-8" onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
                 <div>
                   <input
@@ -47,6 +88,8 @@ const ContactUs: React.FC = () => {
                     name="name"
                     id="name"
                     placeholder="Name"
+                    value={formData.name}
+                    onChange={handleChange}
                     className="block w-full px-5 py-3 border bg-gray-50 text-gray-800 outline-none border-gray-300 rounded-md shadow-sm focus:ring-green-900 focus:border-green-900"
                     required
                   />
@@ -57,6 +100,8 @@ const ContactUs: React.FC = () => {
                     name="phone"
                     id="phone"
                     placeholder="Phone Number"
+                    value={formData.phone}
+                    onChange={handleChange}
                     className="block w-full bg-gray-50 text-gray-800 outline-none px-5 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-green-900 focus:border-green-900"
                     required
                   />
@@ -68,6 +113,8 @@ const ContactUs: React.FC = () => {
                   name="email"
                   id="email"
                   placeholder="Email"
+                  value={formData.email}
+                  onChange={handleChange}
                   className="block w-full bg-gray-50 text-gray-800 outline-none px-5 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-green-900 focus:border-green-900"
                   required
                 />
@@ -77,6 +124,8 @@ const ContactUs: React.FC = () => {
                   name="message"
                   id="message"
                   placeholder="Message"
+                  value={formData.message}
+                  onChange={handleChange}
                   rows={4}
                   className="block w-full bg-gray-50 text-gray-800 outline-none px-5 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-green-900 focus:border-green-900"
                   required
