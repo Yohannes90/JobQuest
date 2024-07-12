@@ -161,7 +161,7 @@ const partners: Partner[] = [
   // },
   {
     name: "Efuye Gela",
-    logo: "efuyeGelaLogo.png",
+    logo: "efuyeGelaLogoo.png",
     url: "https://efuyegela.com/",
   },
   // {
