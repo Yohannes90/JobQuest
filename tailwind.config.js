@@ -7,6 +7,9 @@ export default {
         harPrimary: '#364117',
         harSecondary: '#899b22',
         harAccent: '#bfe84e',
+      },
+      fontFamily: {
+        harFont: 'Dancing Script'
       }
     },
   },
@@ -15,7 +18,7 @@ export default {
     function({addUtilities}){
       addUtilities({
         '.text-stroke': {
-          '-webkit-text-stroke': '1px white'
+          '-webkit-text-stroke': '1px #364117'
         }
       })
     },

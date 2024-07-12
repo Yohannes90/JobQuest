@@ -25,13 +25,13 @@ const Carousel: React.FC = () => {
 
   return (
     <div id="hero" className="overflow-hidden">
-      <div className="relative bg-gray-50 overflow-hidden w-full h-fit sm:h-screen">
+      <div className="relative bg-gray-50 overflow-hidden w-full h-96 sm:h-screen">
         <div className="absolute blur-sm w-full h-full flex items-center justify-center">
           {slides[currentSlide]}
         </div>
         <div className="absolute flex justify-center items-end w-full h-screen">
-          <h1 className="z-0 text-6xl w-fit text-harSecondary mb-44 font-bold mt-20 text-start tracking-widest">
-            POTENTIAL MADE REAL
+          <h1 className="z-0 font-harFont font-extrabold text-stroke text-sm md:text-6xl w-fit text-white mb-44 md:mt-20 tracking-widest select-none">
+            Potentail made real
           </h1>
         </div>
       </div>
