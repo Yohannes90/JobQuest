@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import HeroNavBtn from "./HeroNavBtn";
-import Slide1 from "/slide1.jpg"; 
-import Slide2 from "/slide2.jpg"; 
-import Slide3 from "/slide3.jpg"; 
+import Slide1 from "/slide1.jpg";
+import Slide2 from "/slide2.jpg";
+import Slide3 from "/slide3.jpg";
 import heroImage from "/hero.jpg";
-
 
 const Carousel: React.FC = () => {
   const slides = [
@@ -26,12 +25,12 @@ const Carousel: React.FC = () => {
 
   return (
     <div id="hero" className="overflow-hidden">
-      <div className="relative bg-gray-50 overflow-hidden w-full h-screen">
-        <div className="absolute blur-sm -top-28 w-full h-full flex items-center justify-center">
+      <div className="relative bg-gray-50 overflow-hidden w-full h-fit sm:h-screen">
+        <div className="absolute blur-sm w-full h-full flex items-center justify-center">
           {slides[currentSlide]}
         </div>
         <div className="absolute flex justify-center items-end w-full h-screen">
-          <h1 className="z-0 text-5xl w-fit text-white mb-44 font-normal mt-24 text-start tracking-widest">
+          <h1 className="z-0 text-6xl w-fit text-harSecondary mb-44 font-bold mt-20 text-start tracking-widest">
             POTENTIAL MADE REAL
           </h1>
         </div>
