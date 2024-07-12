@@ -154,11 +154,11 @@ const partners: Partner[] = [
     logo: "socialEnterpriseEthiopiaLogo.png",
     url: "https://socialenterpriseethiopia.org/",
   },
-  // {
-  //   name: "Bright Hope",
-  //   logo: "brightHopeLogo.png",
-  //   url: "https://www.brighthope.org/",
-  // },
+  {
+    name: "Bright Hope Charity",
+    logo: "brightHopeLogo.png",
+    url: "https://brighthope.org/",
+  },
   {
     name: "Efuye Gela",
     logo: "efuyeGelaLogo.png",
