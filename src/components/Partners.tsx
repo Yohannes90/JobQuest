@@ -157,7 +157,7 @@ const partners: Partner[] = [
   {
     name: "Bright Hope Charity",
     logo: "brightHopeLogo.png",
-    url: "https://brighthope.org/",
+    url: "https://brighthopecharity.org/",
   },
   {
     name: "Efuye Gela",
@@ -167,7 +167,7 @@ const partners: Partner[] = [
   {
     name: "Healing Valves",
     logo: "healingValvesLogo1.png",
-    url: "https://www.healingvalves1.org/",
+    url: "https://www.healingvalves.org/",
   },
   {
     name: "Yango",

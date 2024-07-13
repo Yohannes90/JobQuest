@@ -46,10 +46,10 @@ const ContactUs: React.FC = () => {
     e.preventDefault();
     emailjs
       .send(
-        "service_ntwmp2d", // replace with your service ID
-        "template_hii7y5l", // replace with your template ID
+        "service_ntwmp2d", // service ID
+        "template_hii7y5l", // template ID
         formData,
-        "OJbylDnVpUFDkG0yk", // replace with your user ID
+        "OJbylDnVpUFDkG0yk", // user or api ID
       )
       .then(() => {
         toast.success("Message sent successfully!");
@@ -66,7 +66,10 @@ const ContactUs: React.FC = () => {
   };
 
   return (
-    <div id="contact" className="overflow-hidden bg-gray-100 py-12 min-h-screen pt-28">
+    <div
+      id="contact"
+      className="overflow-hidden bg-gray-100 py-12 min-h-screen pt-28"
+    >
       <div className="mx-auto px-4 sm:px-6 lg:px-8 flex flex-col max-w-7xl">
         <ToastContainer />
         <div className="text-center" data-aos="fade-up">
