@@ -221,7 +221,7 @@ const Partners: React.FC = () => {
   };
 
   return (
-    <div id="partners" className="bg-harSecondary pt-2 pb-8">
+    <div id="partners" className="overflow-hidden bg-harSecondary pt-2 pb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* <div className="text-center">
           <h2 className="uppercase text-3xl text-harPrimary">Our Partners</h2>
