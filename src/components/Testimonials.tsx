@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 import AOS from "aos";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faQuoteLeft, faQuoteRight } from "@fortawesome/free-solid-svg-icons";
 
 /**
  * Interface representing a testimonial provided by a client.
@@ -20,16 +22,18 @@ const testimonials: Testimonial[] = [
   {
     name: "Yeabsera Wendosen",
     position: "Program coordinator, Company A",
-    image: "https://via.placeholder.com/100",
+    image:
+      "https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg",
     testimonial:
-      "Har Consultancy's support in securing funding for our non-profit organization was exceptional. Their expertise and dedication made a significant impact, enabling us to continue serving the community effectively.",
+      "Har Consultancy's support in securing funding for our non-profit organization was exceptional. Their expertise and dedication made a significant impact, enabling us to continue serving the community more effectively.",
     personLink: "https://linkedin.com/in/johndyree",
     companyLink: "https://companyA.com",
   },
   {
     name: "Dr. Zekarias",
     position: "Vice president, HVE",
-    image: "https://via.placeholder.com/100",
+    image:
+      "https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg",
     testimonial:
       "The collaboration with Har Consultancy on our project was truly rewarding. Their valuable insights and commitment to excellence exceeded our expectations, leading to successful outcomes. We highly recommend their services.",
     personLink: "https://linkedin.com/in/janesmith",
@@ -104,7 +108,21 @@ const Testimonials: React.FC = () => {
                   </p>
                 </div>
               </div>
-              <p className="text-gray-700">"{testimonial.testimonial}"</p>
+              <sup>
+                <FontAwesomeIcon
+                  icon={faQuoteLeft}
+                  className="text-text-harPrimary mr-2"
+                  size="lg"
+                />
+              </sup>
+              <span className="text-gray-700">{testimonial.testimonial}</span>
+              <sup>
+                <FontAwesomeIcon
+                  icon={faQuoteRight}
+                  className="text-text-harPrimary ml-2"
+                  size="lg"
+                />
+              </sup>
             </div>
           ))}
         </div>
