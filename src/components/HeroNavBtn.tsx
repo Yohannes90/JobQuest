@@ -54,7 +54,7 @@ const HeroNavBtn = () => {
     <div>
       {downBtn && (
         <button
-          className="flex justify-center rounded-full bg-harPrimary z-10 p-0 fixed bottom-14 right-1/2 h-14 w-14"
+          className="flex justify-center rounded-full bg-harPrimary z-10 p-0 fixed bottom-14 right-1/2 translate-x-1/2 h-14 w-14"
           onClick={scrollDown}
         >
           <svg

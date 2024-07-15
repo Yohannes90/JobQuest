@@ -3,10 +3,21 @@ import HeroNavBtn from "./HeroNavBtn";
 import Slide1 from "/slide1.jpg";
 import Slide2 from "/slide2.jpg";
 import Slide3 from "/slide3.jpg";
+import mobileSlide1 from "/mobile_slide1.jpg";
+import mobileSlide2 from "/mobile_slide2.jpg";
+import mobileSlide3 from "/mobile_slide3.jpg";
 import heroImage from "/hero.jpg";
+import mobileHeroImage from "/mobile_hero.jpg";
+import { useMediaQuery } from 'react-responsive';
 
 const Carousel: React.FC = () => {
-  const slides = [
+  const isMobile = useMediaQuery({maxWidth: 767})
+  const slides = isMobile ? [
+    <img src={mobileSlide1} className="min-h-screen" alt="mobileSlide 1" />,
+    <img src={mobileSlide2} className="min-h-screen" alt="mobileSlide 2" />,
+    <img src={mobileSlide3} className="min-h-screen" alt="mobileSlide 3" />,
+    
+  ] : [
     <img src={Slide1} className="min-h-screen" alt="Slide 1" />,
     <img src={Slide2} className="min-h-screen" alt="Slide 2" />,
     <img src={Slide3} className="min-h-screen" alt="Slide 3" />,
@@ -25,12 +36,12 @@ const Carousel: React.FC = () => {
 
   return (
     <div id="hero" className="overflow-hidden">
-      <div className="relative bg-gray-50 overflow-hidden w-full h-96 sm:h-screen">
-        <div className="absolute w-full h-full flex items-center justify-center">
+      <div className="relative bg-gray-50 overflow-hidden w-full h-screen">
+        <div className="absolute w-full h-screen flex items-center justify-center">
           {slides[currentSlide]}
         </div>
-        <div className="absolute flex justify-center items-end w-full h-screen">
-          <h1 className="z-0 font-harFont font-extrabold text-stroke text-sm md:text-6xl w-fit text-white mb-44 md:mt-20 tracking-widest select-none">
+        <div className="absolute flex justify-center items-end w-full bottom-1/4">
+          <h1 className="z-0 font-harFont font-normal md:font-extrabold md:text-stroke text-4xl md:text-6xl w-fit text-white tracking-widest select-none">
             Potentail made real
           </h1>
         </div>
@@ -54,11 +65,16 @@ const Carousel: React.FC = () => {
           className="h-fit flex-grow card bg-gray-50 text-black rounded-box place-items-center p-0 mx-5 self-center"
           data-aos="fade-left"
         >
-          <img
-            src={heroImage}
+          {isMobile ? <img
+            src={mobileHeroImage}
             alt="People working collaboratively in a team setting"
             className="h-fit w-fit rounded-lg shadow-lg"
-          />
+          /> : <img
+          src={heroImage}
+          alt="People working collaboratively in a team setting"
+          className="h-fit w-fit rounded-lg shadow-lg"
+        /> 
+          }
         </div>
       </div>
       <HeroNavBtn />

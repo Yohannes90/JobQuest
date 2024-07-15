@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import AOS from "aos";
 import vmImage from "/vm_pic.jpg";
+import mobileVmImage from "/mobile_vm_pic.jpg";
+import {useMediaQuery} from 'react-responsive'
 
 /**
  * Vision and Mission Component.
@@ -15,6 +17,7 @@ import vmImage from "/vm_pic.jpg";
  * @returns {JSX.Element} The rendered Vision and Mission component
  */
 const Vision_Mission = () => {
+  const isMobile = useMediaQuery({maxWidth: 767})
   useEffect(() => {
     AOS.init(); // Initialize AOS for animations
   }, []);
@@ -27,7 +30,8 @@ const Vision_Mission = () => {
         className="grid order-2 md:order-1 h-fit flex-grow card bg-gray-50 text-black rounded-box place-items-center mx-5 self-start"
         data-aos="fade-right"
       >
-        <img className="rounded-xl shadow-md" src={vmImage} alt="" />
+        {isMobile ? <img className="rounded-xl shadow-md" src={mobileVmImage} alt="" />
+        :<img className="rounded-xl shadow-md" src={vmImage} alt="" />}
       </div>
 
       <div
