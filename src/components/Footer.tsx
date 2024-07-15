@@ -30,7 +30,7 @@ const Footer: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="flex items-center text-lg font-semibold mb-4 md:mb-0">
-            <a href="#" className="text-green-950 hover:text-harSecondary">
+            <a href="#" className="text-harPrimary hover:text-harSecondary">
               <img
                 src={companyLogo}
                 alt="Company Logo"
@@ -42,31 +42,31 @@ const Footer: React.FC = () => {
           <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 my-10">
             <a
               href="#"
-              className="text-center text-green-950 hover:text-gray-400"
+              className="text-center text-harPrimary hover:text-gray-400"
             >
               Home
             </a>
             <a
               href="#vision-mission"
-              className="text-center text-green-950 hover:text-harSecondary"
+              className="text-center text-harPrimary hover:text-harSecondary"
             >
               About Us
             </a>
             <a
               href="#services"
-              className="text-center text-green-950 hover:text-harSecondary"
+              className="text-center text-harPrimary hover:text-harSecondary"
             >
               Services
             </a>
             <a
               href="#testimonials"
-              className="text-center text-green-950 hover:text-harSecondary"
+              className="text-center text-harPrimary hover:text-harSecondary"
             >
               Testimonials
             </a>
             <a
               href="#contact"
-              className="text-center text-green-950 hover:text-harSecondary"
+              className="text-center text-harPrimary hover:text-harSecondary"
             >
               Contact
             </a>

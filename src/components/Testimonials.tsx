@@ -111,7 +111,7 @@ const Testimonials: React.FC = () => {
               <sup>
                 <FontAwesomeIcon
                   icon={faQuoteLeft}
-                  className="text-text-harPrimary mr-2"
+                  className="text-harPrimary mr-2"
                   size="lg"
                 />
               </sup>
@@ -119,7 +119,7 @@ const Testimonials: React.FC = () => {
               <sup>
                 <FontAwesomeIcon
                   icon={faQuoteRight}
-                  className="text-text-harPrimary ml-2"
+                  className="text-harPrimary ml-2"
                   size="lg"
                 />
               </sup>
