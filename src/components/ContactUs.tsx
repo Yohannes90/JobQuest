@@ -158,12 +158,15 @@ const ContactUs: React.FC = () => {
             </div>
             <div className="mb-6">
               <h5 className="text-lg text-white font-semibold mb-2">Phone:</h5>
-              <p className="text-lg text-white">+251 123 456 789</p>
+              <p className="text-lg text-white">+251 951 208 307</p>
             </div>
             <div className="mb-6">
               <h5 className="text-lg text-white font-semibold mb-2">Email:</h5>
               <p>
-                <a className="text-lg text-white" href="mailto:name@email.com">
+                <a
+                  className="text-lg text-white hover:text-harSecondary"
+                  href="mailto:name@email.com"
+                >
                   info@harconsultancy.org
                 </a>
               </p>
@@ -176,19 +179,33 @@ const ContactUs: React.FC = () => {
                 <a
                   href="https://x.com/consult_Har"
                   className="text-white hover:text-harSecondary"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <FontAwesomeIcon icon={faXTwitter} size="xl" />
                 </a>
                 <a
                   href="https://www.linkedin.com/company/har-consultancy/"
                   className="text-white hover:text-harSecondary"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <FontAwesomeIcon icon={faLinkedin} size="xl" />
                 </a>
-                <a href="#" className="text-white hover:text-harSecondary">
+                <a
+                  href="https://wa.me/+251951208307"
+                  className="text-white hover:text-harSecondary"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <FontAwesomeIcon icon={faWhatsapp} size="xl" />
                 </a>
-                <a href="#" className="text-white hover:text-harSecondary">
+                <a
+                  href="https://t.me/HiwotHar"
+                  className="text-white hover:text-harSecondary"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <FontAwesomeIcon icon={faTelegram} size="xl" />
                 </a>
               </div>

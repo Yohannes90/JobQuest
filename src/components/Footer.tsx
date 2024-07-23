@@ -89,7 +89,7 @@ const Footer: React.FC = () => {
               <FontAwesomeIcon icon={faLinkedin} size="lg" />
             </a>
             <a
-              href="https://www.linkedin.com/company/har-consultancy/"
+              href="https://wa.me/+251951208307"
               target="_blank"
               rel="noopener noreferrer"
               className="text-harPrimary hover:text-harSecondary"
@@ -97,7 +97,7 @@ const Footer: React.FC = () => {
               <FontAwesomeIcon icon={faWhatsapp} size="lg" />
             </a>
             <a
-              href="https://www.linkedin.com/company/har-consultancy/"
+              href="https://t.me/HiwotHar"
               target="_blank"
               rel="noopener noreferrer"
               className="text-harPrimary hover:text-harSecondary"
