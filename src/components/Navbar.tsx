@@ -39,6 +39,12 @@ const Navbar = () => {
           Testimonials
         </a>
         <a
+          href="#testimonials"
+          className="btn btn-ghost p-0 mx-4 text-green-950 hover:text-harSecondary text-base hover:bg-transparent relative custom-hover-style"
+        >
+          Jobs
+        </a>
+        <a
           href="#contact"
           className="btn btn-ghost p-0 mx-4 text-green-950 hover:text-harSecondary text-base hover:bg-transparent relative custom-hover-style"
         >

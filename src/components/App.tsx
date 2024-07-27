@@ -5,12 +5,12 @@ import Footer from "./Footer";
 import Navbar from "./Navbar";
 
 // Lazy load components for improved performance
-const Hero = lazy(() => import("./Hero"));
-const AboutUs = lazy(() => import("./Vision_Mission"));
-const Services = lazy(() => import("./Services"));
-const Testimonials = lazy(() => import("./Testimonials"));
-const ContactUs = lazy(() => import("./ContactUs"));
-const Partners = lazy(() => import("./Partners"));
+const Hero = lazy(() => import("./landingpage_content/Hero"));
+const AboutUs = lazy(() => import("./landingpage_content/Vision_Mission"));
+const Services = lazy(() => import("./landingpage_content/Services"));
+const Testimonials = lazy(() => import("./landingpage_content/Testimonials"));
+const ContactUs = lazy(() => import("./landingpage_content/ContactUs"));
+const Partners = lazy(() => import("./landingpage_content/Partners"));
 
 const App: React.FC = () => {
   const basePath = import.meta.env.VITE_BASE_PATH || "";
@@ -34,6 +34,9 @@ const App: React.FC = () => {
                   </>
                 }
               />
+              <Route path="/Jobs" >
+                
+              </Route>
               {/* additional routes here */}
             </Routes>
           </Suspense>
