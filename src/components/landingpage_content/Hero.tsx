@@ -1,26 +1,49 @@
+import React, { useState, useEffect } from "react";
 import HeroNavBtn from "./HeroNavBtn";
-import { useEffect } from "react";
-import AOS from "aos";
-
+import Slide1 from "/slide1.jpg";
+import Slide2 from "/slide2.jpg";
+import Slide3 from "/slide3.jpg";
+import mobileSlide1 from "/mobile_slide1.jpg";
+import mobileSlide2 from "/mobile_slide2.jpg";
+import mobileSlide3 from "/mobile_slide3.jpg";
 import heroImage from "/hero.jpg";
+import mobileHeroImage from "/mobile_hero.jpg";
+import { useMediaQuery } from 'react-responsive';
 
-const Hero = () => {
+const Carousel: React.FC = () => {
+  const isMobile = useMediaQuery({maxWidth: 767})
+  const slides = isMobile ? [
+    <img src={mobileSlide1} className="min-h-screen" alt="mobileSlide 1" />,
+    <img src={mobileSlide2} className="min-h-screen" alt="mobileSlide 2" />,
+    <img src={mobileSlide3} className="min-h-screen" alt="mobileSlide 3" />,
+    
+  ] : [
+    <img src={Slide1} className="min-h-screen" alt="Slide 1" />,
+    <img src={Slide2} className="min-h-screen" alt="Slide 2" />,
+    <img src={Slide3} className="min-h-screen" alt="Slide 3" />,
+  ];
+
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const totalSlides = slides.length;
+
   useEffect(() => {
-    AOS.init();
-  }, []);
+    const timer = setTimeout(() => {
+      setCurrentSlide((prevSlide) => (prevSlide + 1) % totalSlides);
+    }, 4000); // Change slide every 4000 milliseconds (3 seconds)
+
+    return () => clearTimeout(timer);
+  }, [currentSlide, totalSlides]);
+
   return (
-    <div className="w-full overflow-x-hidden">
-      <div
-        id="hero"
-        className="hero min-h-screen bg-gray-100"
-        data-aos="fade-down"
-      >
-        <div className="hero-content text-center">
-          <div className="max-w-md">
-            <h1 className="text-5xl text-green-950 my-20 font-thin tracking-wider">
-              POTENTIAL MADE REAL
-            </h1>
-          </div>
+    <div id="hero" className="overflow-hidden">
+      <div className="relative bg-gray-50 overflow-hidden w-full h-screen">
+        <div className="absolute w-full h-screen flex items-center justify-center">
+          {slides[currentSlide]}
+        </div>
+        <div className="absolute flex justify-center items-end w-full bottom-1/4">
+          <h1 className="z-0 font-harFont font-normal md:font-extrabold md:text-stroke text-4xl md:text-6xl w-fit text-white tracking-widest select-none">
+            Potentail made real
+          </h1>
         </div>
       </div>
       <div className=" grid md:grid-cols-2 w-full min-h-screen bg-gray-50">
@@ -39,10 +62,19 @@ const Hero = () => {
           </p>
         </div>
         <div
-          className="h-fit flex-grow card bg-gray-50 text-black  rounded-box place-items-center p-0 mx-5 self-center"
+          className="h-fit flex-grow card bg-gray-50 text-black rounded-box place-items-center p-0 mx-5 self-center"
           data-aos="fade-left"
         >
-          <img src={heroImage} alt="" className="h-fit w-fit" />
+          {isMobile ? <img
+            src={mobileHeroImage}
+            alt="People working collaboratively in a team setting"
+            className="h-fit w-fit rounded-lg shadow-lg"
+          /> : <img
+          src={heroImage}
+          alt="People working collaboratively in a team setting"
+          className="h-fit w-fit rounded-lg shadow-lg"
+        /> 
+          }
         </div>
       </div>
       <HeroNavBtn />
@@ -50,4 +82,4 @@ const Hero = () => {
   );
 };
 
-export default Hero;
+export default Carousel;
