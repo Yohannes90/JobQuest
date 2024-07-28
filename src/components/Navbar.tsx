@@ -1,18 +1,17 @@
 import companyLogo from "/icon.png";
 import "../styles/custom-hover.css";
-import Link from 'react-router-dom'
 
 const Navbar = () => {
   return (
     <div className="navbar h-20 bg-gray-50 fixed px-10 z-10 w-full">
       <div className="navbar-start">
         <img src={companyLogo} alt="logo" className="w-8 h-9 mx-2" />
-        <Link
-          to="#hero"
+        <a
+          href="#hero"
           className="btn btn-ghost text-green-950 text-xl hover:text-green-950"
         >
           Har Consultancy
-        </Link>
+        </a>
       </div>
       <div className="hidden lg:flex navbar-end pr-20 ">
         <a
