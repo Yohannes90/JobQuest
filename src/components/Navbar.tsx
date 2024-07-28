@@ -19,7 +19,7 @@ const Navbar = () => {
     <div className="navbar h-20 bg-gray-50 fixed px-10 z-20 w-full">
       <div className="navbar-start">
         <a
-          href="#hero"
+          href="/#hero"
           className="text-green-950 text-xl hover:text-harSecondary"
         >
           <img src={companyLogo} alt="logo" className="w-40 h-14 mx-2" />
@@ -27,37 +27,37 @@ const Navbar = () => {
       </div>
       <div className="hidden lg:flex navbar-end pr-20 ">
         <a
-          href="#hero"
+          href="/#hero"
           className="btn btn-ghost p-0 mx-3 hover:bg-transparent relative text-harPrimary hover:text-harSecondary text-base custom-hover-style"
         >
           Home
         </a>
         <a
-          href="#vision-mission"
+          href="/#vision-mission"
           className="btn btn-ghost p-0 mx-4 text-green-950 hover:text-harSecondary text-base hover:bg-transparent relative custom-hover-style"
         >
           About us
         </a>
         <a
-          href="#services"
+          href="/#services"
           className="btn btn-ghost p-0 mx-4 text-green-950 hover:text-harSecondary text-base hover:bg-transparent relative custom-hover-style"
         >
           Services
         </a>
         <a
-          href="#testimonials"
+          href="/#testimonials"
           className="btn btn-ghost p-0 mx-4 text-green-950 hover:text-harSecondary text-base hover:bg-transparent relative custom-hover-style"
         >
           Testimonials
         </a>
         <a
-          href="#testimonials"
+          href="/jobs"
           className="btn btn-ghost p-0 mx-4 text-green-950 hover:text-harSecondary text-base hover:bg-transparent relative custom-hover-style"
         >
           Jobs
         </a>
         <a
-          href="#contact"
+          href="/#contact"
           className="btn btn-ghost p-0 mx-4 text-green-950 hover:text-harSecondary text-base hover:bg-transparent relative custom-hover-style"
         >
           Contact Us
@@ -91,7 +91,7 @@ const Navbar = () => {
           >
             <li>
               <a
-                href="#hero"
+                href="/#hero"
                 className="text-harPrimary hover:text-harSecondary"
               >
                 Home
@@ -107,7 +107,7 @@ const Navbar = () => {
             </li>
             <li>
               <a
-                href="#services"
+                href="/#services"
                 className="text-harPrimary hover:text-harSecondary"
               >
                 Services
@@ -115,7 +115,7 @@ const Navbar = () => {
             </li>
             <li>
               <a
-                href="#testimonials"
+                href="/#testimonials"
                 className="text-harPrimary hover:text-harSecondary"
               >
                 Testimonial
@@ -123,7 +123,7 @@ const Navbar = () => {
             </li>
             <li>
               <a
-                href=""
+                href="/jobs"
                 className="text-harPrimary hover:text-harSecondary"
               >
                 Jobs
@@ -131,7 +131,7 @@ const Navbar = () => {
             </li>
             <li>
               <a
-                href="#contact"
+                href="/#contact"
                 className="text-harPrimary hover:text-harSecondary"
               >
                 Contact us

@@ -41,31 +41,31 @@ const Footer: React.FC = () => {
 
           <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 my-10">
             <a
-              href="#"
+              href="/#hero"
               className="text-center text-harPrimary hover:text-gray-400"
             >
               Home
             </a>
             <a
-              href="#vision-mission"
+              href="/#vision-mission"
               className="text-center text-harPrimary hover:text-harSecondary"
             >
               About Us
             </a>
             <a
-              href="#services"
+              href="/#services"
               className="text-center text-harPrimary hover:text-harSecondary"
             >
               Services
             </a>
             <a
-              href="#testimonials"
+              href="/#testimonials"
               className="text-center text-harPrimary hover:text-harSecondary"
             >
               Testimonials
             </a>
             <a
-              href="#contact"
+              href="/#contact"
               className="text-center text-harPrimary hover:text-harSecondary"
             >
               Contact
