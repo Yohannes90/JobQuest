@@ -107,7 +107,7 @@ const Services: React.FC = () => {
                 {/* <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-[#364117] to-[#899b22] opacity-0 hover:opacity-100 transition-opacity duration-500"></div> */}
                 {/* <FontAwesomeIcon icon={category.icon} /> */}
                 <div className="font-normal text-center p-2 m-5 hover:text-white">
-                  <FontAwesomeIcon icon={category.icon} size="3x"/>
+                  <FontAwesomeIcon icon={category.icon} size="3x" />
                 </div>
 
                 <h3 className="text-2xl font-semibold mb-6 text-center ">

@@ -11,6 +11,9 @@ const Services = lazy(() => import("./Services"));
 const Testimonials = lazy(() => import("./Testimonials"));
 const ContactUs = lazy(() => import("./ContactUs"));
 const Partners = lazy(() => import("./Partners"));
+const JobApplicationForm = lazy(() => import("./JobApplicationForm"));
+const JobPostForm = lazy(() => import("./JobPostForm"));
+const AdminDashboard = lazy(() => import("./AdminDashboard"));
 
 /**
  * Main application component.
@@ -46,6 +49,12 @@ const App: React.FC = () => {
                 }
               />
               {/* additional routes here */}
+              <Route
+                path="/job-application-form"
+                element={<JobApplicationForm />}
+              />
+              <Route path="/job-post-form" element={<JobPostForm />} />
+              <Route path="/admin" Component={AdminDashboard} />
             </Routes>
           </Suspense>
         </div>
