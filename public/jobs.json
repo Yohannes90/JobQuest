@@ -9,7 +9,8 @@
     "salaryType": "Yearly",
     "jobLocation": "Brussels",
     "postingDate": "2023-11-03",
-    "experienceLevel": "Any experience",
+    "experienceLevel": "Senior",
+    "jobType": "In-person",
     "employmentType": "Full-time",
     "description": "Mollit in laborum tempor Lorem incididunt irure. Aute eu ex ad sunt. Pariatur sint culpa do incididunt eiusmod eiusmod culpa. laborum tempor Lorem incididunt."
   },
@@ -24,6 +25,7 @@
     "jobLocation": "San Francisco",
     "postingDate": "2023-11-02",
     "experienceLevel": "Internship",
+    "jobType": "Hybrid",
     "employmentType": "Temporary",
     "description": "Mollit in laborum tempor Lorem incididunt irure. Aute eu ex ad sunt. Pariatur sint culpa do incididunt eiusmod eiusmod culpa. laborum tempor Lorem incididunt."
   },
@@ -38,6 +40,7 @@
     "jobLocation": "Seattle",
     "postingDate": "2023-10-28",
     "experienceLevel": "Any experience",
+    "jobType": "Remote",
     "employmentType": "Full-time",
     "description": "Mollit in laborum tempor Lorem incididunt irure. Aute eu ex ad sunt. Pariatur sint culpa do incididunt eiusmod eiusmod culpa. laborum tempor Lorem incididunt."
   },
@@ -51,7 +54,8 @@
     "salaryType": "Monthly",
     "jobLocation": "London",
     "postingDate": "2023-10-05",
-    "experienceLevel": "Work remotely",
+    "experienceLevel": "Internship",
+    "jobType": "Remote",
     "employmentType": "Part-time",
     "description": "Mollit in laborum tempor Lorem incididunt irure. Aute eu ex ad sunt. Pariatur sint culpa do incididunt eiusmod eiusmod culpa. laborum tempor Lorem incididunt."
   },
@@ -66,6 +70,7 @@
     "jobLocation": "London",
     "postingDate": "2023-10-28",
     "experienceLevel": "Intership",
+    "jobType": "Hybrid",
     "employmentType": "Full-time",
     "description": "Mollit in laborum tempor Lorem incididunt irure. Aute eu ex ad sunt. Pariatur sint culpa do incididunt eiusmod eiusmod culpa. laborum tempor Lorem incididunt."
   },
@@ -80,6 +85,7 @@
     "jobLocation": "Boston",
     "postingDate": "2023-10-05",
     "experienceLevel": "Intership",
+    "jobType": "In-person",
     "employmentType": "Temporary",
     "description": "Mollit in laborum tempor Lorem incididunt irure. Aute eu ex ad sunt. Pariatur sint culpa do incididunt eiusmod eiusmod culpa. laborum tempor Lorem incididunt."
   },
@@ -93,7 +99,8 @@
     "salaryType": "Yearly",
     "jobLocation": "Brussels",
     "postingDate": "2023-11-05",
-    "experienceLevel": "Any experience",
+    "experienceLevel": "Junior",
+    "jobType": "Hybrid",
     "employmentType": "Full-time",
     "description": "Mollit in laborum tempor Lorem incididunt irure. Aute eu ex ad sunt. Pariatur sint culpa do incididunt eiusmod eiusmod culpa. laborum tempor Lorem incididunt."
   },
@@ -107,7 +114,8 @@
     "salaryType": "Yearly",
     "jobLocation": "San Francisco",
     "postingDate": "2023-10-28",
-    "experienceLevel": "Internship",
+    "experienceLevel": "Senior",
+    "jobType": "Hybrid",
     "employmentType": "Temporary",
     "description": "Mollit in laborum tempor Lorem incididunt irure. Aute eu ex ad sunt. Pariatur sint culpa do incididunt eiusmod eiusmod culpa. laborum tempor Lorem incididunt."
   },
@@ -121,7 +129,8 @@
     "salaryType": "Yearly",
     "jobLocation": "Seattle",
     "postingDate": "2023-10-28",
-    "experienceLevel": "Any experience",
+    "experienceLevel": "Junior",
+    "jobType": "In-person",
     "employmentType": "Full-time",
     "description": "Mollit in laborum tempor Lorem incididunt irure. Aute eu ex ad sunt. Pariatur sint culpa do incididunt eiusmod eiusmod culpa. laborum tempor Lorem incididunt."
   },
@@ -135,7 +144,8 @@
     "salaryType": "Monthly",
     "jobLocation": "London",
     "postingDate": "2023-10-05",
-    "experienceLevel": "Work remotely",
+    "experienceLevel": "Junior",
+    "jobType": "In-person",
     "employmentType": "Part-time",
     "description": "Mollit in laborum tempor Lorem incididunt irure. Aute eu ex ad sunt. Pariatur sint culpa do incididunt eiusmod eiusmod culpa. laborum tempor Lorem incididunt."
   },
@@ -150,6 +160,7 @@
     "jobLocation": "London",
     "postingDate": "2023-10-28",
     "experienceLevel": "Intership",
+    "jobType": "Remote",
     "employmentType": "Full-time",
     "description": "Mollit in laborum tempor Lorem incididunt irure. Aute eu ex ad sunt. Pariatur sint culpa do incididunt eiusmod eiusmod culpa. laborum tempor Lorem incididunt."
   },
@@ -163,7 +174,8 @@
     "salaryType": "Yearly",
     "jobLocation": "Boston",
     "postingDate": "2022-10-05",
-    "experienceLevel": "Intership",
+    "experienceLevel": "Senior",
+    "jobType": "Remote",
     "employmentType": "Temporary",
     "description": "Mollit in laborum tempor Lorem incididunt irure. Aute eu ex ad sunt. Pariatur sint culpa do incididunt eiusmod eiusmod culpa. laborum tempor Lorem incididunt."
   }

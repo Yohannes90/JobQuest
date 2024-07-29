@@ -12,12 +12,12 @@ const Search: React.FC<SearchProps> = ({ query, handleInputChange }) => {
       <div className="flex flex-grow justify-center">
         <form action="" method="get" className="w-11/12 sm:w-3/4">
           <div className="flex justify-start flex-grow gap-1">
-            <div className="relative py-1 pl-6 focus:outline-0 bg-white h-auto rounded shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-harSecondary w-full">
+            <div className="relative py-1 px-6 focus:outline-0 bg-white h-auto rounded shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-harSecondary w-full">
               <input
                 type="text"
                 name="title"
                 id="title"
-                className="w-full bg-white py-2 px-3 ml-4 bg-transparent focus:outline-0"
+                className="w-full bg-white py-2 px-4 bg-transparent focus:outline-0"
                 placeholder="What position are you looking for ?"
                 onChange={handleInputChange}
                 value={query}
