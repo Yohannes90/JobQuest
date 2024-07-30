@@ -17,7 +17,7 @@ const Search: React.FC<SearchProps> = ({ query, handleInputChange }) => {
                 type="text"
                 name="title"
                 id="title"
-                className="w-full bg-white py-2 px-4 bg-transparent focus:outline-0"
+                className="w-full bg-white py-2 px-4 focus:outline-0"
                 placeholder="What position are you looking for ?"
                 onChange={handleInputChange}
                 value={query}
