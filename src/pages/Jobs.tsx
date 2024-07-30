@@ -1,7 +1,8 @@
 import { ReactElement, useEffect, useState } from "react";
 import Search from "../components/jobs/job_listing/Search";
-import JobList from "../components/jobs/job_listing/JobList";
-import Card from "../components/jobs/job_listing/Card";
+import JobList from "../components/jobs/job_listing/main/JobList";
+import Card from "../components/jobs/job_listing/main/Card";
+import Sidebar from "../components/jobs/job_listing/sidebar/Sidebar";
 
 interface Job {
   id: number;
@@ -65,7 +66,7 @@ const Jobs: React.FC = () => {
           experienceLevel.toLowerCase() === selected.toLowerCase()
       );
     }
-    
+
     return filteredJobs.map((data, index) => <Card key={index} data={data} />);
   };
 
@@ -74,10 +75,14 @@ const Jobs: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <Search query={query} handleInputChange={handleInputChange} />
-      <div className="bg-gray-200">
-        <div>Left</div>
-        <div><JobList result={result} /></div>
-        <div>Right</div>
+      <div className="bg-gray-200 sm:grid grid-cols-4 gap-8 lg:px-24 px-4 py-12">
+        <div className="bg-gray-50 p-4 rounded">
+          <Sidebar handleChange={handleChange} handleClick={handleClick} />
+        </div>
+        <div className="bg-gray-50 col-span-2 p-4 rounded">
+          <JobList result={result} />
+        </div>
+        <div className="bg-gray-50 p-4 rounded">Right</div>
       </div>
     </div>
   );
