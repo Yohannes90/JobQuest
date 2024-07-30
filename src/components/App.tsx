@@ -1,8 +1,9 @@
 import "../styles/App.css";
 import React, { Suspense, lazy } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
+import LoginPage from './LoginPage';
 
 // Lazy load components for improved performance
 const Hero = lazy(() => import("./Hero"));
@@ -28,6 +29,8 @@ const App: React.FC = () => {
    * @type {string}
    */
   const basePath = import.meta.env.VITE_BASE_PATH || "";
+  const token = localStorage.getItem('token');
+
   return (
     <Router basename={basePath}>
       <div className="flex flex-col min-h-screen">
@@ -54,7 +57,12 @@ const App: React.FC = () => {
                 element={<JobApplicationForm />}
               />
               <Route path="/job-post-form" element={<JobPostForm />} />
-              <Route path="/admin" Component={AdminDashboard} />
+              {/* <Route path="/admin" Component={AdminDashboard} /> */}
+              <Route path="/login" element={<LoginPage />} />
+              <Route
+                path="/admin"
+                element={token ? <AdminDashboard /> : <Navigate to="/login" />}
+              />
             </Routes>
           </Suspense>
         </div>
