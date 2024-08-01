@@ -101,7 +101,7 @@ const prevPage = () => {
   const result: ReactElement[] = filteredData(jobs, selectedCategory, query);
 
   return (
-    <div className="text-black min-h-screen bg-gray-50">
+    <div className="text-black min-h-screen bg-gray-100">
       <Search query={query} handleInputChange={handleInputChange} />
       {/* main content  */}
       <div className="bg-gray-100 sm:grid grid-cols-4 gap-8 lg:px-16 px-4 py-12">
