@@ -76,3 +76,8 @@ enum JobType {
   contract
   internship
 }
+
+model JobNewsletterSubscribers {
+  id Int @id @default(autoincrement())
+  
+}

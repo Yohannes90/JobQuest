@@ -1,10 +1,10 @@
-import { ReactElement, useEffect, useState } from "react";
+import { ReactElement, useCallback, useEffect, useState } from "react";
 import Search from "../components/jobs/job_listing/Search";
 import JobList from "../components/jobs/job_listing/main/JobList";
 import Card from "../components/jobs/job_listing/main/Card";
 import Sidebar from "../components/jobs/job_listing/sidebar/Sidebar";
 import Newsletter from "../components/jobs/job_listing/Newsletter";
-
+import {fetchJobPostings} from '../service/jobService';
 interface Job {
   id: number;
   companyName: string;
@@ -26,21 +26,31 @@ const Jobs: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState<number>(1);
+  const [hasMore, setHasMore] = useState<boolean>(true);
   const itemsPerPage = 6;
   // handles input change
   const [query, setQuery] = useState<string>("");
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(event.target.value);
   };
+
+const loadJobsPostings = useCallback(async () => {
+  try{
+    const newJobs = await fetchJobPostings(currentPage, 20, query);
+    setJobs((prevJobs) => [...prevJobs, ...newJobs]);
+    if (newJobs.length < 20) {
+      setHasMore(false);
+    }
+  } catch (err){
+    console.error('Failed to fetch job postings: ', err);
+  }
+  setIsLoading(false);
+},[currentPage, query]);
+
   useEffect(() => {
     setIsLoading(true);
-    fetch("jobs.json")
-      .then((res) => res.json())
-      .then((data) => {
-        setJobs(data);
-        setIsLoading(false);
-      });
-  }, []);
+    loadJobsPostings();
+  }, [currentPage, loadJobsPostings, query]);
 
   // filter job by title
   const filteredItems: Job[] = jobs.filter(
@@ -118,7 +128,7 @@ const prevPage = () => {
             <div className="flex justify-center mt-4 space-x-8">
               <button className="text-black/70 btn btn-ghost disabled:bg-inherit focus:outline-none" onClick={prevPage} disabled={currentPage === 1}>Previous</button>
               <span className="text-black/70 my-3 font-mono">Page {currentPage} of {Math.ceil(filteredItems.length / itemsPerPage)}</span>
-              <button className="text-black/70 btn btn-ghost disabled:bg-inherit focus:outline-none" onClick={nextpage} disabled={currentPage === Math.ceil(filteredItems.length / itemsPerPage)} >Next</button>
+              <button className="text-black/70 btn btn-ghost disabled:bg-inherit focus:outline-none" onClick={nextpage} disabled={!hasMore} >Next</button>
             </div>
           ) : ""
         }

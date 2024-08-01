@@ -1,10 +1,18 @@
 import { Suspense, lazy } from "react";
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
+
 const App = lazy(() => import("../components/App"));
 const Home = lazy(() => import("../pages/Home"));
-const Jobs = lazy(()=> import('../pages/Jobs'))
+const Jobs = lazy(() => import("../pages/Jobs"));
 
-// const basePath = import.meta.env.VITE_BASE_PATH || "";
+// from joe
+const JobApplicationForm = lazy(() => import("../pages/JobApplicationForm"));
+const JobPostForm = lazy(() => import("../pages/JobPostForm"));
+const AdminDashboard = lazy(() => import("../pages/AdminDashboard"));
+const LoginPage = lazy(() => import("../pages/LoginPage"));
+
+const token = localStorage.getItem("token");
+
 const Router = createBrowserRouter([
   {
     path: "/",
@@ -20,7 +28,9 @@ const Router = createBrowserRouter([
           <Suspense fallback={<div>Loading...</div>}>
             <Home />
           </Suspense>
-        )},{
+        ),
+      },
+      {
         path: "/jobs",
         element: (
           <Suspense fallback={<div>Loading...</div>}>
@@ -28,9 +38,42 @@ const Router = createBrowserRouter([
           </Suspense>
         ),
       },
+      {
+        path: "/job-application-form",
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <JobApplicationForm />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/job-post-form",
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <JobPostForm />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/login",
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <LoginPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/admin",
+        element: token ? (
+          <Suspense fallback={<div>Loading...</div>}>
+            <AdminDashboard />
+          </Suspense>
+        ) : (
+          <Navigate to="/login" />
+        ),
+      },
     ],
   },
 ]);
 
 export default Router;
-

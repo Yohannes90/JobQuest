@@ -3,6 +3,21 @@ import JobPostForm from './JobPostForm';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
 
+interface Job {
+  id: number;
+  companyName: string;
+  jobTitle: string;
+  companyLogo: string;
+  minPrice: string;
+  maxPrice: string;
+  jobLocation: string;
+  postingDate: string;
+  experienceLevel: string;
+  jobType: string;
+  employmentType: string;
+  description: string;
+}
+
 const AdminDashboard: React.FC = () => {
   const [jobApplications, setJobApplications] = useState([]);
   const [jobPostings, setJobPostings] = useState([]);
