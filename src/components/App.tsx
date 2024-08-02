@@ -1,9 +1,14 @@
 import "../styles/App.css";
 import React, { Suspense, lazy } from "react";
-import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
-import LoginPage from './LoginPage';
+import LoginPage from "./LoginPage";
 
 // Lazy load components for improved performance
 const Hero = lazy(() => import("./Hero"));
@@ -15,6 +20,8 @@ const Partners = lazy(() => import("./Partners"));
 const JobApplicationForm = lazy(() => import("./JobApplicationForm"));
 const JobPostForm = lazy(() => import("./JobPostForm"));
 const AdminDashboard = lazy(() => import("./AdminDashboard"));
+const JobsDashboard = lazy(() => import("./JobsDashboard"));
+const BlogDashboard = lazy(() => import("./BlogDashboard"));
 
 /**
  * Main application component.
@@ -29,7 +36,7 @@ const App: React.FC = () => {
    * @type {string}
    */
   const basePath = import.meta.env.VITE_BASE_PATH || "";
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem("token");
 
   return (
     <Router basename={basePath}>
@@ -57,12 +64,15 @@ const App: React.FC = () => {
                 element={<JobApplicationForm />}
               />
               <Route path="/job-post-form" element={<JobPostForm />} />
-              {/* <Route path="/admin" Component={AdminDashboard} /> */}
               <Route path="/login" element={<LoginPage />} />
-              <Route
+              {/* <Route
                 path="/admin"
                 element={token ? <AdminDashboard /> : <Navigate to="/login" />}
-              />
+              /> */}
+              {/* <Route path="/admin" Component={AdminDashboard} /> */}
+              <Route path="/admin" Component={AdminDashboard} />
+              <Route path="/jobs-dashboard" Component={JobsDashboard} />
+              <Route path="/blog-dashboard" Component={BlogDashboard} />
             </Routes>
           </Suspense>
         </div>

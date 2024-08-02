@@ -1,11 +1,11 @@
-import { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 const LoginForm: React.FC = () => {
-  const [formData, setFormData] = useState({ email: '', password: '' });
+  const [formData, setFormData] = useState({ email: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -16,25 +16,55 @@ const LoginForm: React.FC = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:3001/api/login', {
-        method: 'POST',
+      const response = await fetch("http://localhost:3001/api/login", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
+        credentials: "include", // Include cookies for session management
       });
 
       if (response.ok) {
-        const data = await response.json();
-        localStorage.setItem('token', data.token);
-        window.location.href = '/admin';
+        // Check the user role from the backend session
+        const roleResponse = await fetch("http://localhost:3001/api/role", {
+          method: "GET",
+          credentials: "include", // Include cookies for session management
+        });
+
+        if (roleResponse.ok) {
+          const roleData = await roleResponse.json();
+          const userRole = roleData.role;
+
+          console.log("User Role:", userRole);
+
+          // Determine redirection based on role
+          switch (userRole) {
+            case "ADMIN":
+              window.location.href = "/admin";
+              break;
+            case "JOBS_ADMIN":
+              window.location.href = "/jobs-dashboard";
+              break;
+            case "BLOG_ADMIN":
+              window.location.href = "/blog-dashboard";
+              break;
+            default:
+              setError("Access denied: Invalid user role");
+              break;
+          }
+        } else {
+          setError("Failed to fetch user role.");
+        }
       } else {
-        setError('Invalid email or password');
+        const errorData = await response.json();
+        setError(errorData.error || "Invalid email or password");
       }
 
-      setFormData({ email: '', password: '' });
+      setFormData({ email: "", password: "" });
     } catch (error) {
-      setError('An error occurred. Please try again.');
+      console.error("Error:", error);
+      setError("An error occurred. Please try again.");
     }
   };
 
@@ -46,7 +76,9 @@ const LoginForm: React.FC = () => {
     <div className="min-h-screen flex items-center justify-center bg-harSecondary py-12 px-4 sm:px-6 lg:px-8">
       <div className="w-full max-w-2xl space-y-8">
         <div className="text-center">
-          <h2 className="uppercase text-4xl font-bold text-harPrimary">Admin Login</h2>
+          <h2 className="uppercase text-4xl font-bold text-harPrimary">
+            Admin Login
+          </h2>
           <p className="mt-2 text-lg text-harAccent">
             Please login to access the admin dashboard.
           </p>
@@ -68,7 +100,7 @@ const LoginForm: React.FC = () => {
             </div>
             <div className="relative">
               <input
-                type={showPassword ? 'text' : 'password'}
+                type={showPassword ? "text" : "password"}
                 name="password"
                 id="password"
                 placeholder="Password"

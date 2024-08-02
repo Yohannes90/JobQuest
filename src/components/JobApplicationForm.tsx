@@ -9,20 +9,20 @@ import { useState } from "react";
  * @returns JSX element representing the entire application layout.
  */
 const JobApplicationForm: React.FC = () => {
-    const initialFormData = {
-        name: "",
-        age: "",
-        gender: "",
-        phone: "",
-        email: "",
-        about: "",
-        motive: "",
-        interest: "",
-        cv: null,
-        portfolio: "",
-      };
+  const initialFormData = {
+    name: "",
+    age: "",
+    gender: "",
+    phone: "",
+    email: "",
+    about: "",
+    motive: "",
+    interest: "",
+    cv: null,
+    portfolio: "",
+  };
 
-    const [formData, setFormData] = useState(initialFormData);
+  const [formData, setFormData] = useState(initialFormData);
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -54,13 +54,14 @@ const JobApplicationForm: React.FC = () => {
     data.append("portfolio", formData.portfolio);
 
     try {
-        const response = await fetch(
-            // `${process.env.REACT_APP_API_URL}/api/submit-job-application`
-            "http://localhost:3001/api/submit-job-application", {
-            method: "POST",
-            body: data,
-        });
-
+      const response = await fetch(
+        // `${process.env.REACT_APP_API_URL}/api/submit-job-application`
+        "http://localhost:3001/api/submit-job-application",
+        {
+          method: "POST",
+          body: data,
+        },
+      );
 
       if (response.ok) {
         console.log("Application submitted successfully");
@@ -77,19 +78,27 @@ const JobApplicationForm: React.FC = () => {
 
   return (
     <>
-      <div id="internship-form" className="overflow-hidden bg-gray-100 py-12 min-h-screen pt-28">
+      <div
+        id="internship-form"
+        className="overflow-hidden bg-gray-100 py-12 min-h-screen pt-28"
+      >
         <div className="mx-auto px-4 sm:px-6 lg:px-8 flex flex-col max-w-7xl">
           <div className="text-center">
             <h2 className="uppercase text-3xl text-harPrimary">
               Internship Opportunities
             </h2>
             <p className="mt-4 text-lg text-gray-600 font-thin">
-              We'd love to have you join us. Fill out the form below to apply for an internship.
+              We'd love to have you join us. Fill out the form below to apply
+              for an internship.
             </p>
           </div>
           <div className="mt-12 sm:mt-16 lg:mt-12 lg:flex lg:space-x-12">
             <div className="lg:w-2/3 sm:w-full bg-white p-10 rounded-lg shadow-lg">
-              <form className="space-y-8" onSubmit={handleSubmit} encType="multipart/form-data">
+              <form
+                className="space-y-8"
+                onSubmit={handleSubmit}
+                encType="multipart/form-data"
+              >
                 <div className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
                   <div>
                     <input
