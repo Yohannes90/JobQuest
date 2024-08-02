@@ -203,27 +203,19 @@ const JobApplicationForm: React.FC = () => {
                     <option value="" disabled>
                       Select Area of Interest
                     </option>
-                    <option value="graphic_design">Graphic Design</option>
-                    <option value="website_software_development">
-                      Website/Software Development
-                    </option>
-                    <option value="content_creation">Content Creation</option>
-                    <option value="social_media_management">
-                      Social Media Management
-                    </option>
-                    <option value="copywriting">Copywriting</option>
-                    <option value="project_management">
-                      Project Management
-                    </option>
-                    <option value="data_collection_analysis">
-                      Data Collection and Analysis
-                    </option>
-                    <option value="fundraising_marketing">
-                      Fundraising and Marketing
+                    <option value="information_technology">
+                      Information Technology
                     </option>
                     <option value="hr">HR</option>
-                    <option value="law">Law</option>
-                    <option value="video_editing">Video Editing</option>
+                    <option value="software_development">
+                      Software Development
+                    </option>
+                    <option value="marketing_and_sales">
+                      Marketing and Sales
+                    </option>
+                    <option value="product_management">
+                      Product Management
+                    </option>
                   </select>
                 </div>
                 <div>
