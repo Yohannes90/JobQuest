@@ -10,14 +10,11 @@ interface Job {
   companyName: string;
   jobTitle: string;
   companyLogo: string;
-  minPrice: string;
-  maxPrice: string;
-  salaryType: string;
   jobLocation: string;
   postingDate: string;
   experienceLevel: string;
   jobType: string;
-  employmentType: string;
+  workArrangement: string;
   description: string;
 }
 
@@ -96,9 +93,9 @@ const prevPage = () => {
 
     if (selected) {
       filteredJobs = filteredJobs.filter(
-        ({ employmentType, experienceLevel, jobType }) =>
+        ({ workArrangement, experienceLevel, jobType }) =>
           jobType.toLowerCase() === selected.toLowerCase() ||
-          employmentType.toLowerCase() === selected.toLowerCase() ||
+          workArrangement.toLowerCase() === selected.toLowerCase() ||
           experienceLevel.toLowerCase() === selected.toLowerCase()
       );
     }
@@ -119,7 +116,7 @@ const prevPage = () => {
           {/* left side  */}
           <Sidebar handleChange={handleChange} handleClick={handleClick} />
         </div>
-        {/* job cars  */}
+        {/* job cards  */}
         <div className="bg-gray-50 col-span-2 p-4 rounded">
           {isLoading ? <p className="font-bold text-lg">Loading....</p> : result.length > 0 ? (<JobList result={result} />) : <><h3 className="text-lg text-black font-semibold">{result.length} Jobs</h3><p className="text-black">No data found!</p></>}
         {/* pagination  */}
@@ -133,7 +130,7 @@ const prevPage = () => {
           ) : ""
         }
         </div>
-
+          {/* right side  */}
         <div className="bg-gray-50 p-4 rounded"><Newsletter/></div>
       </div>
     </div>
