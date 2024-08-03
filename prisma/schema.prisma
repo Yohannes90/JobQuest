@@ -13,16 +13,22 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 model User {
-  id       Int      @id @default(autoincrement())
+  id       Int    @id @default(autoincrement())
   name     String
-  email    String   @unique
+  email    String @unique
   password String
+  role     Role   @default(JOBS_ADMIN)
+}
+
+enum Role {
+  ADMIN
+  JOBS_ADMIN
+  BLOG_ADMIN
 }
 
 model JobApplication {
-  id        Int    @id @default(autoincrement())
+  id        Int      @id @default(autoincrement())
   name      String
   age       Int
   gender    Gender
@@ -42,32 +48,27 @@ enum Gender {
 }
 
 enum Interest {
-  graphic_design
-  website_software_development
-  content_creation
-  social_media_management
-  copywriting
-  project_management
-  data_collection_analysis
-  fundraising_marketing
+  information_technology
   hr
-  law
-  video_editing
+  software_development
+  marketing_and_sales
+  product_management
 }
 
 model JobPosting {
-  id                 Int      @id @default(autoincrement())
-  jobTitle            String
-  companyName         String
-  location            String
-  jobType             JobType
-  salaryRange         String?
-  description         String
-  requirements        String
+  id                 Int              @id @default(autoincrement())
+  jobTitle           String
+  companyName        String
+  location           String
+  jobType            JobType
+  jobCategory        JobCategory
+  description        String
+  workArrangement    WorkArrangement
+  experienceLevel    ExperienceLevel
   applicationDeadline DateTime
-  contactEmail        String
-  createdAt           DateTime @default(now())
-  updatedAt           DateTime @updatedAt
+  contactEmail       String
+  createdAt          DateTime         @default(now())
+  updatedAt          DateTime         @updatedAt
 }
 
 enum JobType {
@@ -79,5 +80,25 @@ enum JobType {
 
 model JobNewsletterSubscribers {
   id Int @id @default(autoincrement())
-  
+  email String
+}
+enum JobCategory {
+  information_technology
+  hr
+  software_development
+  marketing_and_sales
+  product_management
+}
+
+enum ExperienceLevel {
+  no_experience
+  junior
+  senior
+  expert
+}
+
+enum WorkArrangement {
+  in_person
+  remote
+  hybrid
 }

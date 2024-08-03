@@ -1,34 +1,15 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import JobPostForm from "./JobPostForm";
-import UserForm from "./UserForm";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faEdit } from "@fortawesome/free-solid-svg-icons";
 
-interface Job {
-  id: number;
-  companyName: string;
-  jobTitle: string;
-  companyLogo: string;
-  minPrice: string;
-  maxPrice: string;
-  jobLocation: string;
-  postingDate: string;
-  experienceLevel: string;
-  jobType: string;
-  employmentType: string;
-  description: string;
-}
-
-const AdminDashboard: React.FC = () => {
+const JobsDashboard: React.FC = () => {
   const [activeTab, setActiveTab] = useState("employees");
   const [jobApplications, setJobApplications] = useState([]);
   const [jobPostings, setJobPostings] = useState([]);
-  const [users, setUsers] = useState([]);
   const [editingJob, setEditingJob] = useState(null);
-  const [editingUser, setEditingUser] = useState(null);
   const [isEditingJob, setIsEditingJob] = useState(false);
-  const [isEditingUser, setIsEditingUser] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -67,33 +48,19 @@ const AdminDashboard: React.FC = () => {
       }
     };
 
-    const fetchUsers = async () => {
-      try {
-        const response = await fetch("http://localhost:3001/api/users", {
-          credentials: "include", // Ensures cookies are sent with the request
-        });
-        if (response.status === 401) {
-          navigate("/login"); // Redirect to login if unauthorized
-        } else {
-          const data = await response.json();
-          setUsers(data);
-        }
-      } catch (error) {
-        console.error("Error fetching users:", error);
-      }
-    };
-
     fetchJobApplications();
     fetchJobPostings();
-    fetchUsers();
   }, [navigate]);
 
   const handleDeleteApplication = async (id: number) => {
     try {
-      await fetch(`http://localhost:3001/api/job-applications/${id}`, {
-        method: "DELETE",
-        credentials: "include", // Ensures cookies are sent with the request
-      });
+      const response = await fetch(
+        `http://localhost:3001/api/job-applications/${id}`,
+        {
+          method: "DELETE",
+          credentials: "include", // Ensures cookies are sent with the request
+        },
+      );
       if (response.status === 401) {
         navigate("/login"); // Redirect to login if unauthorized
       } else {
@@ -106,10 +73,13 @@ const AdminDashboard: React.FC = () => {
 
   const handleDeleteJobPosting = async (id: number) => {
     try {
-      await fetch(`http://localhost:3001/api/job-postings/${id}`, {
-        method: "DELETE",
-        credentials: "include", // Ensures cookies are sent with the request
-      });
+      const response = await fetch(
+        `http://localhost:3001/api/job-postings/${id}`,
+        {
+          method: "DELETE",
+          credentials: "include", // Ensures cookies are sent with the request
+        },
+      );
       if (response.status === 401) {
         navigate("/login"); // Redirect to login if unauthorized
       } else {
@@ -120,32 +90,10 @@ const AdminDashboard: React.FC = () => {
     }
   };
 
-  const handleDeleteUser = async (id: number) => {
-    try {
-      await fetch(`http://localhost:3001/api/users/${id}`, {
-        method: "DELETE",
-        credentials: "include", // Ensures cookies are sent with the request
-      });
-      if (response.status === 401) {
-        navigate("/login"); // Redirect to login if unauthorized
-      } else {
-        setUsers(users.filter((user) => user.id !== id));
-      }
-    } catch (error) {
-      console.error("Error deleting user:", error);
-    }
-  };
-
   const handleEditJob = (job) => {
     setEditingJob(job);
     setIsEditingJob(true);
     setActiveTab("addJobPost");
-  };
-
-  const handleEditUser = (user) => {
-    setEditingUser(user);
-    setIsEditingUser(true);
-    setActiveTab("addUser");
   };
 
   const handleLogout = async () => {
@@ -178,12 +126,6 @@ const AdminDashboard: React.FC = () => {
             className={`px-4 py-2 rounded ${activeTab === "jobPosts" ? "bg-harSecondary text-white" : "bg-white text-harSecondary"}`}
           >
             Manage Job Posts
-          </button>
-          <button
-            onClick={() => setActiveTab("users")}
-            className={`px-4 py-2 rounded ${activeTab === "users" ? "bg-harSecondary text-white" : "bg-white text-harSecondary"}`}
-          >
-            Manage Users
           </button>
         </div>
         <button
@@ -274,7 +216,6 @@ const AdminDashboard: React.FC = () => {
           >
             Add New Job
           </button>
-
           <div className="overflow-x-auto shadow-md sm:rounded-lg mb-8">
             <table className="min-w-full bg-white">
               <thead className="bg-harPrimary text-white">
@@ -330,85 +271,15 @@ const AdminDashboard: React.FC = () => {
         </div>
       )}
 
-      {activeTab === "users" && (
-        <div className="mb-12">
-          <h2 className="text-2xl font-bold text-harPrimary mb-4">
-            Manage Users
-          </h2>
-          <button
-            onClick={() => {
-              setIsEditingUser(false);
-              setEditingUser(null);
-              setActiveTab("addUser");
-            }}
-            className="px-4 py-2 mb-4 bg-harSecondary text-white rounded"
-          >
-            Add New User
-          </button>
-          <div className="overflow-x-auto shadow-md sm:rounded-lg mb-8">
-            <table className="min-w-full bg-white">
-              <thead className="bg-harPrimary text-white">
-                <tr>
-                  <th className="py-2 px-4">Name</th>
-                  <th className="py-2 px-4">Email</th>
-                  <th className="py-2 px-4">Role</th>
-                  <th className="py-2 px-4">Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {users.map((user) => (
-                  <tr
-                    key={user.id}
-                    className="bg-green-100 border-b hover:bg-green-200"
-                  >
-                    <td className="py-2 px-4">{user.name}</td>
-                    <td className="py-2 px-4">{user.email}</td>
-                    <td className="py-2 px-4">{user.role}</td>
-                    <td className="py-2 px-4">
-                      <button
-                        className="text-blue-500 mr-4"
-                        onClick={() => handleEditUser(user)}
-                      >
-                        <FontAwesomeIcon icon={faEdit} />
-                      </button>
-                      <button
-                        className="text-red-500"
-                        onClick={() => handleDeleteUser(user.id)}
-                      >
-                        <FontAwesomeIcon icon={faTrash} />
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      )}
-
       {activeTab === "addJobPost" && (
         <div>
           <h2 className="text-2xl font-bold text-harPrimary mb-4">
-            {isEditingJob ? "Update Job" : "Add Job"}
+            {isEditingJob ? "Edit Job Posting" : "Add New Job Posting"}
           </h2>
           <JobPostForm
-            job={editingJob}
-            isEditing={isEditingJob}
-            setIsEditing={setIsEditingJob}
-            setActiveTab={setActiveTab}
-          />
-        </div>
-      )}
-
-      {activeTab === "addUser" && (
-        <div>
-          <h2 className="text-2xl font-bold text-harPrimary mb-4">
-            {isEditingUser ? "Edit User" : "Add New User"}
-          </h2>
-          <UserForm
-            editingUser={editingUser}
-            isEditing={isEditingUser}
-            setIsEditing={setIsEditingUser}
+            editingJob={editingJob}
+            setEditingJob={setEditingJob}
+            setJobPostings={setJobPostings}
             setActiveTab={setActiveTab}
           />
         </div>
@@ -417,4 +288,4 @@ const AdminDashboard: React.FC = () => {
   );
 };
 
-export default AdminDashboard;
+export default JobsDashboard;
