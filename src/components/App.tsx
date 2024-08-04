@@ -9,6 +9,7 @@ import {
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 import LoginPage from "./LoginPage";
+import useAuth from "./useAuth";
 
 // Lazy load components for improved performance
 const Hero = lazy(() => import("./Hero"));
@@ -36,7 +37,12 @@ const App: React.FC = () => {
    * @type {string}
    */
   const basePath = import.meta.env.VITE_BASE_PATH || "";
-  const token = localStorage.getItem("token");
+  const { isAuthenticated, role } = useAuth();
+
+  if (isAuthenticated === null) {
+    // Optionally, render a loading spinner or similar while checking authentication
+    return <div>Loading...</div>;
+  }
 
   return (
     <Router basename={basePath}>
@@ -65,14 +71,36 @@ const App: React.FC = () => {
               />
               <Route path="/job-post-form" element={<JobPostForm />} />
               <Route path="/login" element={<LoginPage />} />
-              {/* <Route
+              <Route
                 path="/admin"
-                element={token ? <AdminDashboard /> : <Navigate to="/login" />}
-              /> */}
-              {/* <Route path="/admin" Component={AdminDashboard} /> */}
-              <Route path="/admin" Component={AdminDashboard} />
-              <Route path="/jobs-dashboard" Component={JobsDashboard} />
-              <Route path="/blog-dashboard" Component={BlogDashboard} />
+                element={
+                  isAuthenticated && role === "ADMIN" ? (
+                    <AdminDashboard />
+                  ) : (
+                    <Navigate to="/login" />
+                  )
+                }
+              />
+              <Route
+                path="/jobs-dashboard"
+                element={
+                  isAuthenticated && role === "JOBS_ADMIN" ? (
+                    <JobsDashboard />
+                  ) : (
+                    <Navigate to="/login" />
+                  )
+                }
+              />
+              <Route
+                path="/blog-dashboard"
+                element={
+                  isAuthenticated && role === "BLOGS_ADMIN" ? (
+                    <BlogDashboard />
+                  ) : (
+                    <Navigate to="/login" />
+                  )
+                }
+              />
             </Routes>
           </Suspense>
         </div>
