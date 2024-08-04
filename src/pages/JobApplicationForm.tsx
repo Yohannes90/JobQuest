@@ -24,19 +24,25 @@ const JobApplicationForm: React.FC = () => {
 
   const [formData, setFormData] = useState(initialFormData);
 
-  const handleChange = (e) => {
-    const { name, value, files } = e.target;
-    setFormData({
-      ...formData,
-      [name]: files ? files[0] : value,
-    });
-  };
+  const handleChange = (e : React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    if (e.target instanceof HTMLInputElement && e.target.files) {
+      setFormData({
+        ...formData,
+        [name]: e.target.files[0],
+      });
+    } else {
+      setFormData({
+        ...formData,
+        [name]: value,
+      });
+  }}
 
   const resetForm = () => {
     setFormData(initialFormData);
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("Form submitted"); // Debugging log
     console.log(formData); // Debugging log

@@ -1,14 +1,55 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import JobPostForm from "../components/JobPostForm";
+import JobPostForm from "../components/jobs/job_posting/JobPostForm";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faEdit } from "@fortawesome/free-solid-svg-icons";
 
+interface JobApplication {
+  id:number;
+  name: string;
+  age: number;
+  gender: "NA" | "male" |"female";
+  phone : string;
+  email  : string;
+  about : string;
+  motive : string;
+  interest:
+  | "information_technology"
+  | "hr"
+  | "software_development"
+  | "marketing_and_sales"
+  | "product_management";
+  cv: string;
+  portfolio : string;
+}
+
+interface Job {
+  id: number;
+  companyName: string;
+  jobTitle: string;
+  companyLogo: string;
+  jobLocation: string;
+  postingDate: string;
+  experienceLevel: "no_experience" | "junior" | "senior" | "expert";
+  jobType: "full_time" | "part_time" | "contract" | "internship";
+  employmentType: string;
+  description: string;
+  applicationDeadline: string;
+  contactEmail: string;
+  jobCategory: 
+  | "information_technology"
+  | "hr"
+  | "software_development"
+  | "marketing_and_sales"
+  | "product_management";
+  workArrangement: "in_person" | "remote" | "hybrid";
+}
+
 const JobsDashboard: React.FC = () => {
   const [activeTab, setActiveTab] = useState("employees");
-  const [jobApplications, setJobApplications] = useState([]);
-  const [jobPostings, setJobPostings] = useState([]);
-  const [editingJob, setEditingJob] = useState(null);
+  const [jobApplications, setJobApplications] = useState<JobApplication[]>([]);
+  const [jobPostings, setJobPostings] = useState<Job[]>([]);
+  const [editingJob, setEditingJob] = useState<Job | null>(null);
   const [isEditingJob, setIsEditingJob] = useState(false);
   const navigate = useNavigate();
 
@@ -90,7 +131,7 @@ const JobsDashboard: React.FC = () => {
     }
   };
 
-  const handleEditJob = (job) => {
+  const handleEditJob = (job : Job) => {
     setEditingJob(job);
     setIsEditingJob(true);
     setActiveTab("addJobPost");
@@ -240,7 +281,7 @@ const JobsDashboard: React.FC = () => {
                   >
                     <td className="py-2 px-4">{job.jobTitle}</td>
                     <td className="py-2 px-4">{job.companyName}</td>
-                    <td className="py-2 px-4">{job.location}</td>
+                    <td className="py-2 px-4">{job.jobLocation}</td>
                     <td className="py-2 px-4">{job.jobType}</td>
                     <td className="py-2 px-4">{job.jobCategory}</td>
                     <td className="py-2 px-4">{job.workArrangement}</td>
@@ -276,12 +317,10 @@ const JobsDashboard: React.FC = () => {
           <h2 className="text-2xl font-bold text-harPrimary mb-4">
             {isEditingJob ? "Edit Job Posting" : "Add New Job Posting"}
           </h2>
+          {/* changed it to single props after some error with the other like setActivetab  */}
           <JobPostForm
-            editingJob={editingJob}
-            setEditingJob={setEditingJob}
-            setJobPostings={setJobPostings}
-            setActiveTab={setActiveTab}
-          />
+            job={editingJob}
+          /> 
         </div>
       )}
     </div>

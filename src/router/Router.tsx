@@ -1,5 +1,5 @@
 import { Suspense, lazy } from "react";
-import { createBrowserRouter, Navigate } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 
 const App = lazy(() => import("../components/App"));
 const Home = lazy(() => import("../pages/Home"));
@@ -9,11 +9,9 @@ const Jobs = lazy(() => import("../pages/Jobs"));
 const JobApplicationForm = lazy(() => import("../pages/JobApplicationForm"));
 const JobPostForm = lazy(() => import("../pages/JobPostForm"));
 const LoginPage = lazy(() => import("../pages/LoginPage"));
-const AdminDashboard = lazy(() => import("./AdminDashboard"));
-const JobsDashboard = lazy(() => import("./JobsDashboard"));
-const BlogDashboard = lazy(() => import("./BlogDashboard"));
-
-const token = localStorage.getItem("token");
+const AdminDashboard = lazy(() => import("../pages/AdminDashboard"));
+const JobsDashboard = lazy(() => import("../pages/JobsDashboard"));
+const BlogDashboard = lazy(() => import("../pages/BlogDashboard"));
 
 const Router = createBrowserRouter([
   {
@@ -93,7 +91,15 @@ const Router = createBrowserRouter([
         path: "/jobs-dashboard",
         element: (
           <Suspense fallback={<div>Loading...</div>}>
-            <LoginPage />
+            <JobsDashboard />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/blog-dashboard",
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <BlogDashboard />
           </Suspense>
         ),
       },

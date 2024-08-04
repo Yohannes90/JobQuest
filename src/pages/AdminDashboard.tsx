@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import JobPostForm from "./JobPostForm";
-import UserForm from "./UserForm";
+import JobPostForm from "../components/jobs/job_posting/JobPostForm";
+import UserForm from "../components/jobs/job_posting/UserForm";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faEdit } from "@fortawesome/free-solid-svg-icons";
 
@@ -10,39 +10,74 @@ interface Job {
   companyName: string;
   jobTitle: string;
   companyLogo: string;
-  minPrice: string;
-  maxPrice: string;
   jobLocation: string;
   postingDate: string;
-  experienceLevel: string;
-  jobType: string;
+  experienceLevel: "no_experience" | "junior" | "senior" | "expert";
+  jobType: "full_time" | "part_time" | "contract" | "internship";
   employmentType: string;
   description: string;
+  applicationDeadline: string;
+  contactEmail: string;
+  jobCategory: 
+  | "information_technology"
+  | "hr"
+  | "software_development"
+  | "marketing_and_sales"
+  | "product_management";
+  workArrangement: "in_person" | "remote" | "hybrid";
+}
+
+interface User {
+  id: number;
+  name: string;
+  email: string;
+  role: string;
+}
+
+interface JobApplication {
+  id:number;
+  name: string;
+  age: number;
+  gender: "NA" | "male" |"female";
+  phone : string;
+  email  : string;
+  about : string;
+  motive : string;
+  interest:
+  | "information_technology"
+  | "hr"
+  | "software_development"
+  | "marketing_and_sales"
+  | "product_management";
+  cv: string;
+  portfolio : string;
 }
 
 const AdminDashboard: React.FC = () => {
   const [activeTab, setActiveTab] = useState("employees");
-  const [jobApplications, setJobApplications] = useState([]);
-  const [jobPostings, setJobPostings] = useState([]);
-  const [users, setUsers] = useState([]);
-  const [editingJob, setEditingJob] = useState(null);
-  const [editingUser, setEditingUser] = useState(null);
+  const [jobApplications, setJobApplications] = useState<JobApplication[]>([]);
+  const [jobPostings, setJobPostings] = useState<Job[]>([]);
+  const [users, setUsers] = useState<User[]>([]);
+  const [editingJob, setEditingJob] = useState<Job | null>(null);
+  const [editingUser, setEditingUser] = useState<User | null>(null);
   const [isEditingJob, setIsEditingJob] = useState(false);
   const [isEditingUser, setIsEditingUser] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
+    let isMounted = true; // Track whether the component is mounted
+
     const fetchJobApplications = async () => {
       try {
         const response = await fetch(
           "http://localhost:3001/api/job-applications",
           {
             credentials: "include", // Ensures cookies are sent with the request
-          },
+          }
         );
         if (response.status === 401) {
           navigate("/login"); // Redirect to login if unauthorized
-        } else {
+        } else if (isMounted) {
           const data = await response.json();
           setJobApplications(data);
         }
@@ -58,7 +93,7 @@ const AdminDashboard: React.FC = () => {
         });
         if (response.status === 401) {
           navigate("/login"); // Redirect to login if unauthorized
-        } else {
+        } else if (isMounted) {
           const data = await response.json();
           setJobPostings(data);
         }
@@ -74,7 +109,7 @@ const AdminDashboard: React.FC = () => {
         });
         if (response.status === 401) {
           navigate("/login"); // Redirect to login if unauthorized
-        } else {
+        } else if (isMounted) {
           const data = await response.json();
           setUsers(data);
         }
@@ -86,14 +121,21 @@ const AdminDashboard: React.FC = () => {
     fetchJobApplications();
     fetchJobPostings();
     fetchUsers();
+
+    return () => {
+      isMounted = false; // Cleanup flag on component unmount
+    };
   }, [navigate]);
 
   const handleDeleteApplication = async (id: number) => {
     try {
-      await fetch(`http://localhost:3001/api/job-applications/${id}`, {
-        method: "DELETE",
-        credentials: "include", // Ensures cookies are sent with the request
-      });
+      const response = await fetch(
+        `http://localhost:3001/api/job-applications/${id}`,
+        {
+          method: "DELETE",
+          credentials: "include", // Ensures cookies are sent with the request
+        }
+      );
       if (response.status === 401) {
         navigate("/login"); // Redirect to login if unauthorized
       } else {
@@ -106,10 +148,13 @@ const AdminDashboard: React.FC = () => {
 
   const handleDeleteJobPosting = async (id: number) => {
     try {
-      await fetch(`http://localhost:3001/api/job-postings/${id}`, {
-        method: "DELETE",
-        credentials: "include", // Ensures cookies are sent with the request
-      });
+      const response = await fetch(
+        `http://localhost:3001/api/job-postings/${id}`,
+        {
+          method: "DELETE",
+          credentials: "include", // Ensures cookies are sent with the request
+        }
+      );
       if (response.status === 401) {
         navigate("/login"); // Redirect to login if unauthorized
       } else {
@@ -122,7 +167,7 @@ const AdminDashboard: React.FC = () => {
 
   const handleDeleteUser = async (id: number) => {
     try {
-      await fetch(`http://localhost:3001/api/users/${id}`, {
+      const response = await fetch(`http://localhost:3001/api/users/${id}`, {
         method: "DELETE",
         credentials: "include", // Ensures cookies are sent with the request
       });
@@ -136,13 +181,13 @@ const AdminDashboard: React.FC = () => {
     }
   };
 
-  const handleEditJob = (job) => {
+  const handleEditJob = (job: Job) => {
     setEditingJob(job);
     setIsEditingJob(true);
     setActiveTab("addJobPost");
   };
 
-  const handleEditUser = (user) => {
+  const handleEditUser = (user: User) => {
     setEditingUser(user);
     setIsEditingUser(true);
     setActiveTab("addUser");
@@ -169,19 +214,31 @@ const AdminDashboard: React.FC = () => {
         <div className="flex space-x-4">
           <button
             onClick={() => setActiveTab("employees")}
-            className={`px-4 py-2 rounded ${activeTab === "employees" ? "bg-harSecondary text-white" : "bg-white text-harSecondary"}`}
+            className={`px-4 py-2 rounded ${
+              activeTab === "employees"
+                ? "bg-harSecondary text-white"
+                : "bg-white text-harSecondary"
+            }`}
           >
             Manage Potential Employees
           </button>
           <button
             onClick={() => setActiveTab("jobPosts")}
-            className={`px-4 py-2 rounded ${activeTab === "jobPosts" ? "bg-harSecondary text-white" : "bg-white text-harSecondary"}`}
+            className={`px-4 py-2 rounded ${
+              activeTab === "jobPosts"
+                ? "bg-harSecondary text-white"
+                : "bg-white text-harSecondary"
+            }`}
           >
             Manage Job Posts
           </button>
           <button
             onClick={() => setActiveTab("users")}
-            className={`px-4 py-2 rounded ${activeTab === "users" ? "bg-harSecondary text-white" : "bg-white text-harSecondary"}`}
+            className={`px-4 py-2 rounded ${
+              activeTab === "users"
+                ? "bg-harSecondary text-white"
+                : "bg-white text-harSecondary"
+            }`}
           >
             Manage Users
           </button>
@@ -218,10 +275,7 @@ const AdminDashboard: React.FC = () => {
               </thead>
               <tbody>
                 {jobApplications.map((application) => (
-                  <tr
-                    key={application.id}
-                    className="bg-green-100 border-b hover:bg-green-200"
-                  >
+                  <tr key={application.id} className="border-b">
                     <td className="py-2 px-4">{application.name}</td>
                     <td className="py-2 px-4">{application.interest}</td>
                     <td className="py-2 px-4">{application.about}</td>
@@ -230,23 +284,30 @@ const AdminDashboard: React.FC = () => {
                     <td className="py-2 px-4">{application.gender}</td>
                     <td className="py-2 px-4">{application.phone}</td>
                     <td className="py-2 px-4">{application.email}</td>
-                    <td className="py-2 px-4">{application.portfolio}</td>
                     <td className="py-2 px-4">
-                      {application.cv && (
-                        <a
-                          href={`/${application.cv}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-blue-600 underline"
-                        >
-                          View CV
-                        </a>
-                      )}
+                      <a
+                        href={application.portfolio}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-500"
+                      >
+                        View
+                      </a>
+                    </td>
+                    <td className="py-2 px-4">
+                      <a
+                        href={application.cv}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-500"
+                      >
+                        View
+                      </a>
                     </td>
                     <td className="py-2 px-4">
                       <button
-                        className="text-red-500"
                         onClick={() => handleDeleteApplication(application.id)}
+                        className="text-red-500"
                       >
                         <FontAwesomeIcon icon={faTrash} />
                       </button>
@@ -262,118 +323,56 @@ const AdminDashboard: React.FC = () => {
       {activeTab === "jobPosts" && (
         <div className="mb-12">
           <h2 className="text-2xl font-bold text-harPrimary mb-4">
-            Current Job Postings
+            Job Postings
           </h2>
           <button
             onClick={() => {
-              setIsEditingJob(false);
               setEditingJob(null);
+              setIsEditingJob(false);
               setActiveTab("addJobPost");
             }}
-            className="px-4 py-2 mb-4 bg-harSecondary text-white rounded"
+            className="px-4 py-2 bg-harSecondary text-white rounded mb-4"
           >
-            Add New Job
+            Add Job Posting
           </button>
-
           <div className="overflow-x-auto shadow-md sm:rounded-lg mb-8">
             <table className="min-w-full bg-white">
               <thead className="bg-harPrimary text-white">
                 <tr>
-                  <th className="py-2 px-4">Job Title</th>
                   <th className="py-2 px-4">Company Name</th>
+                  <th className="py-2 px-4">Job Title</th>
                   <th className="py-2 px-4">Location</th>
-                  <th className="py-2 px-4">Job Type</th>
-                  <th className="py-2 px-4">Job Category</th>
-                  <th className="py-2 px-4">Work Arrangement</th>
+                  <th className="py-2 px-4">Posting Date</th>
                   <th className="py-2 px-4">Experience Level</th>
+                  <th className="py-2 px-4">Job Type</th>
+                  <th className="py-2 px-4">Employment Type</th>
+                  <th className="py-2 px-4">Work Arrangement</th>
                   <th className="py-2 px-4">Application Deadline</th>
-                  <th className="py-2 px-4">Contact Email</th>
                   <th className="py-2 px-4">Actions</th>
                 </tr>
               </thead>
               <tbody>
                 {jobPostings.map((job) => (
-                  <tr
-                    key={job.id}
-                    className="bg-green-100 border-b hover:bg-green-200"
-                  >
-                    <td className="py-2 px-4">{job.jobTitle}</td>
+                  <tr key={job.id} className="border-b">
                     <td className="py-2 px-4">{job.companyName}</td>
-                    <td className="py-2 px-4">{job.location}</td>
-                    <td className="py-2 px-4">{job.jobType}</td>
-                    <td className="py-2 px-4">{job.jobCategory}</td>
-                    <td className="py-2 px-4">{job.workArrangement}</td>
+                    <td className="py-2 px-4">{job.jobTitle}</td>
+                    <td className="py-2 px-4">{job.jobLocation}</td>
+                    <td className="py-2 px-4">{job.postingDate}</td>
                     <td className="py-2 px-4">{job.experienceLevel}</td>
-                    <td className="py-2 px-4">
-                      {new Date(job.applicationDeadline).toLocaleDateString()}
-                    </td>
-                    <td className="py-2 px-4">{job.contactEmail}</td>
-                    <td className="py-2 px-4">
+                    <td className="py-2 px-4">{job.jobType}</td>
+                    <td className="py-2 px-4">{job.employmentType}</td>
+                    <td className="py-2 px-4">{job.workArrangement}</td>
+                    <td className="py-2 px-4">{job.applicationDeadline}</td>
+                    <td className="py-2 px-4 flex space-x-2">
                       <button
-                        className="text-blue-500 mr-4"
                         onClick={() => handleEditJob(job)}
+                        className="text-green-500"
                       >
                         <FontAwesomeIcon icon={faEdit} />
                       </button>
                       <button
-                        className="text-red-500"
                         onClick={() => handleDeleteJobPosting(job.id)}
-                      >
-                        <FontAwesomeIcon icon={faTrash} />
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      )}
-
-      {activeTab === "users" && (
-        <div className="mb-12">
-          <h2 className="text-2xl font-bold text-harPrimary mb-4">
-            Manage Users
-          </h2>
-          <button
-            onClick={() => {
-              setIsEditingUser(false);
-              setEditingUser(null);
-              setActiveTab("addUser");
-            }}
-            className="px-4 py-2 mb-4 bg-harSecondary text-white rounded"
-          >
-            Add New User
-          </button>
-          <div className="overflow-x-auto shadow-md sm:rounded-lg mb-8">
-            <table className="min-w-full bg-white">
-              <thead className="bg-harPrimary text-white">
-                <tr>
-                  <th className="py-2 px-4">Name</th>
-                  <th className="py-2 px-4">Email</th>
-                  <th className="py-2 px-4">Role</th>
-                  <th className="py-2 px-4">Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {users.map((user) => (
-                  <tr
-                    key={user.id}
-                    className="bg-green-100 border-b hover:bg-green-200"
-                  >
-                    <td className="py-2 px-4">{user.name}</td>
-                    <td className="py-2 px-4">{user.email}</td>
-                    <td className="py-2 px-4">{user.role}</td>
-                    <td className="py-2 px-4">
-                      <button
-                        className="text-blue-500 mr-4"
-                        onClick={() => handleEditUser(user)}
-                      >
-                        <FontAwesomeIcon icon={faEdit} />
-                      </button>
-                      <button
                         className="text-red-500"
-                        onClick={() => handleDeleteUser(user.id)}
                       >
                         <FontAwesomeIcon icon={faTrash} />
                       </button>
@@ -387,30 +386,74 @@ const AdminDashboard: React.FC = () => {
       )}
 
       {activeTab === "addJobPost" && (
-        <div>
+        <div className="mb-12">
           <h2 className="text-2xl font-bold text-harPrimary mb-4">
-            {isEditingJob ? "Update Job" : "Add Job"}
+            {isEditingJob ? "Edit Job Posting" : "Add Job Posting"}
           </h2>
-          <JobPostForm
-            job={editingJob}
-            isEditing={isEditingJob}
-            setIsEditing={setIsEditingJob}
-            setActiveTab={setActiveTab}
-          />
+          <JobPostForm job={editingJob} />
+        </div>
+      )}
+
+      {activeTab === "users" && (
+        <div className="mb-12">
+          <h2 className="text-2xl font-bold text-harPrimary mb-4">Users</h2>
+          <button
+            onClick={() => {
+              setEditingUser(null);
+              setIsEditingUser(false);
+              setActiveTab("addUser");
+            }}
+            className="px-4 py-2 bg-harSecondary text-white rounded mb-4"
+          >
+            Add User
+          </button>
+          <div className="overflow-x-auto shadow-md sm:rounded-lg mb-8">
+            <table className="min-w-full bg-white">
+              <thead className="bg-harPrimary text-white">
+                <tr>
+                  <th className="py-2 px-4">Name</th>
+                  <th className="py-2 px-4">Email</th>
+                  <th className="py-2 px-4">Role</th>
+                  <th className="py-2 px-4">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {users.map((user) => (
+                  <tr key={user.id} className="border-b">
+                    <td className="py-2 px-4">{user.name}</td>
+                    <td className="py-2 px-4">{user.email}</td>
+                    <td className="py-2 px-4">{user.role}</td>
+                    <td className="py-2 px-4 flex space-x-2">
+                      <button
+                        onClick={() => handleEditUser(user)}
+                        className="text-green-500"
+                      >
+                        <FontAwesomeIcon icon={faEdit} />
+                      </button>
+                      <button
+                        onClick={() => handleDeleteUser(user.id)}
+                        className="text-red-500"
+                      >
+                        <FontAwesomeIcon icon={faTrash} />
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       )}
 
       {activeTab === "addUser" && (
-        <div>
+        <div className="mb-12">
           <h2 className="text-2xl font-bold text-harPrimary mb-4">
-            {isEditingUser ? "Edit User" : "Add New User"}
+            {isEditingUser ? "Edit User" : "Add User"}
           </h2>
-          <UserForm
-            editingUser={editingUser}
+          <UserForm editingUser={editingUser}
             isEditing={isEditingUser}
             setIsEditing={setIsEditingUser}
-            setActiveTab={setActiveTab}
-          />
+            setActiveTab={setActiveTab}/>
         </div>
       )}
     </div>

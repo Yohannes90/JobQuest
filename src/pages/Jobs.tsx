@@ -5,17 +5,24 @@ import Card from "../components/jobs/job_listing/main/Card";
 import Sidebar from "../components/jobs/job_listing/sidebar/Sidebar";
 import Newsletter from "../components/jobs/job_listing/Newsletter";
 import {fetchJobPostings} from '../service/jobService';
+
 interface Job {
   id: number;
-  companyName: string;
   jobTitle: string;
-  companyLogo: string;
+  companyName: string;
   jobLocation: string;
-  postingDate: string;
-  experienceLevel: string;
-  jobType: string;
-  workArrangement: string;
+  jobType: "full_time" | "part_time" | "contract" | "internship";
+  jobCategory:
+    | "information_technology"
+    | "hr"
+    | "software_development"
+    | "marketing_and_sales"
+    | "product_management";
   description: string;
+  workArrangement: "in_person" | "remote" | "hybrid";
+  experienceLevel: "no_experience" | "junior" | "senior" | "expert";
+  applicationDeadline: string;
+  contactEmail: string;
 }
 
 const Jobs: React.FC = () => {
@@ -102,7 +109,7 @@ const prevPage = () => {
     // slice the data based on current page
     const {startIndex, endIndex} = calculatePageRange();
     filteredJobs = filteredJobs.slice(startIndex, endIndex);
-    return filteredJobs.map((data, index) => <Card key={index} data={data} />);
+    return filteredJobs.map((data, index) => <Card key={index} job={data} />);
   };
 
   const result: ReactElement[] = filteredData(jobs, selectedCategory, query);

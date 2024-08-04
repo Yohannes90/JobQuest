@@ -1,10 +1,17 @@
 import { useState, useEffect } from "react";
 
+interface User {
+  id: number;
+  name: string;
+  email: string;
+  role: string;
+}
+
 interface UserFormProps {
-  editingUser: any;
-  isEditing: boolean;
-  setIsEditing: (isEditing: boolean) => void;
-  setActiveTab: (tab: string) => void;
+  editingUser: User | null;
+  isEditing: boolean | null;
+  setIsEditing: (isEditing: boolean) => void | null;
+  setActiveTab: (tab: string) => void | null;
 }
 
 const UserForm: React.FC<UserFormProps> = ({
@@ -51,7 +58,7 @@ const UserForm: React.FC<UserFormProps> = ({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const url = isEditing
-      ? `http://localhost:3001/api/users/${editingUser.id}`
+      ? editingUser ? `http://localhost:3001/api/users/${editingUser.id}` : "-1"
       : "http://localhost:3001/api/users";
     const method = isEditing ? "PUT" : "POST";
 

@@ -1,31 +1,35 @@
 import React, { useState, useEffect } from "react";
 
-interface JobPostFormProps {
-  job?: {
-    jobTitle: string;
-    companyName: string;
-    location: string;
-    jobType: "full_time" | "part_time" | "contract" | "internship";
-    jobCategory:
-      | "information_technology"
-      | "hr"
-      | "software_development"
-      | "marketing_and_sales"
-      | "product_management";
-    description: string;
-    workArrangement: "in_person" | "remote" | "hybrid";
-    experienceLevel: "no_experience" | "junior" | "senior" | "expert";
-    applicationDeadline: string;
-    contactEmail: string;
-  };
-  onSubmit: (data: any) => void;
+interface JobPostFormData {
+  id: number;
+  jobTitle: string;
+  companyName: string;
+  jobLocation: string;
+  jobType: "full_time" | "part_time" | "contract" | "internship"; 
+  jobCategory:
+    | "information_technology"
+    | "hr"
+    | "software_development"
+    | "marketing_and_sales"
+    | "product_management";
+  description: string;
+  workArrangement: "in_person" | "remote" | "hybrid";
+  experienceLevel: "no_experience" | "junior" | "senior" | "expert";
+  applicationDeadline: string;
+  contactEmail: string;
 }
 
-const JobPostForm: React.FC<JobPostFormProps> = ({ job, onSubmit }) => {
+interface JobPostFormProps {
+  job: JobPostFormData | null;
+  // onSubmit: (data: JobPostFormData) => void;
+}
+
+const JobPostForm: React.FC<JobPostFormProps> = ({ job }) => {
   const initialFormData = {
+    id: -1,
     jobTitle: "",
     companyName: "",
-    location: "",
+    jobLocation: "",
     jobType: "" as "full_time" | "part_time" | "contract" | "internship",
     jobCategory: "" as
       | "information_technology"
@@ -51,7 +55,7 @@ const JobPostForm: React.FC<JobPostFormProps> = ({ job, onSubmit }) => {
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >,
+    >
   ) => {
     const { name, value } = e.target;
     setFormData({
@@ -143,10 +147,10 @@ const JobPostForm: React.FC<JobPostFormProps> = ({ job, onSubmit }) => {
             <div>
               <input
                 type="text"
-                name="location"
-                id="location"
+                name="jobLocation"
+                id="jobLocation"
                 placeholder="Location"
-                value={formData.location}
+                value={formData.jobLocation}
                 onChange={handleChange}
                 className="block w-full bg-gray-50 text-gray-800 outline-none px-5 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-green-900 focus:border-green-900"
                 required
