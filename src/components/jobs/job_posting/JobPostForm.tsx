@@ -4,7 +4,7 @@ interface JobPostFormData {
   id: number;
   jobTitle: string;
   companyName: string;
-  jobLocation: string;
+  location: string;
   jobType: "full_time" | "part_time" | "contract" | "internship"; 
   jobCategory:
     | "information_technology"
@@ -29,7 +29,7 @@ const JobPostForm: React.FC<JobPostFormProps> = ({ job }) => {
     id: -1,
     jobTitle: "",
     companyName: "",
-    jobLocation: "",
+    location: "",
     jobType: "" as "full_time" | "part_time" | "contract" | "internship",
     jobCategory: "" as
       | "information_technology"
@@ -150,7 +150,7 @@ const JobPostForm: React.FC<JobPostFormProps> = ({ job }) => {
                 name="jobLocation"
                 id="jobLocation"
                 placeholder="Location"
-                value={formData.jobLocation}
+                value={formData.location}
                 onChange={handleChange}
                 className="block w-full bg-gray-50 text-gray-800 outline-none px-5 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-green-900 focus:border-green-900"
                 required
