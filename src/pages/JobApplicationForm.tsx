@@ -149,13 +149,13 @@ const JobApplicationForm: React.FC = () => {
         id="job-application-form"
         className="overflow-hidden bg-gray-100 py-12 min-h-screen pt-28"
       >
-        <div className="mx-auto px-4 sm:px-6 lg:px-8 flex flex-col max-w-7xl">
-          <div className="text-center">
-            <section className="card grid grid-cols-7">
+        <div className="flex justify-center flex-wrap mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+          <div className="w-11/12 sm:w-1/2 ">
+            <section className="card grid grid-cols-3">
               <div className="col-span-1">
                 <img src="/icon.png" className="h-12 w-14" alt="" />
               </div>
-              <div className="col-span-6">
+              <div className="col-span-2">
                 <h4 className="text-black mb-1">{companyName}</h4>
                 <h3 className="text-black text-lg font-semibold mb-2">
                   {jobTitle}

@@ -1,6 +1,6 @@
 import { Suspense, lazy } from "react";
-import { createBrowserRouter, Navigate } from "react-router-dom";
-import useAuth from "../auth/useAuth";
+import { createBrowserRouter } from "react-router-dom";
+// import useAuth from "../auth/useAuth";
 
 const App = lazy(() => import("../components/App"));
 const Home = lazy(() => import("../pages/Home"));
@@ -8,18 +8,18 @@ const Jobs = lazy(() => import("../pages/Jobs"));
 
 // from joe
 const JobApplicationForm = lazy(() => import("../pages/JobApplicationForm"));
-const JobPostForm = lazy(() => import("../pages/JobPostForm"));
+// const JobPostForm = lazy(() => import("../pages/JobPostForm"));
 const LoginPage = lazy(() => import("../pages/LoginPage"));
 const AdminDashboard = lazy(() => import("../pages/AdminDashboard"));
 const JobsDashboard = lazy(() => import("../pages/JobsDashboard"));
 const BlogDashboard = lazy(() => import("../pages/BlogDashboard"));
 
-const { isAuthenticated, role } = useAuth();
+// const { isAuthenticated, role } = useAuth();
 
-if (isAuthenticated === null) {
-  // Optionally, render a loading spinner or similar while checking authentication
-  <div>Loading...</div>;
-}
+//   if (isAuthenticated === null) {
+//     // Optionally, render a loading spinner or similar while checking authentication
+//     <div>Loading...</div>;
+//   }
 
 const Router = createBrowserRouter([
   {
@@ -82,37 +82,51 @@ const Router = createBrowserRouter([
       }, */
       {
         path: "/admin",
-        element:
-          isAuthenticated && role === "ADMIN" ? (
-            <Suspense fallback={<div>Loading...</div>}>
-              <AdminDashboard />
-            </Suspense>
-          ) : (
-            <Navigate to="/login" />
-          ),
+        element: 
+          <Suspense fallback={<div>Loading...</div>}>
+            <AdminDashboard />
+          </Suspense>
       },
-
+     /* 
+                    <AdminDashboard />
+                  ) : (
+                    <Navigate to="/login" />
+                  )
+                }
+              />
+              <Route
+                path="/jobs-dashboard"
+                element={
+                  isAuthenticated && role === "JOBS_ADMIN" ? (
+                    <JobsDashboard />
+                  ) : (
+                    <Navigate to="/login" />
+                  )
+                }
+              />
+              <Route
+                path="/blog-dashboard"
+                element={
+                  isAuthenticated && role === "BLOGS_ADMIN" ? (
+                    <BlogDashboard />
+                  ) : (
+                    <Navigate to="/login" />
+                  ) */
       {
         path: "/jobs-dashboard",
-        element:
-          isAuthenticated && role === "JOBS_ADMIN" ? (
-            <Suspense fallback={<div>Loading...</div>}>
-              <JobsDashboard />
-            </Suspense>
-          ) : (
-            <Navigate to="/login" />
-          ),
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <JobsDashboard />
+          </Suspense>
+        ),
       },
       {
         path: "/blog-dashboard",
-        element:
-          isAuthenticated && role === "BLOGS_ADMIN" ? (
-            <Suspense fallback={<div>Loading...</div>}>
-              <BlogDashboard />
-            </Suspense>
-          ) : (
-            <Navigate to="/login" />
-          ),
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <BlogDashboard />
+          </Suspense>
+        ),
       },
     ],
   },

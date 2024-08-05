@@ -51,7 +51,7 @@ const loadJobsPostings = useCallback(async () => {
     } else {
       setJobs((prevJobs) => [...prevJobs, ...newJobs]); // Append jobs for subsequent pages
     }
-    if (newJobs.length < 5) {
+    if (newJobs.length <= 5) {
       setHasMore(false);
     }
   } catch (err){

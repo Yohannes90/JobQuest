@@ -118,33 +118,10 @@ app.post("/api/logout", (req, res) => {
   });
 });
 
-// Session-based Middleware to Protect Routes
-const authenticateSession = (req, res, next) => {
-  if (!req.session.userId) {
-    return res.status(401).json({ error: "Access denied" });
-  }
-
-  // Pass the user role from session to the request object
-  req.user = {
-    id: req.session.userId,
-    role: req.session.role,
-  };
-
-  next();
-};
-
-// Role-based Middleware
-const checkRole = (roles) => (req, res, next) => {
-  if (!roles.includes(req.user.role)) {
-    return res.status(403).json({ error: "Access denied" });
-  }
-  next();
-};
-
 // Admin Dashboard
 app.get("/admin", requireRole('admin')), (req, res) => {
   res.status(200).json({ message: "Welcome to the admin dashboard" });
-});
+};
 
 // Jobs Admin Dashboard
 app.get(
