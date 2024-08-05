@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faBriefcase ,faBuilding, faTasks, faCalendar, faUser} from  "@fortawesome/free-solid-svg-icons";
 
@@ -26,8 +26,11 @@ interface CardProps {
   job: Job;
 }
 
-
 const Card: React.FC<CardProps> = ({ job }) => {
+  const navigate = useNavigate();
+  const handleCardClick = () => {
+    navigate("/job-application-form", { state: { job } });
+  };
   const { companyName, jobTitle, applicationDeadline,experienceLevel,jobType,description, jobCategory, workArrangement } = job;
   function replaceUnderscoreWithHyphen(str:string): string {
     return str.replace(/_/g, ' ');
@@ -41,9 +44,8 @@ const Card: React.FC<CardProps> = ({ job }) => {
   }
   return (
     <section
-      className="card transform hover:ease-in-out duration-200 hover:border-harSecondary focus:border-harSecondary"
+      className="card transform hover:ease-in-out duration-200 hover:border-harSecondary focus:border-harSecondary" onClick={handleCardClick}
     >
-      <Link to={"/job-application-form"} className="flex gap-4 flex-col sm:flex-row items-start">
         <img src="/icon.png" className="h-12 w-14" alt="" />
         <div>
           <h4 className="text-black mb-1">{companyName}</h4>
@@ -58,7 +60,6 @@ const Card: React.FC<CardProps> = ({ job }) => {
             <p className="text-[15px] text-black/70 w-full">{description}</p>
           </div>
         </div>
-      </Link>
     </section>
   );
 };

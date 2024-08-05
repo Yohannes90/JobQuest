@@ -1,5 +1,33 @@
+import { useLocation } from "react-router-dom";
 import "../styles/App.css";
 import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faBriefcase,
+  faBuilding,
+  faTasks,
+  faCalendar,
+  faUser,
+} from "@fortawesome/free-solid-svg-icons";
+
+interface Job {
+  id: number;
+  jobTitle: string;
+  companyName: string;
+  jobLocation: string;
+  jobType: "full_time" | "part_time" | "contract" | "internship";
+  jobCategory:
+    | "information_technology"
+    | "hr"
+    | "software_development"
+    | "marketing_and_sales"
+    | "product_management";
+  description: string;
+  workArrangement: "in_person" | "remote" | "hybrid";
+  experienceLevel: "no_experience" | "junior" | "senior" | "expert";
+  applicationDeadline: string;
+  contactEmail: string;
+}
 
 /**
  * Main application component.
@@ -8,7 +36,11 @@ import { useState } from "react";
  *
  * @returns JSX element representing the entire application layout.
  */
+
 const JobApplicationForm: React.FC = () => {
+  const location = useLocation();
+  const { job } = location.state as { job: Job };
+
   const initialFormData = {
     name: "",
     age: "",
@@ -24,7 +56,11 @@ const JobApplicationForm: React.FC = () => {
 
   const [formData, setFormData] = useState(initialFormData);
 
-  const handleChange = (e : React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
     const { name, value } = e.target;
     if (e.target instanceof HTMLInputElement && e.target.files) {
       setFormData({
@@ -36,7 +72,8 @@ const JobApplicationForm: React.FC = () => {
         ...formData,
         [name]: value,
       });
-  }}
+    }
+  };
 
   const resetForm = () => {
     setFormData(initialFormData);
@@ -66,7 +103,7 @@ const JobApplicationForm: React.FC = () => {
         {
           method: "POST",
           body: data,
-        },
+        }
       );
 
       if (response.ok) {
@@ -82,26 +119,82 @@ const JobApplicationForm: React.FC = () => {
     }
   };
 
+  if (!job) {
+    return <p>No job data found.</p>;
+  }
+  const {
+    companyName,
+    jobTitle,
+    applicationDeadline,
+    experienceLevel,
+    jobType,
+    description,
+    jobCategory,
+    workArrangement,
+  } = job;
+  function replaceUnderscoreWithHyphen(str: string): string {
+    return str.replace(/_/g, " ");
+  }
+  function strToDate(str: string): string {
+    const date = new Date(str);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDay()).padStart(2, "0");
+    return `${day}-${month}-${year}`;
+  }
+
   return (
     <>
       <div
-        id="internship-form"
+        id="job-application-form"
         className="overflow-hidden bg-gray-100 py-12 min-h-screen pt-28"
       >
         <div className="mx-auto px-4 sm:px-6 lg:px-8 flex flex-col max-w-7xl">
           <div className="text-center">
-            <h2 className="uppercase text-3xl text-harPrimary">
-              Internship Opportunities
-            </h2>
-            <p className="mt-4 text-lg text-gray-600 font-thin">
-              We'd love to have you join us. Fill out the form below to apply
-              for an internship.
-            </p>
+            <section className="card grid grid-cols-7">
+              <div className="col-span-1">
+                <img src="/icon.png" className="h-12 w-14" alt="" />
+              </div>
+              <div className="col-span-6">
+                <h4 className="text-black mb-1">{companyName}</h4>
+                <h3 className="text-black text-lg font-semibold mb-2">
+                  {jobTitle}
+                </h3>
+                <div className="text-black/60 text-sm sm:text-base flex flex-wrap gap-4 mb-2">
+                  <span>
+                    <FontAwesomeIcon icon={faBuilding} />{" "}
+                    {replaceUnderscoreWithHyphen(jobType)}
+                  </span>
+                  <span>
+                    <FontAwesomeIcon icon={faBriefcase} />{" "}
+                    {replaceUnderscoreWithHyphen(workArrangement)}
+                  </span>
+                  <span>
+                    <FontAwesomeIcon icon={faUser} />{" "}
+                    {replaceUnderscoreWithHyphen(experienceLevel)}
+                  </span>
+                  <span>
+                    <FontAwesomeIcon icon={faTasks} />{" "}
+                    {jobCategory === "hr"
+                      ? "human resource"
+                      : replaceUnderscoreWithHyphen(jobCategory)}
+                  </span>
+                  <span>
+                    <FontAwesomeIcon icon={faCalendar} />{" "}
+                    {strToDate(applicationDeadline)}
+                  </span>
+
+                  <p className="text-[15px] text-black/70 w-full">
+                    {description}
+                  </p>
+                </div>
+              </div>
+            </section>
           </div>
-          <div className="mt-12 sm:mt-16 lg:mt-12 lg:flex lg:space-x-12">
+          <div className="w-full flex justify-center mt-12 sm:mt-16 lg:mt-12 lg:flex lg:space-x-12 mx-auto">
             <div className="lg:w-2/3 sm:w-full bg-white p-10 rounded-lg shadow-lg">
               <form
-                className="space-y-8"
+                className="w-full space-y-8"
                 onSubmit={handleSubmit}
                 encType="multipart/form-data"
               >

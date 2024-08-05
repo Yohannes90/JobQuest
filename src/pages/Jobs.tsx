@@ -44,8 +44,13 @@ const loadJobsPostings = useCallback(async () => {
   
   try{
     const newJobs: Job[] = await fetchJobPostings(currentPage, 5, query);
-    // const uniqueNewJobs = newJobs.filter(newJobs.id)
+    // const uniqueNewJobs = 
     setJobs((prevJobs) => [...prevJobs, ...newJobs]);
+    if (currentPage === 1) {
+      setJobs(newJobs); // Replace jobs if it's the first page
+    } else {
+      setJobs((prevJobs) => [...prevJobs, ...newJobs]); // Append jobs for subsequent pages
+    }
     if (newJobs.length < 5) {
       setHasMore(false);
     }

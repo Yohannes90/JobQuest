@@ -16,6 +16,7 @@
     "@fortawesome/free-brands-svg-icons": "^6.5.2",
     "@fortawesome/free-solid-svg-icons": "^6.6.0",
     "@fortawesome/react-fontawesome": "^0.2.2",
+    "@prisma/client": "^5.17.0",
     "@types/react-leaflet": "^3.0.0",
     "aos": "^2.3.4",
     "bcryptjs": "^2.4.3",
