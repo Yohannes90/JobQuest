@@ -43,10 +43,10 @@ const loadJobsPostings = useCallback(async () => {
   console.log(`Fetching jobs for page ${currentPage} with query "${query}"`);
   
   try{
-    const newJobs = await fetchJobPostings(currentPage, 10, query);
-    console.log("Received job postings:", newJobs);
+    const newJobs: Job[] = await fetchJobPostings(currentPage, 5, query);
+    // const uniqueNewJobs = newJobs.filter(newJobs.id)
     setJobs((prevJobs) => [...prevJobs, ...newJobs]);
-    if (newJobs.length < 10) {
+    if (newJobs.length < 5) {
       setHasMore(false);
     }
   } catch (err){
@@ -106,10 +106,11 @@ const prevPage = () => {
 
     if (selected) {
       filteredJobs = filteredJobs.filter(
-        ({ workArrangement, experienceLevel, jobType }) =>
+        ({ workArrangement, experienceLevel, jobType, jobCategory }) =>
           jobType.toLowerCase() === selected.toLowerCase() ||
           workArrangement.toLowerCase() === selected.toLowerCase() ||
-          experienceLevel.toLowerCase() === selected.toLowerCase()
+          experienceLevel.toLowerCase() === selected.toLowerCase() ||
+          jobCategory.toLowerCase() === selected.toLowerCase() 
       );
     }
     // slice the data based on current page

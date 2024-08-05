@@ -356,18 +356,18 @@ app.get("/api/job-postings", async (req, res) => {
   const searchQuery = query;
   console.log(`recived job postings with page: ${pageNumber}, limit: ${pageSize}, query: "${searchQuery}"`);
   try {
-    const jobs = await prisma.jobPosting.findMany(/* {
+    const jobs = await prisma.jobPosting.findMany({
       skip: (pageNumber - 1) * pageSize,
       take: pageSize,
       where: {
         OR: [
           {
-            jobTitle: { contains: searchQuery, mode: "insensitive" },
+            jobTitle: { contains: searchQuery},
             //if you want to add more functionality to the search method based on other criteria
           },
         ],
       },
-    } */);
+    });
     console.log(jobs);
     res.status(200).json(jobs);
   } catch (error) {

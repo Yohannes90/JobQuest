@@ -46,14 +46,14 @@ const Router = createBrowserRouter([
           </Suspense>
         ),
       },
-      {
-        path: "/job-post-form",
-        element: (
-          <Suspense fallback={<div>Loading...</div>}>
-            <JobPostForm />
-          </Suspense>
-        ),
-      },
+      // {
+      //   path: "/job-post-form",
+      //   element: (
+      //     <Suspense fallback={<div>Loading...</div>}>
+      //       <JobPostForm />
+      //     </Suspense>
+      //   ),
+      // },
       {
         path: "/login",
         element: (
@@ -79,14 +79,14 @@ const Router = createBrowserRouter([
             <AdminDashboard />
           </Suspense>
       },
-      {
-        path: "/login",
-        element: (
-          <Suspense fallback={<div>Loading...</div>}>
-            <LoginPage />
-          </Suspense>
-        ),
-      },
+      // {
+      //   path: "/login",
+      //   element: (
+      //     <Suspense fallback={<div>Loading...</div>}>
+      //       <LoginPage />
+      //     </Suspense>
+      //   ),
+      // },
       {
         path: "/jobs-dashboard",
         element: (

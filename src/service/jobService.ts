@@ -3,7 +3,7 @@ export const fetchJobPostings = async (
   limit: number = 10,
   query: string = ""
 ) => { 
-  const url = `/api/job-postings?page=${page}&limit=${limit}&query=${query}`;
+  const url = `http://localhost:3001/api/job-postings?page=${page}&limit=${limit}&query=${query}`;
   console.log(`Fetching job postings from: ${url}`);
 
   const response = await fetch(url);
