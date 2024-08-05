@@ -1,33 +1,37 @@
-import express, { json, urlencoded } from 'express';
-import cors from 'cors';
-import { PrismaClient } from '@prisma/client';
-import multer from 'multer';
-import bcrypt from 'bcryptjs';
-import session from 'express-session';
+import express, { json, urlencoded } from "express";
+import cors from "cors";
+import { PrismaClient } from "@prisma/client";
+import multer from "multer";
+import bcrypt from "bcryptjs";
+import session from "express-session";
 
 const app = express();
 const prisma = new PrismaClient();
 const upload = multer({ dest: "uploads/" });
 
 app.use(json());
-app.use(cors({
-  origin: 'http://localhost:5173', // frontend URL
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true, // Allow credentials
-}));
+app.use(
+  cors({
+    origin: "http://localhost:5173", // frontend URL
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true, // Allow credentials
+  })
+);
 app.use(urlencoded({ extended: true }));
 
 // Session middleware
-app.use(session({
-  secret: 'your_session_secret',
-  resave: false,
-  saveUninitialized: false,
-  cookie: { secure: false } // Set to true if using https
-}));
+app.use(
+  session({
+    secret: "your_session_secret",
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: false }, // Set to true if using https
+  })
+);
 
 // User Registration Endpoint
-app.post('/api/register', async (req, res) => {
-  const { name, email, password, role = 'JOBS_ADMIN' } = req.body;
+app.post("/api/register", async (req, res) => {
+  const { name, email, password, role = "JOBS_ADMIN" } = req.body;
 
   // Hash the password
   const hashedPassword = await bcrypt.hash(password, 10);
@@ -70,41 +74,43 @@ app.post("/api/login", async (req, res) => {
     req.session.userId = user.id;
     req.session.role = user.role;
 
-    res.status(200).json({ message: 'Login successful' });
+    res.status(200).json({ message: "Login successful" });
   } catch (error) {
     res.status(500).json({ error: "Database error", details: error.message });
   }
 });
 
 // Endpoint to get user role
-app.get('/api/role', (req, res) => {
+app.get("/api/role", (req, res) => {
   if (req.session.role) {
     res.json({ role: req.session.role });
   } else {
-    res.status(401).json({ error: 'Not authenticated' });
+    res.status(401).json({ error: "Not authenticated" });
   }
 });
 
 // User Logout Endpoint
-app.post('/api/logout', (req, res) => {
+app.post("/api/logout", (req, res) => {
   req.session.destroy((err) => {
     if (err) {
-      return res.status(500).json({ error: 'Logout failed', details: err.message });
+      return res
+        .status(500)
+        .json({ error: "Logout failed", details: err.message });
     }
-    res.status(200).json({ message: 'Logged out successfully' });
+    res.status(200).json({ message: "Logged out successfully" });
   });
 });
 
 // Session-based Middleware to Protect Routes
 const authenticateSession = (req, res, next) => {
   if (!req.session.userId) {
-    return res.status(401).json({ error: 'Access denied' });
+    return res.status(401).json({ error: "Access denied" });
   }
 
   // Pass the user role from session to the request object
   req.user = {
     id: req.session.userId,
-    role: req.session.role
+    role: req.session.role,
   };
 
   next();
@@ -113,25 +119,35 @@ const authenticateSession = (req, res, next) => {
 // Role-based Middleware
 const checkRole = (roles) => (req, res, next) => {
   if (!roles.includes(req.user.role)) {
-    return res.status(403).json({ error: 'Access denied' });
+    return res.status(403).json({ error: "Access denied" });
   }
   next();
 };
 
 // Admin Dashboard
-app.get('/admin', authenticateSession, checkRole(['ADMIN']), (req, res) => {
-  res.status(200).json({ message: 'Welcome to the admin dashboard' });
+app.get("/admin", authenticateSession, checkRole(["ADMIN"]), (req, res) => {
+  res.status(200).json({ message: "Welcome to the admin dashboard" });
 });
 
 // Jobs Admin Dashboard
-app.get('/jobs-dashboard', authenticateSession, checkRole(['ADMIN', 'JOBS_ADMIN']), (req, res) => {
-  res.status(200).json({ message: 'Welcome to the Jobs Admin dashboard' });
-});
+app.get(
+  "/jobs-dashboard",
+  authenticateSession,
+  checkRole(["ADMIN", "JOBS_ADMIN"]),
+  (req, res) => {
+    res.status(200).json({ message: "Welcome to the Jobs Admin dashboard" });
+  }
+);
 
 // Blog Admin Dashboard
-app.get('/blog-dashboard', authenticateSession, checkRole(['ADMIN', 'BLOG_ADMIN']), (req, res) => {
-  res.status(200).json({ message: 'Welcome to the Blog Admin dashboard' });
-});
+app.get(
+  "/blog-dashboard",
+  authenticateSession,
+  checkRole(["ADMIN", "BLOG_ADMIN"]),
+  (req, res) => {
+    res.status(200).json({ message: "Welcome to the Blog Admin dashboard" });
+  }
+);
 
 // Job Application Endpoint
 app.post(
@@ -185,13 +201,13 @@ app.get("/api/job-applications", async (req, res) => {
 });
 
 // Fetch all job applications
-app.get('/api/job-applications', async (req, res) => {
+app.get("/api/job-applications", async (req, res) => {
   try {
     const jobApplications = await prisma.jobApplication.findMany();
     res.status(200).json(jobApplications);
   } catch (error) {
-    console.error('Error fetching job applications:', error);
-    res.status(500).json({ error: 'Database error', details: error.message });
+    console.error("Error fetching job applications:", error);
+    res.status(500).json({ error: "Database error", details: error.message });
   }
 });
 
@@ -212,8 +228,8 @@ app.delete("/api/job-applications/:id", async (req, res) => {
 
 // CRUD Endpoints for Users
 // Create a new user
-app.post('/api/users', async (req, res) => {
-  const { name, email, password, role = 'JOBS_ADMIN' } = req.body;
+app.post("/api/users", async (req, res) => {
+  const { name, email, password, role = "JOBS_ADMIN" } = req.body;
 
   // Hash the password
   const hashedPassword = await bcrypt.hash(password, 10);
@@ -227,24 +243,24 @@ app.post('/api/users', async (req, res) => {
         role,
       },
     });
-    res.status(201).json({ message: 'User created successfully', user });
+    res.status(201).json({ message: "User created successfully", user });
   } catch (error) {
-    res.status(500).json({ error: 'Database error', details: error.message });
+    res.status(500).json({ error: "Database error", details: error.message });
   }
 });
 
 // Read all users
-app.get('/api/users', async (req, res) => {
+app.get("/api/users", async (req, res) => {
   try {
     const users = await prisma.user.findMany();
     res.status(200).json(users);
   } catch (error) {
-    res.status(500).json({ error: 'Database error', details: error.message });
+    res.status(500).json({ error: "Database error", details: error.message });
   }
 });
 
 // Update a user by ID
-app.put('/api/users/:id', async (req, res) => {
+app.put("/api/users/:id", async (req, res) => {
   const { id } = req.params;
   const { name, email, password, role } = req.body;
 
@@ -261,39 +277,39 @@ app.put('/api/users/:id', async (req, res) => {
         role,
       },
     });
-    res.status(200).json({ message: 'User updated successfully', user });
+    res.status(200).json({ message: "User updated successfully", user });
   } catch (error) {
-    res.status(500).json({ error: 'Database error', details: error.message });
+    res.status(500).json({ error: "Database error", details: error.message });
   }
 });
 
 // Delete a user by ID
-app.delete('/api/users/:id', async (req, res) => {
+app.delete("/api/users/:id", async (req, res) => {
   const { id } = req.params;
 
   try {
     await prisma.user.delete({
       where: { id: parseInt(id) },
     });
-    res.status(200).json({ message: 'User deleted successfully' });
+    res.status(200).json({ message: "User deleted successfully" });
   } catch (error) {
-    res.status(500).json({ error: 'Database error', details: error.message });
+    res.status(500).json({ error: "Database error", details: error.message });
   }
 });
 
 // Job Posting Endpoint
-app.post('/api/submit-job-posting', async (req, res) => {
+app.post("/api/submit-job-posting", async (req, res) => {
   const {
     jobTitle,
     companyName,
-    location,
+    jobLocation,
     jobType,
     jobCategory,
     description,
     workArrangement,
     experienceLevel,
     applicationDeadline,
-    contactEmail
+    contactEmail,
   } = req.body;
 
   // Log the request body to verify the data
@@ -304,41 +320,56 @@ app.post('/api/submit-job-posting', async (req, res) => {
       data: {
         jobTitle: jobTitle,
         companyName: companyName,
-        location: location,
+        location: jobLocation,
         jobType: jobType,
         jobCategory: jobCategory,
         description: description,
         workArrangement: workArrangement,
         experienceLevel: experienceLevel,
-        applicationDeadline: applicationDeadline ? new Date(applicationDeadline) : null,
+        applicationDeadline: applicationDeadline
+          ? new Date(applicationDeadline)
+          : null,
         contactEmail: contactEmail,
       },
     });
     res.status(201).json({ message: "Job posting submitted successfully" });
   } catch (error) {
-    console.error('Error creating job posting:', error);
-    res.status(500).json({ error: 'Database error', details: error.message });
+    console.error("Error creating job posting:", error);
+    res.status(500).json({ error: "Database error", details: error.message });
   }
 });
 
 // Fetch all job postings
+app.get("/api/job-postings/all", async (req, res) => {
+  try {
+    const job = await prisma.jobPosting.findMany();
+    res.status(200).json(job);
+  } catch (error) {
+    res.status(500).json({ error: "Database error", details: error.message });
+  }
+});
+// Fetch job postings based on a limit
 app.get("/api/job-postings", async (req, res) => {
-  const { page = 1, limit = 20, query = "" } = req.query;
+  const { page = 1, limit = 10, query = "" } = req.query;
   const pageNumber = parseInt(page);
   const pageSize = parseInt(limit);
   const searchQuery = query;
+  console.log(`recived job postings with page: ${pageNumber}, limit: ${pageSize}, query: "${searchQuery}"`);
   try {
-    const jobPostings = await prisma.jobPosting.findMany({
+    const jobs = await prisma.jobPosting.findMany(/* {
       skip: (pageNumber - 1) * pageSize,
       take: pageSize,
       where: {
-        OR: [{
-          jobTitle: { contains: searchQuery, mode : "insensitive"},
-          //if you want to add more functionality to the search method based on other criteria
-        }]
-      }
-    });
-    res.status(200).json(jobPostings);
+        OR: [
+          {
+            jobTitle: { contains: searchQuery, mode: "insensitive" },
+            //if you want to add more functionality to the search method based on other criteria
+          },
+        ],
+      },
+    } */);
+    console.log(jobs);
+    res.status(200).json(jobs);
   } catch (error) {
     console.error("Error fetching job postings:", error);
     res.status(500).json({ error: "Database error", details: error.message });
@@ -346,7 +377,7 @@ app.get("/api/job-postings", async (req, res) => {
 });
 
 // PUT to update an existing job posting
-app.put('/api/job-postings/:id', async (req, res) => {
+app.put("/api/job-postings/:id", async (req, res) => {
   const { id } = req.params;
   const {
     jobTitle,
@@ -373,11 +404,18 @@ app.put('/api/job-postings/:id', async (req, res) => {
         description,
         workArrangement,
         experienceLevel,
-        applicationDeadline: applicationDeadline ? new Date(applicationDeadline) : null,
+        applicationDeadline: applicationDeadline
+          ? new Date(applicationDeadline)
+          : null,
         contactEmail,
       },
     });
-    res.status(200).json({ message: "Job posting updated successfully", jobPosting: updatedJob });
+    res
+      .status(200)
+      .json({
+        message: "Job posting updated successfully",
+        jobPosting: updatedJob,
+      });
   } catch (error) {
     console.error("Error updating job posting:", error);
     res.status(500).json({ error: "Database error", details: error.message });
@@ -385,7 +423,7 @@ app.put('/api/job-postings/:id', async (req, res) => {
 });
 
 // Delete a job posting by ID
-app.delete('/api/job-postings/:id', async (req, res) => {
+app.delete("/api/job-postings/:id", async (req, res) => {
   const { id } = req.params;
 
   try {
@@ -405,10 +443,14 @@ app.post("/api/subscribe", async (req, res) => {
   const { email } = req.body;
 
   try {
-    const subscriber = await prisma.newsletterSubscriber.create({ data: { email } });
+    const subscriber = await prisma.newsletterSubscriber.create({
+      data: { email },
+    });
     res.status(201).json(subscriber);
   } catch (error) {
-    res.status(500).json({ error: "Failed to subscribe", details: error.message });
+    res
+      .status(500)
+      .json({ error: "Failed to subscribe", details: error.message });
   }
 });
 
@@ -419,7 +461,9 @@ app.post("/api/unsubscribe", async (req, res) => {
     await prisma.newsletterSubscriber.delete({ where: { email } });
     res.status(200).json({ message: "Unsubscribed successfully" });
   } catch (error) {
-    res.status(500).json({ error: "Failed to unsubscribe", details: error.message });
+    res
+      .status(500)
+      .json({ error: "Failed to unsubscribe", details: error.message });
   }
 });
 

@@ -15,8 +15,8 @@ const Search: React.FC<SearchProps> = ({ query, handleInputChange }) => {
             <div className="relative py-1 px-6 focus:outline-0 bg-white h-auto rounded shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-harSecondary w-full">
               <input
                 type="text"
-                name="title"
-                id="title"
+                name="query"
+                id="query"
                 className="w-full bg-white py-2 px-4 focus:outline-0"
                 placeholder="What position are you looking for ?"
                 onChange={handleInputChange}

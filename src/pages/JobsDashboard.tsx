@@ -28,7 +28,7 @@ interface Job {
   companyName: string;
   jobTitle: string;
   companyLogo: string;
-  jobLocation: string;
+  location: string;
   postingDate: string;
   experienceLevel: "no_experience" | "junior" | "senior" | "expert";
   jobType: "full_time" | "part_time" | "contract" | "internship";
@@ -75,7 +75,7 @@ const JobsDashboard: React.FC = () => {
 
     const fetchJobPostings = async () => {
       try {
-        const response = await fetch("http://localhost:3001/api/job-postings", {
+        const response = await fetch("http://localhost:3001/api/job-postings/all", {
           credentials: "include", // Ensures cookies are sent with the request
         });
         if (response.status === 401) {
@@ -281,7 +281,7 @@ const JobsDashboard: React.FC = () => {
                   >
                     <td className="py-2 px-4">{job.jobTitle}</td>
                     <td className="py-2 px-4">{job.companyName}</td>
-                    <td className="py-2 px-4">{job.jobLocation}</td>
+                    <td className="py-2 px-4">{job.location}</td>
                     <td className="py-2 px-4">{job.jobType}</td>
                     <td className="py-2 px-4">{job.jobCategory}</td>
                     <td className="py-2 px-4">{job.workArrangement}</td>

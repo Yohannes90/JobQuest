@@ -1,11 +1,6 @@
 import { useEffect } from "react";
 import AOS from "aos";
 import {
-  // faBuilding,
-  // faClipboardList,
-  // faUsers,
-  // faGlobe,
-  // faHandsHelping,
   faChartLine,
   faProjectDiagram,
   faUserTie,

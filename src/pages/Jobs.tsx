@@ -39,16 +39,22 @@ const Jobs: React.FC = () => {
   };
 
 const loadJobsPostings = useCallback(async () => {
+  console.log("Calling loadJobsPostings");
+  console.log(`Fetching jobs for page ${currentPage} with query "${query}"`);
+  
   try{
-    const newJobs = await fetchJobPostings(currentPage, 20, query);
+    const newJobs = await fetchJobPostings(currentPage, 10, query);
+    console.log("Received job postings:", newJobs);
     setJobs((prevJobs) => [...prevJobs, ...newJobs]);
-    if (newJobs.length < 20) {
+    if (newJobs.length < 10) {
       setHasMore(false);
     }
   } catch (err){
     console.error('Failed to fetch job postings: ', err);
   }
-  setIsLoading(false);
+  finally{
+    setIsLoading(false);
+  }
 },[currentPage, query]);
 
   useEffect(() => {
@@ -87,7 +93,7 @@ const prevPage = () => {
   }
 }
 
-  // main function
+  // main function 
   const filteredData = (
     jobs: Job[],
     selected: string | null,

@@ -49,6 +49,7 @@ async function createJobPosting() {
       contactEmail: 'jobs@techcorp.com',
     },
   });
+
   console.log('Job posting created:', newJobPosting);
 }
 

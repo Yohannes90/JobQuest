@@ -10,8 +10,7 @@ interface Job {
   companyName: string;
   jobTitle: string;
   companyLogo: string;
-  jobLocation: string;
-  postingDate: string;
+  location: string;
   experienceLevel: "no_experience" | "junior" | "senior" | "expert";
   jobType: "full_time" | "part_time" | "contract" | "internship";
   employmentType: string;
@@ -88,7 +87,7 @@ const AdminDashboard: React.FC = () => {
 
     const fetchJobPostings = async () => {
       try {
-        const response = await fetch("http://localhost:3001/api/job-postings", {
+        const response = await fetch("http://localhost:3001/api/job-postings/all", {
           credentials: "include", // Ensures cookies are sent with the request
         });
         if (response.status === 401) {
@@ -102,7 +101,7 @@ const AdminDashboard: React.FC = () => {
       }
     };
 
-    const fetchUsers = async () => {
+    const fetchUsers = async () => { 
       try {
         const response = await fetch("http://localhost:3001/api/users", {
           credentials: "include", // Ensures cookies are sent with the request
@@ -354,14 +353,14 @@ const AdminDashboard: React.FC = () => {
               <tbody>
                 {jobPostings.map((job) => (
                   <tr key={job.id} className="border-b">
-                    <td className="py-2 px-4">{job.companyName}</td>
                     <td className="py-2 px-4">{job.jobTitle}</td>
-                    <td className="py-2 px-4">{job.jobLocation}</td>
-                    <td className="py-2 px-4">{job.postingDate}</td>
-                    <td className="py-2 px-4">{job.experienceLevel}</td>
+                    <td className="py-2 px-4">{job.companyName}</td>
+                    <td className="py-2 px-4">{job.location}</td>
                     <td className="py-2 px-4">{job.jobType}</td>
-                    <td className="py-2 px-4">{job.employmentType}</td>
+                    <td className="py-2 px-4">{job.jobCategory}</td>
                     <td className="py-2 px-4">{job.workArrangement}</td>
+                    <td className="py-2 px-4">{job.experienceLevel}</td>                    
+                    <td className="py-2 px-4">{job.contactEmail}</td>                    
                     <td className="py-2 px-4">{job.applicationDeadline}</td>
                     <td className="py-2 px-4 flex space-x-2">
                       <button
