@@ -79,7 +79,24 @@ app.post("/api/login", async (req, res) => {
     res.status(500).json({ error: "Database error", details: error.message });
   }
 });
+// Middleware for role-based access
+const requireRole = (role) => {
+  return (req, res, next) => {
+    if (!req.session.userId || req.session.role !== role) {
+      return res.status(403).json({ error: 'Access denied' });
+    }
+    next();
+  };
+};
 
+// Authentication Check Endpoint
+app.get('/api/check-auth', (req, res) => {
+  if (req.session.userId) {
+    res.json({ authenticated: true, role: req.session.role });
+  } else {
+    res.json({ authenticated: false });
+  }
+});
 // Endpoint to get user role
 app.get("/api/role", (req, res) => {
   if (req.session.role) {
@@ -125,25 +142,20 @@ const checkRole = (roles) => (req, res, next) => {
 };
 
 // Admin Dashboard
-app.get("/admin", authenticateSession, checkRole(["ADMIN"]), (req, res) => {
+app.get("/admin", requireRole('admin')), (req, res) => {
   res.status(200).json({ message: "Welcome to the admin dashboard" });
 });
 
 // Jobs Admin Dashboard
 app.get(
-  "/jobs-dashboard",
-  authenticateSession,
-  checkRole(["ADMIN", "JOBS_ADMIN"]),
-  (req, res) => {
+  "/jobs-dashboard", requireRole('jobs_admin'), (req, res) => {
     res.status(200).json({ message: "Welcome to the Jobs Admin dashboard" });
   }
 );
 
 // Blog Admin Dashboard
 app.get(
-  "/blog-dashboard",
-  authenticateSession,
-  checkRole(["ADMIN", "BLOG_ADMIN"]),
+  "/blog-dashboard",requireRole('blogs_admin'),
   (req, res) => {
     res.status(200).json({ message: "Welcome to the Blog Admin dashboard" });
   }

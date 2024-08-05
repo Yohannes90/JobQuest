@@ -1,5 +1,6 @@
 import { Suspense, lazy } from "react";
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
+import useAuth from "../auth/useAuth";
 
 const App = lazy(() => import("../components/App"));
 const Home = lazy(() => import("../pages/Home"));
@@ -12,6 +13,13 @@ const LoginPage = lazy(() => import("../pages/LoginPage"));
 const AdminDashboard = lazy(() => import("../pages/AdminDashboard"));
 const JobsDashboard = lazy(() => import("../pages/JobsDashboard"));
 const BlogDashboard = lazy(() => import("../pages/BlogDashboard"));
+
+const { isAuthenticated, role } = useAuth();
+
+if (isAuthenticated === null) {
+  // Optionally, render a loading spinner or similar while checking authentication
+  <div>Loading...</div>;
+}
 
 const Router = createBrowserRouter([
   {
@@ -74,34 +82,37 @@ const Router = createBrowserRouter([
       }, */
       {
         path: "/admin",
-        element: 
-          <Suspense fallback={<div>Loading...</div>}>
-            <AdminDashboard />
-          </Suspense>
+        element:
+          isAuthenticated && role === "ADMIN" ? (
+            <Suspense fallback={<div>Loading...</div>}>
+              <AdminDashboard />
+            </Suspense>
+          ) : (
+            <Navigate to="/login" />
+          ),
       },
-      // {
-      //   path: "/login",
-      //   element: (
-      //     <Suspense fallback={<div>Loading...</div>}>
-      //       <LoginPage />
-      //     </Suspense>
-      //   ),
-      // },
+
       {
         path: "/jobs-dashboard",
-        element: (
-          <Suspense fallback={<div>Loading...</div>}>
-            <JobsDashboard />
-          </Suspense>
-        ),
+        element:
+          isAuthenticated && role === "JOBS_ADMIN" ? (
+            <Suspense fallback={<div>Loading...</div>}>
+              <JobsDashboard />
+            </Suspense>
+          ) : (
+            <Navigate to="/login" />
+          ),
       },
       {
         path: "/blog-dashboard",
-        element: (
-          <Suspense fallback={<div>Loading...</div>}>
-            <BlogDashboard />
-          </Suspense>
-        ),
+        element:
+          isAuthenticated && role === "BLOGS_ADMIN" ? (
+            <Suspense fallback={<div>Loading...</div>}>
+              <BlogDashboard />
+            </Suspense>
+          ) : (
+            <Navigate to="/login" />
+          ),
       },
     ],
   },
