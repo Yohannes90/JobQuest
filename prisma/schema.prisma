@@ -1,0 +1,104 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       Int    @id @default(autoincrement())
+  name     String
+  email    String @unique
+  password String
+  role     Role   @default(JOBS_ADMIN)
+}
+
+enum Role {
+  ADMIN
+  JOBS_ADMIN
+  BLOG_ADMIN
+}
+
+model JobApplication {
+  id        Int      @id @default(autoincrement())
+  name      String
+  age       Int
+  gender    Gender
+  phone     String
+  email     String
+  about     String
+  motive    String
+  interest  Interest
+  cv        String?
+  portfolio String?
+}
+
+enum Gender {
+  male
+  female
+  NA
+}
+
+enum Interest {
+  information_technology
+  hr
+  software_development
+  marketing_and_sales
+  product_management
+}
+
+model JobPosting {
+  id                 Int              @id @default(autoincrement())
+  jobTitle           String
+  companyName        String
+  location           String
+  jobType            JobType
+  jobCategory        JobCategory
+  description        String
+  workArrangement    WorkArrangement
+  experienceLevel    ExperienceLevel
+  applicationDeadline DateTime
+  contactEmail       String
+  createdAt          DateTime         @default(now())
+  updatedAt          DateTime         @updatedAt
+}
+
+enum JobType {
+  full_time
+  part_time
+  contract
+  internship
+}
+
+model JobNewsletterSubscribers {
+  id Int @id @default(autoincrement())
+  email String
+}
+enum JobCategory {
+  information_technology
+  hr
+  software_development
+  marketing_and_sales
+  product_management
+}
+
+enum ExperienceLevel {
+  no_experience
+  junior
+  senior
+  expert
+}
+
+enum WorkArrangement {
+  in_person
+  remote
+  hybrid
+}

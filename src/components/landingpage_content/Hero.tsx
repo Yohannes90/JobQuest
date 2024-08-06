@@ -8,20 +8,21 @@ import mobileSlide2 from "/mobile_slide2.jpg";
 import mobileSlide3 from "/mobile_slide3.jpg";
 import heroImage from "/hero.jpg";
 import mobileHeroImage from "/mobile_hero.jpg";
-import { useMediaQuery } from 'react-responsive';
+import { useMediaQuery } from "react-responsive";
 
 const Carousel: React.FC = () => {
-  const isMobile = useMediaQuery({maxWidth: 767})
-  const slides = isMobile ? [
-    <img src={mobileSlide1} className="min-h-screen" alt="mobileSlide 1" />,
-    <img src={mobileSlide2} className="min-h-screen" alt="mobileSlide 2" />,
-    <img src={mobileSlide3} className="min-h-screen" alt="mobileSlide 3" />,
-    
-  ] : [
-    <img src={Slide1} className="min-h-screen" alt="Slide 1" />,
-    <img src={Slide2} className="min-h-screen" alt="Slide 2" />,
-    <img src={Slide3} className="min-h-screen" alt="Slide 3" />,
-  ];
+  const isMobile = useMediaQuery({ maxWidth: 767 });
+  const slides = isMobile
+    ? [
+        <img src={mobileSlide1} className="min-h-screen" alt="mobileSlide 1" />,
+        <img src={mobileSlide2} className="min-h-screen" alt="mobileSlide 2" />,
+        <img src={mobileSlide3} className="min-h-screen" alt="mobileSlide 3" />,
+      ]
+    : [
+        <img src={Slide1} className="min-h-screen" alt="Slide 1" />,
+        <img src={Slide2} className="min-h-screen" alt="Slide 2" />,
+        <img src={Slide3} className="min-h-screen" alt="Slide 3" />,
+      ];
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const totalSlides = slides.length;
@@ -65,16 +66,19 @@ const Carousel: React.FC = () => {
           className="h-fit flex-grow card bg-gray-50 text-black rounded-box place-items-center p-0 mx-5 self-center"
           data-aos="fade-left"
         >
-          {isMobile ? <img
-            src={mobileHeroImage}
-            alt="People working collaboratively in a team setting"
-            className="h-fit w-fit rounded-lg shadow-lg"
-          /> : <img
-          src={heroImage}
-          alt="People working collaboratively in a team setting"
-          className="h-fit w-fit rounded-lg shadow-lg"
-        /> 
-          }
+          {isMobile ? (
+            <img
+              src={mobileHeroImage}
+              alt="People working collaboratively in a team setting"
+              className="h-fit w-fit rounded-lg shadow-lg"
+            />
+          ) : (
+            <img
+              src={heroImage}
+              alt="People working collaboratively in a team setting"
+              className="h-fit w-fit rounded-lg shadow-lg"
+            />
+          )}
         </div>
       </div>
       <HeroNavBtn />

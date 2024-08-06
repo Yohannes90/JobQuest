@@ -1,58 +1,117 @@
-import "../styles/App.css";
 import React, { Suspense, lazy } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Outlet, Navigate } from "react-router-dom";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
+import useAuth from "../auth/useAuth";
+import "../styles/App.css";
 
-// Lazy load components for improved performance
-const Hero = lazy(() => import("./Hero"));
-const AboutUs = lazy(() => import("./Vision_Mission"));
-const Services = lazy(() => import("./Services"));
-const Testimonials = lazy(() => import("./Testimonials"));
-const ContactUs = lazy(() => import("./ContactUs"));
-const Partners = lazy(() => import("./Partners"));
+const Home = lazy(() => import("../pages/Home"));
+const Jobs = lazy(() => import("../pages/Jobs"));
+const JobApplicationForm = lazy(() => import("../pages/JobApplicationForm"));
+const LoginPage = lazy(() => import("../pages/LoginPage"));
+const AdminDashboard = lazy(() => import("../pages/AdminDashboard"));
+const JobsDashboard = lazy(() => import("../pages/JobsDashboard"));
+const BlogDashboard = lazy(() => import("../pages/BlogDashboard"));
 
-/**
- * Main application component.
- * Renders the entire application structure including navigation, lazy-loaded routes,
- * and a footer.
- *
- * @returns JSX element representing the entire application layout.
- */
 const App: React.FC = () => {
-  /**
-   * Base path for the router
-   * @type {string}
-   */
-  const basePath = import.meta.env.VITE_BASE_PATH || "";
+  const { isAuthenticated, role } = useAuth();
+
+  if (isAuthenticated === null) {
+    return <div>Loading...</div>;
+  }
+
+  const Router = createBrowserRouter([
+    {
+      path: "/",
+      element: (
+        <Suspense fallback={<div>Loading...</div>}>
+          <AppLayout />
+        </Suspense>
+      ),
+      children: [
+        {
+          path: "/",
+          element: (
+            <Suspense fallback={<div>Loading...</div>}>
+              <Home />
+            </Suspense>
+          ),
+        },
+        {
+          path: "/jobs",
+          element: (
+            <Suspense fallback={<div>Loading...</div>}>
+              <Jobs />
+            </Suspense>
+          ),
+        },
+        {
+          path: "/job-application-form",
+          element: (
+            <Suspense fallback={<div>Loading...</div>}>
+              <JobApplicationForm />
+            </Suspense>
+          ),
+        },
+        {
+          path: "/login",
+          element: (
+            <Suspense fallback={<div>Loading...</div>}>
+              <LoginPage />
+            </Suspense>
+          ),
+        },
+        {
+          path: "/admin",
+          element: isAuthenticated && role === "ADMIN" ? (
+            <Suspense fallback={<div>Loading...</div>}>
+              <AdminDashboard />
+            </Suspense>
+          ) : (
+            <Navigate to="/login" />
+          ),
+        },
+        {
+          path: "/jobs-dashboard",
+          element: isAuthenticated && role === "JOBS_ADMIN" ? (
+            <Suspense fallback={<div>Loading...</div>}>
+              <JobsDashboard />
+            </Suspense>
+          ) : (
+            <Navigate to="/login" />
+          ),
+        },
+        {
+          path: "/blog-dashboard",
+          element: isAuthenticated && role === "BLOGS_ADMIN" ? (
+            <Suspense fallback={<div>Loading...</div>}>
+              <BlogDashboard />
+            </Suspense>
+          ) : (
+            <Navigate to="/login" />
+          ),
+        },
+      ],
+    },
+  ]);
+
   return (
-    <Router basename={basePath}>
-      <div className="flex flex-col min-h-screen">
-        <div className="flex-grow">
-          <Navbar />
-          <Suspense fallback={<div>Loading...</div>}>
-            <Routes>
-              <Route
-                path="/"
-                element={
-                  <>
-                    <Hero />
-                    <AboutUs />
-                    <Services />
-                    <Partners />
-                    <Testimonials />
-                    <ContactUs />
-                  </>
-                }
-              />
-              {/* additional routes here */}
-            </Routes>
-          </Suspense>
-        </div>
-        <Footer />
+    <div className="flex flex-col min-h-screen">
+      <div className="flex-grow">
+        <Navbar />
+        <RouterProvider router={Router} />
       </div>
-    </Router>
+      <Footer />
+    </div>
   );
 };
+
+const AppLayout: React.FC = () => (
+  <div>
+    {/* <Navbar /> */}
+    <Outlet />
+    {/* <Footer /> */}
+  </div>
+);
 
 export default App;

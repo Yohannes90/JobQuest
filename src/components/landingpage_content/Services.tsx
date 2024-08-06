@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import AOS from "aos";
 import {
-  faBuilding,
-  faClipboardList,
-  faUsers,
-  faGlobe,
-  faHandsHelping,
+  faChartLine,
+  faProjectDiagram,
+  faUserTie,
+  faBalanceScale,
+  faHandHoldingUsd,
 } from "@fortawesome/free-solid-svg-icons";
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -30,7 +30,8 @@ const serviceCategories: ServiceCategory[] = [
       "Organizational policy development",
       "Organizational manual development",
     ],
-    icon: faBuilding,
+    // icon: faBuilding,
+    icon: faChartLine,
   },
   {
     title: "Program based support",
@@ -39,7 +40,8 @@ const serviceCategories: ServiceCategory[] = [
       "MEL planning",
       "Portfolio Architect",
     ],
-    icon: faClipboardList,
+    // icon: faClipboardList,
+    icon: faProjectDiagram,
   },
   {
     title: "Human Resource support",
@@ -48,17 +50,20 @@ const serviceCategories: ServiceCategory[] = [
       "Access to potential interns",
       "Headhunting",
     ],
-    icon: faUsers,
+    // icon: faUsers,
+    icon: faUserTie,
   },
   {
     title: "Standardization",
     services: ["SDG alignment"],
-    icon: faGlobe,
+    // icon: faGlobe,
+    icon: faBalanceScale,
   },
   {
     title: "Grant Management",
     services: ["Grant Management support"],
-    icon: faHandsHelping,
+    // icon: faHandsHelping,
+    icon: faHandHoldingUsd,
   },
 ];
 
@@ -91,19 +96,26 @@ const Services: React.FC = () => {
             <div data-aos="fade-right">
               <div
                 key={index}
-                className="bg-white p-8 rounded-lg text-harPrimary transition duration-500 ease-in-out hover:-translate-y-1 hover:bg-harPrimary hover:text-white shadow-xl"
+                // className="bg-white p-8 rounded-lg text-harPrimary transition duration-500 ease-in-out hover:-translate-y-1 hover:bg-harPrimary hover:text-white shadow-2xl"
+                className="bg-white p-8 rounded-lg text-harPrimary transition duration-50 ease-in-out hover:-translate-y-1 hover:bg-gradient-to-r from-[#364117] to-[#899b22] hover:text-white shadow-2xl"
               >
-                <h3 className="text-2xl font-semibold mb-6 text-start ">
-                  <span className="font-normal mr-5 hover:text-white">
+                {/* <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-[#364117] to-[#899b22] opacity-0 hover:opacity-100 transition-opacity duration-500"></div> */}
+                {/* <FontAwesomeIcon icon={category.icon} /> */}
+                <div className="font-normal text-center p-2 m-5 hover:text-white">
+                  <FontAwesomeIcon icon={category.icon} size="3x" />
+                </div>
+
+                <h3 className="text-2xl font-semibold mb-6 text-center ">
+                  {/* <span className="font-normal mr-5 hover:text-white">
                     <FontAwesomeIcon icon={category.icon} />
-                  </span>
+                  </span> */}
                   {category.title}
                 </h3>
                 <ul className="space-y-3">
                   {category.services.map((service, serviceIndex) => (
                     <li
                       key={serviceIndex}
-                      className="flex items-start justify-start"
+                      className="flex items-start justify-start ml-4"
                     >
                       <svg
                         className="w-6 h-6 mr-2 text-harSecondary flex-shrink-0 mt-0.5"
