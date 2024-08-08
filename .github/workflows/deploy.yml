@@ -1,4 +1,3 @@
-
 name: Deploy
 
 on:
@@ -21,15 +20,14 @@ jobs:
           node-version: 16
 
       - name: Install dependencies
-        uses: bahmutov/npm-install@v1
+        run: npm install
 
       - name: Build project for GitHub Pages
         run: |
           cp .env.gh-pages .env
-          npm run build
+          npm run build:frontend
         env:
           VITE_BASE_PATH: '/harWebsite/'
-          VITE_API_URL: 'https://harconsultancy.org/'
 
       - name: Upload production-ready build files for GitHub Pages
         uses: actions/upload-artifact@v2
@@ -40,10 +38,9 @@ jobs:
       - name: Build project for cPanel
         run: |
           cp .env.cpanel .env
-          npm run build
+          npm run build:frontend
         env:
           VITE_BASE_PATH: '/'
-          VITE_API_URL: 'https://harconsultancy.org/'
 
       - name: Upload production-ready build files for cPanel
         uses: actions/upload-artifact@v2
@@ -56,7 +53,7 @@ jobs:
         with:
           name: backend-files-cpanel
           path: |
-            ./backend/
+            ./server.js
             ./prisma/
             ./package.json
 
@@ -67,9 +64,6 @@ jobs:
     if: github.ref == 'refs/heads/main'
 
     steps:
-      # - name: Checkout repo
-      #   uses: actions/checkout@v2
-
       - name: Download artifact for GitHub Pages
         uses: actions/download-artifact@v2
         with:
@@ -99,9 +93,9 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: backend-files-cpanel
-          path: ./backend
+          path: ./
 
-      - name: Deploy via FTP
+      - name: Deploy frontend via FTP
         uses: SamKirkland/FTP-Deploy-Action@4.3.0
         with:
           server: ${{ secrets.FTP_SERVER }}
@@ -116,5 +110,5 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./backend/
-          server-dir: /public_html/
+          local-dir: ./
+          server-dir: /public_html/backend/
