@@ -43,7 +43,7 @@ jobs:
           npm run build
         env:
           VITE_BASE_PATH: '/'
-          VITE_API_URL: 'https://harconsultancy.org'
+          VITE_API_URL: 'https://harconsultancy.org/'
 
       - name: Upload production-ready build files for cPanel
         uses: actions/upload-artifact@v2
