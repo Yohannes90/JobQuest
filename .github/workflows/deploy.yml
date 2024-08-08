@@ -56,6 +56,7 @@ jobs:
             ./server.js
             ./prisma/
             ./package.json
+            ./node_modules/
 
   deploy-gh-pages:
     name: Deploy to GitHub Pages
