@@ -25,7 +25,7 @@ jobs:
       - name: Build project for GitHub Pages
         run: |
           cp .env.gh-pages .env
-          npm run build:frontend
+          npm run build
         env:
           VITE_BASE_PATH: '/harWebsite/'
 
@@ -38,7 +38,7 @@ jobs:
       - name: Build project for cPanel
         run: |
           cp .env.cpanel .env
-          npm run build:frontend
+          npm run build
         env:
           VITE_BASE_PATH: '/'
 
