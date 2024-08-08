@@ -9,10 +9,13 @@ const useAuth = () => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const response = await fetch("http://localhost:3001/api/check-auth", {
-          method: "GET",
-          credentials: "include",
-        });
+        const response = await fetch(
+          `${import.meta.env.VITE_API_URL}/api/check-auth`,
+          {
+            method: "GET",
+            credentials: "include",
+          },
+        );
         const data = await response.json();
         setAuthState({ isAuthenticated: data.authenticated, role: data.role });
       } catch (error) {

@@ -1,12 +1,14 @@
 import InputField from "./InputField";
 
-interface CategoryProps {
+interface ExperianceLvlProps {
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
-const Category: React.FC<CategoryProps> = ({ handleChange }) => {
+const ExperianceLvl: React.FC<ExperianceLvlProps> = ({ handleChange }) => {
   return (
     <div>
-      <h4 className="text-black text-base font-medium mb-2">Category</h4>
+      <h4 className="text-black text-base font-medium mb-2">
+        Experiance level
+      </h4>
       <div className="grid grid-cols-2 sm:grid-cols-1">
         <label className="sidebar-label-container">
           <input
@@ -17,36 +19,30 @@ const Category: React.FC<CategoryProps> = ({ handleChange }) => {
             onChange={handleChange}
           />
           <span className="mt-0.5 checkmark"></span>
-          <span className="text-black">Any</span>
+          <span className="text-black">All</span>
         </label>
         <InputField
           handleChange={handleChange}
-          value="information_technology"
-          title="IT"
+          value="Intership"
+          title="Intership"
           name="test"
         />
         <InputField
           handleChange={handleChange}
-          value="hr"
-          title="Human resource"
+          value="Junior"
+          title="Junior"
           name="test"
         />
         <InputField
           handleChange={handleChange}
-          value="software_development"
-          title="Software development"
+          value="Senior"
+          title="Senior"
           name="test"
         />
         <InputField
           handleChange={handleChange}
-          value="marketing_and_sales"
-          title="Marketing and sales"
-          name="test"
-        />
-        <InputField
-          handleChange={handleChange}
-          value="product_management"
-          title="Project managment"
+          value="Expert"
+          title="Expert"
           name="test"
         />
       </div>
@@ -54,4 +50,4 @@ const Category: React.FC<CategoryProps> = ({ handleChange }) => {
   );
 };
 
-export default Category;
+export default ExperianceLvl;

@@ -58,7 +58,7 @@ const JobPostForm: React.FC<JobPostFormProps> = ({ job }) => {
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
+    >,
   ) => {
     const { name, value } = e.target;
     setFormData({
@@ -78,8 +78,8 @@ const JobPostForm: React.FC<JobPostFormProps> = ({ job }) => {
 
     try {
       const url = job
-        ? `http://localhost:3001/api/job-postings/${formData.id}`
-        : "http://localhost:3001/api/submit-job-posting";
+        ? `${import.meta.env.VITE_API_URL}/api/job-postings/${formData.id}`
+        : `${import.meta.env.VITE_API_URL}/api/submit-job-posting`;
       const method = job ? "PUT" : "POST";
 
       console.log(`Sending ${method} request to ${url}`); // Debugging log

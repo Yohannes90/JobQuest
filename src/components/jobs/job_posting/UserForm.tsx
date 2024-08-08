@@ -58,8 +58,10 @@ const UserForm: React.FC<UserFormProps> = ({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const url = isEditing
-      ? editingUser ? `http://localhost:3001/api/users/${editingUser.id}` : "-1"
-      : "http://localhost:3001/api/users";
+      ? editingUser
+        ? `${import.meta.env.VITE_API_URL}/api/users/${editingUser.id}`
+        : "-1"
+      : `${import.meta.env.VITE_API_URL}/api/users`;
     const method = isEditing ? "PUT" : "POST";
 
     try {

@@ -62,7 +62,11 @@ const Card: React.FC<CardProps> = ({ job }) => {
       className="card grid grid-cols-4 transform hover:ease-in-out duration-200 hover:border-harSecondary focus:border-harSecondary"
       onClick={handleCardClick}
     >
-      <img src="/icon.png" className="h-8 w-8 sm:h-12 sm:w-14 col-span-1" alt="" />
+      <img
+        src="/icon.png"
+        className="h-8 w-8 sm:h-12 sm:w-14 col-span-1"
+        alt=""
+      />
       <div className="col-span-3">
         <h4 className="text-black mb-1">{companyName}</h4>
         <h3 className="text-black text-lg font-semibold mb-2">{jobTitle}</h3>

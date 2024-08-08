@@ -82,12 +82,13 @@ const Router = createBrowserRouter([
       }, */
       {
         path: "/admin",
-        element: 
+        element: (
           <Suspense fallback={<div>Loading...</div>}>
             <AdminDashboard />
           </Suspense>
+        ),
       },
-     /* 
+      /* 
                     <AdminDashboard />
                   ) : (
                     <Navigate to="/login" />

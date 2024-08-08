@@ -17,12 +17,12 @@ interface Job {
   description: string;
   applicationDeadline: string;
   contactEmail: string;
-  jobCategory: 
-  | "information_technology"
-  | "hr"
-  | "software_development"
-  | "marketing_and_sales"
-  | "product_management";
+  jobCategory:
+    | "information_technology"
+    | "hr"
+    | "software_development"
+    | "marketing_and_sales"
+    | "product_management";
   workArrangement: "in_person" | "remote" | "hybrid";
 }
 
@@ -34,22 +34,22 @@ interface User {
 }
 
 interface JobApplication {
-  id:number;
+  id: number;
   name: string;
   age: number;
-  gender: "NA" | "male" |"female";
-  phone : string;
-  email  : string;
-  about : string;
-  motive : string;
+  gender: "NA" | "male" | "female";
+  phone: string;
+  email: string;
+  about: string;
+  motive: string;
   interest:
-  | "information_technology"
-  | "hr"
-  | "software_development"
-  | "marketing_and_sales"
-  | "product_management";
+    | "information_technology"
+    | "hr"
+    | "software_development"
+    | "marketing_and_sales"
+    | "product_management";
   cv: string;
-  portfolio : string;
+  portfolio: string;
 }
 
 const AdminDashboard: React.FC = () => {
@@ -72,7 +72,7 @@ const AdminDashboard: React.FC = () => {
           "http://localhost:3001/api/job-applications",
           {
             credentials: "include", // Ensures cookies are sent with the request
-          }
+          },
         );
         if (response.status === 401) {
           navigate("/login"); // Redirect to login if unauthorized
@@ -87,9 +87,12 @@ const AdminDashboard: React.FC = () => {
 
     const fetchJobPostings = async () => {
       try {
-        const response = await fetch("http://localhost:3001/api/job-postings/all", {
-          credentials: "include", // Ensures cookies are sent with the request
-        });
+        const response = await fetch(
+          "http://localhost:3001/api/job-postings/all",
+          {
+            credentials: "include", // Ensures cookies are sent with the request
+          },
+        );
         if (response.status === 401) {
           navigate("/login"); // Redirect to login if unauthorized
         } else if (isMounted) {
@@ -101,7 +104,7 @@ const AdminDashboard: React.FC = () => {
       }
     };
 
-    const fetchUsers = async () => { 
+    const fetchUsers = async () => {
       try {
         const response = await fetch("http://localhost:3001/api/users", {
           credentials: "include", // Ensures cookies are sent with the request
@@ -133,7 +136,7 @@ const AdminDashboard: React.FC = () => {
         {
           method: "DELETE",
           credentials: "include", // Ensures cookies are sent with the request
-        }
+        },
       );
       if (response.status === 401) {
         navigate("/login"); // Redirect to login if unauthorized
@@ -152,7 +155,7 @@ const AdminDashboard: React.FC = () => {
         {
           method: "DELETE",
           credentials: "include", // Ensures cookies are sent with the request
-        }
+        },
       );
       if (response.status === 401) {
         navigate("/login"); // Redirect to login if unauthorized
@@ -359,8 +362,8 @@ const AdminDashboard: React.FC = () => {
                     <td className="py-2 px-4">{job.jobType}</td>
                     <td className="py-2 px-4">{job.jobCategory}</td>
                     <td className="py-2 px-4">{job.workArrangement}</td>
-                    <td className="py-2 px-4">{job.experienceLevel}</td>                    
-                    <td className="py-2 px-4">{job.contactEmail}</td>                    
+                    <td className="py-2 px-4">{job.experienceLevel}</td>
+                    <td className="py-2 px-4">{job.contactEmail}</td>
                     <td className="py-2 px-4">{job.applicationDeadline}</td>
                     <td className="py-2 px-4 flex space-x-2">
                       <button
@@ -449,10 +452,12 @@ const AdminDashboard: React.FC = () => {
           <h2 className="text-2xl font-bold text-harPrimary mb-4">
             {isEditingUser ? "Edit User" : "Add User"}
           </h2>
-          <UserForm editingUser={editingUser}
+          <UserForm
+            editingUser={editingUser}
             isEditing={isEditingUser}
             setIsEditing={setIsEditingUser}
-            setActiveTab={setActiveTab}/>
+            setActiveTab={setActiveTab}
+          />
         </div>
       )}
     </div>
