@@ -21,9 +21,9 @@ const BlogDashboard = lazy(() => import("../pages/BlogDashboard"));
 const App: React.FC = () => {
   const { isAuthenticated, role } = useAuth();
 
-  if (isAuthenticated === null) {
-    return <div>Loading...</div>;
-  }
+  // if (isAuthenticated === null) {
+  //   return <div>Loading...</div>;
+  // }
 
   const Router = createBrowserRouter([
     {
