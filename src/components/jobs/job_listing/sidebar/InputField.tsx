@@ -12,17 +12,17 @@ const InputField: React.FC<InputFieldProps> = ({
   name,
 }) => {
   return (
-      <label className="sidebar-label-container">
-        <input
-          type="radio"
-          name={name}
-          className="text-harPrimary"
-          value={value}
-          onChange={handleChange}
-        />
-        <span className="mt-0.5 checkmark"></span>
-        <span className="text-black">{title}</span>
-      </label>
+    <label className="sidebar-label-container">
+      <input
+        type="radio"
+        name={name}
+        className="text-harPrimary"
+        value={value}
+        onChange={handleChange}
+      />
+      <span className="mt-0.5 checkmark"></span>
+      <span className="text-black">{title}</span>
+    </label>
   );
 };
 

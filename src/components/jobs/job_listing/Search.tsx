@@ -28,7 +28,12 @@ const Search: React.FC<SearchProps> = ({ query, handleInputChange }) => {
               />
             </div>
             <div>
-              <button type="submit" className="h-full px-1 sm:px-3 rounded-sm text-white font-mono sm:tracking-wider bg-harSecondary">Search</button>
+              <button
+                type="submit"
+                className="h-full px-1 sm:px-3 rounded-sm text-white font-mono sm:tracking-wider bg-harSecondary"
+              >
+                Search
+              </button>
             </div>
           </div>
         </form>

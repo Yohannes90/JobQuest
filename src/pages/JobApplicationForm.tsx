@@ -59,7 +59,7 @@ const JobApplicationForm: React.FC = () => {
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
+    >,
   ) => {
     const { name, value } = e.target;
     if (e.target instanceof HTMLInputElement && e.target.files) {
@@ -98,12 +98,11 @@ const JobApplicationForm: React.FC = () => {
 
     try {
       const response = await fetch(
-        // `${process.env.REACT_APP_API_URL}/api/submit-job-application`
-        "http://localhost:3001/api/submit-job-application",
+        `${import.meta.env.VITE_API_URL}/api/submit-job-application`,
         {
           method: "POST",
           body: data,
-        }
+        },
       );
 
       if (response.ok) {

@@ -1,5 +1,10 @@
 import React, { Suspense, lazy } from "react";
-import { createBrowserRouter, RouterProvider, Outlet, Navigate } from "react-router-dom";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Outlet,
+  Navigate,
+} from "react-router-dom";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 import useAuth from "../auth/useAuth";
@@ -63,33 +68,36 @@ const App: React.FC = () => {
         },
         {
           path: "/admin",
-          element: isAuthenticated && role === "ADMIN" ? (
-            <Suspense fallback={<div>Loading...</div>}>
-              <AdminDashboard />
-            </Suspense>
-          ) : (
-            <Navigate to="/login" />
-          ),
+          element:
+            isAuthenticated && role === "ADMIN" ? (
+              <Suspense fallback={<div>Loading...</div>}>
+                <AdminDashboard />
+              </Suspense>
+            ) : (
+              <Navigate to="/login" />
+            ),
         },
         {
           path: "/jobs-dashboard",
-          element: isAuthenticated && role === "JOBS_ADMIN" ? (
-            <Suspense fallback={<div>Loading...</div>}>
-              <JobsDashboard />
-            </Suspense>
-          ) : (
-            <Navigate to="/login" />
-          ),
+          element:
+            isAuthenticated && role === "JOBS_ADMIN" ? (
+              <Suspense fallback={<div>Loading...</div>}>
+                <JobsDashboard />
+              </Suspense>
+            ) : (
+              <Navigate to="/login" />
+            ),
         },
         {
           path: "/blog-dashboard",
-          element: isAuthenticated && role === "BLOGS_ADMIN" ? (
-            <Suspense fallback={<div>Loading...</div>}>
-              <BlogDashboard />
-            </Suspense>
-          ) : (
-            <Navigate to="/login" />
-          ),
+          element:
+            isAuthenticated && role === "BLOGS_ADMIN" ? (
+              <Suspense fallback={<div>Loading...</div>}>
+                <BlogDashboard />
+              </Suspense>
+            ) : (
+              <Navigate to="/login" />
+            ),
         },
       ],
     },

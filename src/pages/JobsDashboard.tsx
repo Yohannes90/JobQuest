@@ -5,22 +5,22 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faEdit } from "@fortawesome/free-solid-svg-icons";
 
 interface JobApplication {
-  id:number;
+  id: number;
   name: string;
   age: number;
-  gender: "NA" | "male" |"female";
-  phone : string;
-  email  : string;
-  about : string;
-  motive : string;
+  gender: "NA" | "male" | "female";
+  phone: string;
+  email: string;
+  about: string;
+  motive: string;
   interest:
-  | "information_technology"
-  | "hr"
-  | "software_development"
-  | "marketing_and_sales"
-  | "product_management";
+    | "information_technology"
+    | "hr"
+    | "software_development"
+    | "marketing_and_sales"
+    | "product_management";
   cv: string;
-  portfolio : string;
+  portfolio: string;
 }
 
 interface Job {
@@ -36,12 +36,12 @@ interface Job {
   description: string;
   applicationDeadline: string;
   contactEmail: string;
-  jobCategory: 
-  | "information_technology"
-  | "hr"
-  | "software_development"
-  | "marketing_and_sales"
-  | "product_management";
+  jobCategory:
+    | "information_technology"
+    | "hr"
+    | "software_development"
+    | "marketing_and_sales"
+    | "product_management";
   workArrangement: "in_person" | "remote" | "hybrid";
 }
 
@@ -57,7 +57,7 @@ const JobsDashboard: React.FC = () => {
     const fetchJobApplications = async () => {
       try {
         const response = await fetch(
-          "http://localhost:3001/api/job-applications",
+          `${import.meta.env.VITE_API_URL}/api/job-applications`,
           {
             credentials: "include", // Ensures cookies are sent with the request
           },
@@ -75,9 +75,12 @@ const JobsDashboard: React.FC = () => {
 
     const fetchJobPostings = async () => {
       try {
-        const response = await fetch("http://localhost:3001/api/job-postings/all", {
-          credentials: "include", // Ensures cookies are sent with the request
-        });
+        const response = await fetch(
+          `${import.meta.env.VITE_API_URL}/api/job-postings/all`,
+          {
+            credentials: "include", // Ensures cookies are sent with the request
+          },
+        );
         if (response.status === 401) {
           navigate("/login"); // Redirect to login if unauthorized
         } else {
@@ -96,7 +99,7 @@ const JobsDashboard: React.FC = () => {
   const handleDeleteApplication = async (id: number) => {
     try {
       const response = await fetch(
-        `http://localhost:3001/api/job-applications/${id}`,
+        `${import.meta.env.VITE_API_URL}/api/job-applications/${id}`,
         {
           method: "DELETE",
           credentials: "include", // Ensures cookies are sent with the request
@@ -115,7 +118,7 @@ const JobsDashboard: React.FC = () => {
   const handleDeleteJobPosting = async (id: number) => {
     try {
       const response = await fetch(
-        `http://localhost:3001/api/job-postings/${id}`,
+        `${import.meta.env.VITE_API_URL}/api/job-postings/${id}`,
         {
           method: "DELETE",
           credentials: "include", // Ensures cookies are sent with the request
@@ -131,7 +134,7 @@ const JobsDashboard: React.FC = () => {
     }
   };
 
-  const handleEditJob = (job : Job) => {
+  const handleEditJob = (job: Job) => {
     setEditingJob(job);
     setIsEditingJob(true);
     setActiveTab("addJobPost");
@@ -139,7 +142,7 @@ const JobsDashboard: React.FC = () => {
 
   const handleLogout = async () => {
     try {
-      await fetch("http://localhost:3001/api/logout", {
+      await fetch(`${import.meta.env.VITE_API_URL}/api/logout`, {
         method: "POST",
         credentials: "include", // Ensures cookies are sent with the request
       });
@@ -318,9 +321,7 @@ const JobsDashboard: React.FC = () => {
             {isEditingJob ? "Edit Job Posting" : "Add New Job Posting"}
           </h2>
           {/* changed it to single props after some error with the other like setActivetab  */}
-          <JobPostForm
-            job={editingJob}
-          /> 
+          <JobPostForm job={editingJob} />
         </div>
       )}
     </div>

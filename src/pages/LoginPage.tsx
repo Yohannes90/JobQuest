@@ -16,21 +16,27 @@ const LoginForm: React.FC = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:3001/api/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/login`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+          credentials: "include", // Include cookies for session management
         },
-        body: JSON.stringify(formData),
-        credentials: "include", // Include cookies for session management
-      });
+      );
 
       if (response.ok) {
         // Check the user role from the backend session
-        const roleResponse = await fetch("http://localhost:3001/api/role", {
-          method: "GET",
-          credentials: "include", // Include cookies for session management
-        });
+        const roleResponse = await fetch(
+          `${import.meta.env.VITE_API_URL}/api/role`,
+          {
+            method: "GET",
+            credentials: "include", // Include cookies for session management
+          },
+        );
 
         if (roleResponse.ok) {
           const roleData = await roleResponse.json();

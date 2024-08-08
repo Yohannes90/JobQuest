@@ -5,6 +5,7 @@ import multer from "multer";
 import bcrypt from "bcryptjs";
 import session from "express-session";
 
+
 const app = express();
 const prisma = new PrismaClient();
 const upload = multer({ dest: "uploads/" });
