@@ -56,10 +56,9 @@ jobs:
         with:
           name: backend-files-cpanel
           path: |
-            ./server.js
+            ./backend/
             ./prisma/
             ./package.json
-            ./package-lock.json
 
   deploy-gh-pages:
     name: Deploy to GitHub Pages
