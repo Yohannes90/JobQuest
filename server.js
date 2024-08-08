@@ -291,7 +291,7 @@ app.post("/api/submit-job-posting", async (req, res) => {
   const {
     jobTitle,
     companyName,
-    jobLocation,
+    location,
     jobType,
     jobCategory,
     description,
@@ -309,7 +309,7 @@ app.post("/api/submit-job-posting", async (req, res) => {
       data: {
         jobTitle: jobTitle,
         companyName: companyName,
-        location: jobLocation,
+        location: location,
         jobType: jobType,
         jobCategory: jobCategory,
         description: description,
@@ -327,6 +327,16 @@ app.post("/api/submit-job-posting", async (req, res) => {
     res.status(500).json({ error: "Database error", details: error.message });
   }
 });
+
+//fetch the count of total jobs
+app.get("/api/job-postings/count",async(req, res)=>{
+  try {
+    const count = await prisma.jobPosting.count();
+    res.json({count});
+  } catch (error) {
+    res.status(500).json({error: "Error fetching job count!"});
+  }
+})
 
 // Fetch all job postings
 app.get("/api/job-postings/all", async (req, res) => {

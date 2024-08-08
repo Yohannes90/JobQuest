@@ -9,6 +9,8 @@ import {
   faCalendar,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
+import Success from "../components/pop_ups/Success";
+import Error from "../components/pop_ups/Error";
 
 interface Job {
   id: number;
@@ -55,6 +57,7 @@ const JobApplicationForm: React.FC = () => {
   };
 
   const [formData, setFormData] = useState(initialFormData);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -107,10 +110,16 @@ const JobApplicationForm: React.FC = () => {
       );
 
       if (response.ok) {
-        console.log("Application submitted successfully");
+        setShowSuccess(true);
+        setTimeout(() => {
+          setShowSuccess(false);
+        }, 3000);
         resetForm(); // Clear the form fields after successful submission
       } else {
-        console.error("Failed to submit application");
+        const msg: string = "Failed to submit application";
+        setTimeout(() => {
+          <Error msg={msg} />;
+        }, 3000);
         // Optionally, show an error message
       }
     } catch (error) {
@@ -193,6 +202,9 @@ const JobApplicationForm: React.FC = () => {
           </div>
           <div className="w-full flex justify-center mt-12 sm:mt-16 lg:mt-12 lg:flex lg:space-x-12 mx-auto">
             <div className="lg:w-2/3 sm:w-full bg-white p-10 rounded-lg shadow-lg">
+              {showSuccess && (
+                <Success msg="Application submitted successfully"/>
+              )}
               <form
                 className="w-full space-y-8"
                 onSubmit={handleSubmit}

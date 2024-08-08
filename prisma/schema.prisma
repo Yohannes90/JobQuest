@@ -62,7 +62,7 @@ model JobPosting {
   location           String
   jobType            JobType
   jobCategory        JobCategory
-  description        String
+  description        String           @db.LongText
   workArrangement    WorkArrangement
   experienceLevel    ExperienceLevel
   applicationDeadline DateTime

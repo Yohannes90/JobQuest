@@ -73,7 +73,7 @@ const LoginForm: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-harSecondary py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen flex items-center justify-center bg-harSecondary/100 py-12 px-4 sm:px-6 lg:px-8">
       <div className="w-full max-w-2xl space-y-8">
         <div className="text-center">
           <h2 className="uppercase text-4xl font-bold text-harPrimary">
@@ -94,7 +94,7 @@ const LoginForm: React.FC = () => {
                 placeholder="Email"
                 value={formData.email}
                 onChange={handleChange}
-                className="block w-full px-4 py-3 border border-harSecondary rounded-md shadow-sm focus:ring-harPrimary focus:border-harPrimary"
+                className="block w-full px-4 py-3 border text-black bg-slate-100 autofill:bg-slate-100 border-harSecondary rounded-md shadow-sm focus:ring-harPrimary focus:border-harPrimary"
                 required
               />
             </div>
@@ -106,7 +106,7 @@ const LoginForm: React.FC = () => {
                 placeholder="Password"
                 value={formData.password}
                 onChange={handleChange}
-                className="block w-full px-4 py-3 border border-harSecondary rounded-md shadow-sm focus:ring-harPrimary focus:border-harPrimary"
+                className="block w-full px-4 py-3 border text-black bg-slate-100 border-harSecondary rounded-md shadow-sm focus:ring-harPrimary focus:border-harPrimary"
                 required
               />
               <div

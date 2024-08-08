@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
+import Success from "../../pop_ups/Success";
+import Error from "../../pop_ups/Error";
 
 interface JobPostFormData {
   id: number;
   jobTitle: string;
   companyName: string;
   location: string;
-  jobType: "full_time" | "part_time" | "contract" | "internship"; 
+  jobType: "full_time" | "part_time" | "contract" | "internship";
   jobCategory:
     | "information_technology"
     | "hr"
@@ -45,6 +47,7 @@ const JobPostForm: React.FC<JobPostFormProps> = ({ job }) => {
   };
 
   const [formData, setFormData] = useState(initialFormData);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   useEffect(() => {
     if (job) {
@@ -90,12 +93,21 @@ const JobPostForm: React.FC<JobPostFormProps> = ({ job }) => {
       });
 
       if (response.ok) {
-        console.log("Job posting submitted successfully");
+        const msg = "Job posting submitted successfully";
+        setShowSuccess(true);
+        setTimeout(() => {
+          if (showSuccess) {
+            <Success msg={msg} />;
+          }
+        }, 3000);
+        setShowSuccess(false);
         resetForm(); // Clear the form fields after successful submission
         // onSubmit(formData); // Notify parent component of submission
       } else {
-        const errorText = await response.text(); // Get response text for debugging
-        console.error("Failed to submit job posting:", errorText);
+        const msg = "Failed to submit job posting";
+        setTimeout(() => {
+          <Error msg={msg} />;
+        }, 3000);
       }
     } catch (error) {
       console.error("Error submitting job posting:", error);
@@ -105,9 +117,10 @@ const JobPostForm: React.FC<JobPostFormProps> = ({ job }) => {
   return (
     <div
       id="job-post-form"
-      className="min-h-screen flex items-center justify-center py-12 bg-gray-100"
+      className="text-black min-h-screen flex items-center justify-center py-12 bg-gray-100"
     >
       <div className="bg-white p-10 rounded-lg shadow-lg w-full max-w-4xl">
+        {showSuccess && <Success msg="Job posting submitted successfully" />}
         <div className="text-center mb-6">
           <h2 className="uppercase text-3xl text-harPrimary">
             {job ? "Update Job Post" : "Job Post Creation"}
@@ -128,7 +141,7 @@ const JobPostForm: React.FC<JobPostFormProps> = ({ job }) => {
                 placeholder="Job Title"
                 value={formData.jobTitle}
                 onChange={handleChange}
-                className="block w-full px-5 py-3 border bg-gray-50 text-gray-800 outline-none border-gray-300 rounded-md shadow-sm focus:ring-green-900 focus:border-green-900"
+                className="block w-full px-5 py-3 border bg-gray-50 text-black outline-none border-gray-300 rounded-md shadow-sm focus:ring-green-900 focus:border-green-900"
                 required
               />
             </div>
@@ -140,19 +153,19 @@ const JobPostForm: React.FC<JobPostFormProps> = ({ job }) => {
                 placeholder="Company Name"
                 value={formData.companyName}
                 onChange={handleChange}
-                className="block w-full bg-gray-50 text-gray-800 outline-none px-5 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-green-900 focus:border-green-900"
+                className="block w-full bg-gray-50 text-black outline-none px-5 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-green-900 focus:border-green-900"
                 required
               />
             </div>
             <div>
               <input
                 type="text"
-                name="jobLocation"
-                id="jobLocation"
+                name="location"
+                id="location"
                 placeholder="Location"
                 value={formData.location}
                 onChange={handleChange}
-                className="block w-full bg-gray-50 text-gray-800 outline-none px-5 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-green-900 focus:border-green-900"
+                className="block w-full bg-gray-50 text-black outline-none px-5 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-green-900 focus:border-green-900"
                 required
               />
             </div>
@@ -162,7 +175,7 @@ const JobPostForm: React.FC<JobPostFormProps> = ({ job }) => {
                 id="jobType"
                 value={formData.jobType}
                 onChange={handleChange}
-                className="block w-full bg-gray-50 text-gray-800 outline-none px-5 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-green-900 focus:border-green-900"
+                className="block w-full bg-gray-50 text-black outline-none px-5 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-green-900 focus:border-green-900"
                 required
               >
                 <option className="text-gray-600 bg-gray-200" value="" disabled>
@@ -181,7 +194,7 @@ const JobPostForm: React.FC<JobPostFormProps> = ({ job }) => {
               id="jobCategory"
               value={formData.jobCategory}
               onChange={handleChange}
-              className="block w-full bg-gray-50 text-gray-800 outline-none px-5 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-green-900 focus:border-green-900"
+              className="block w-full bg-gray-50 text-black outline-none px-5 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-green-900 focus:border-green-900"
               required
             >
               <option value="" disabled>
@@ -202,7 +215,7 @@ const JobPostForm: React.FC<JobPostFormProps> = ({ job }) => {
               id="workArrangement"
               value={formData.workArrangement}
               onChange={handleChange}
-              className="block w-full bg-gray-50 text-gray-800 outline-none px-5 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-green-900 focus:border-green-900"
+              className="block w-full bg-gray-50 text-black outline-none px-5 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-green-900 focus:border-green-900"
               required
             >
               <option value="" disabled>
@@ -219,7 +232,7 @@ const JobPostForm: React.FC<JobPostFormProps> = ({ job }) => {
               id="experienceLevel"
               value={formData.experienceLevel}
               onChange={handleChange}
-              className="block w-full bg-gray-50 text-gray-800 outline-none px-5 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-green-900 focus:border-green-900"
+              className="block w-full bg-gray-50 text-black outline-none px-5 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-green-900 focus:border-green-900"
               required
             >
               <option value="" disabled>
@@ -239,7 +252,7 @@ const JobPostForm: React.FC<JobPostFormProps> = ({ job }) => {
               value={formData.description}
               onChange={handleChange}
               rows={6}
-              className="block w-full bg-gray-50 text-gray-800 outline-none px-5 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-green-900 focus:border-green-900"
+              className="block w-full bg-gray-50 text-black outline-none px-5 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-green-900 focus:border-green-900"
               required
             />
           </div>
@@ -250,7 +263,7 @@ const JobPostForm: React.FC<JobPostFormProps> = ({ job }) => {
               id="applicationDeadline"
               value={formData.applicationDeadline}
               onChange={handleChange}
-              className="block w-full bg-gray-50 text-gray-800 outline-none px-5 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-green-900 focus:border-green-900"
+              className="block w-full bg-gray-50 text-blackoutline-none px-5 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-green-900 focus:border-green-900"
               required
             />
           </div>
@@ -262,7 +275,7 @@ const JobPostForm: React.FC<JobPostFormProps> = ({ job }) => {
               placeholder="Contact Email"
               value={formData.contactEmail}
               onChange={handleChange}
-              className="block w-full bg-gray-50 text-gray-800 outline-none px-5 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-green-900 focus:border-green-900"
+              className="block w-full bg-gray-50 text-black outline-none px-5 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-green-900 focus:border-green-900"
               required
             />
           </div>

@@ -31,27 +31,41 @@ const Jobs: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [hasMore, setHasMore] = useState<boolean>(true);
-  const itemsPerPage = 6;
+  const [totalJobs, setTotalJobs] = useState<number>(0);
+  const itemsPerPage = 5;
   // handles input change
   const [query, setQuery] = useState<string>("");
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(event.target.value);
   };
-
+const fetchTotalJobs = useCallback(async ()=>{
+  try {
+    const response:Response = await fetch("http://localhost:3001/api/job-postings/count");
+    const data = await response.json();
+    if (response.ok) {
+      const count: number = data.count;
+      console.log(count);
+      setTotalJobs(count);
+    } else {
+      console.log("Error: failed to fetch the job count from the server");
+    }
+  } catch (error) {
+    console.log("Error: failed to fetch from the server", error);
+  }
+},[])
 const loadJobsPostings = useCallback(async () => {
   console.log("Calling loadJobsPostings");
   console.log(`Fetching jobs for page ${currentPage} with query "${query}"`);
   
   try{
     const newJobs: Job[] = await fetchJobPostings(currentPage, 5, query);
-    // const uniqueNewJobs = 
     setJobs((prevJobs) => [...prevJobs, ...newJobs]);
     if (currentPage === 1) {
       setJobs(newJobs); // Replace jobs if it's the first page
     } else {
       setJobs((prevJobs) => [...prevJobs, ...newJobs]); // Append jobs for subsequent pages
     }
-    if (newJobs.length <= 5) {
+    if (newJobs.length < 5) {
       setHasMore(false);
     }
   } catch (err){
@@ -65,7 +79,8 @@ const loadJobsPostings = useCallback(async () => {
   useEffect(() => {
     setIsLoading(true);
     loadJobsPostings();
-  }, [currentPage, loadJobsPostings, query]);
+    fetchTotalJobs();
+  }, [currentPage, fetchTotalJobs, loadJobsPostings, query]);
 
   // filter job by title
   const filteredItems: Job[] = jobs.filter(
@@ -82,19 +97,21 @@ const loadJobsPostings = useCallback(async () => {
 
 // calculate the index range
 const calculatePageRange = () => {
-  const startIndex = (currentPage -1) * 6;
+  const startIndex = (currentPage -1) * 5;
   const endIndex = startIndex + itemsPerPage;
   return {startIndex, endIndex};
 }
 // function for the next page
 const nextpage = () => {
-  if (currentPage < Math.ceil(filteredItems.length / itemsPerPage)) {
+  if (hasMore) {
     setCurrentPage(currentPage+1);
+    console.log("working");
   }
 }
 const prevPage = () => {
   if(currentPage > 1) {
     setCurrentPage(currentPage - 1);
+    setHasMore(true);
   }
 }
 
@@ -143,7 +160,7 @@ const prevPage = () => {
           result.length > 0 ? (
             <div className="flex justify-center mt-4 space-x-8">
               <button className="text-black/70 btn btn-ghost disabled:bg-inherit focus:outline-none" onClick={prevPage} disabled={currentPage === 1}>Previous</button>
-              <span className="text-black/70 my-3 font-mono">Page {currentPage} of {Math.ceil(filteredItems.length / itemsPerPage)}</span>
+              <span className="text-black/70 my-3 font-mono">Page {currentPage} of {Math.ceil(totalJobs / itemsPerPage)}</span>
               <button className="text-black/70 btn btn-ghost disabled:bg-inherit focus:outline-none" onClick={nextpage} disabled={!hasMore} >Next</button>
             </div>
           ) : ""
