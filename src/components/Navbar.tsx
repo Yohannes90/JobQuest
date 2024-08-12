@@ -51,6 +51,12 @@ const Navbar = () => {
           Testimonials
         </a>
         <a
+          href="/blogs"
+          className="btn btn-ghost p-0 mx-4 text-green-950 hover:text-harSecondary text-base hover:bg-transparent relative custom-hover-style"
+        >
+          Blogs
+        </a>
+        <a
           href="/jobs"
           className="btn btn-ghost p-0 mx-4 text-green-950 hover:text-harSecondary text-base hover:bg-transparent relative custom-hover-style"
         >

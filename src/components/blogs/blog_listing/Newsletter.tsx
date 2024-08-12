@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 // Enum for subscription type
 enum Type {
-  Job,
+  Blog,
   Newsletter,
 }
 
@@ -17,10 +17,10 @@ interface Email {
 // Initial form data for resetting the form
 const initialFormData: Email = {
   email: "",
-  type: Type.Job, // Default to Job
+  type: Type.Blog, // Default to Blog
 };
 
-const Newsletter = () => {
+const Newsletter: React.FC = () => {
   const [formData, setFormData] = useState<Email>(initialFormData);
 
   useEffect(() => {
@@ -51,14 +51,14 @@ const Newsletter = () => {
       });
 
       if (response.ok) {
-        console.log("Job subscription submitted successfully");
+        console.log("Blog subscription submitted successfully");
         resetForm(); // Clear the form fields after successful submission
       } else {
         const errorText = await response.text();
-        console.error("Failed to submit Job subscription:", errorText);
+        console.error("Failed to submit blog subscription:", errorText);
       }
     } catch (error) {
-      console.error("Error submitting Job subscription:", error);
+      console.error("Error submitting blog subscription:", error);
     }
   };
 
@@ -70,10 +70,10 @@ const Newsletter = () => {
   return (
     <div>
       <h3 className="text-lg font-semibold mb-2 flex items-center gap-2">
-        <FontAwesomeIcon icon={faEnvelopeOpenText} /> Email me for jobs
+        <FontAwesomeIcon icon={faEnvelopeOpenText} /> Subscribe to our Blog
       </h3>
       <p className="text-black/75 text-base mb-4">
-        Be the first one notified when a new job is posted
+        Be the first to know when a new blog post is published
       </p>
       <form onSubmit={handleSubmit} className="w-full space-y-4">
         <input

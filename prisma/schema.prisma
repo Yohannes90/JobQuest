@@ -19,6 +19,7 @@ model User {
   email    String @unique
   password String
   role     Role   @default(JOBS_ADMIN)
+  blogs     Blog[]
 }
 
 enum Role {
@@ -56,19 +57,19 @@ enum Interest {
 }
 
 model JobPosting {
-  id                 Int              @id @default(autoincrement())
-  jobTitle           String
-  companyName        String
-  location           String
-  jobType            JobType
-  jobCategory        JobCategory
-  description        String           @db.LongText
-  workArrangement    WorkArrangement
-  experienceLevel    ExperienceLevel
+  id                  Int             @id @default(autoincrement())
+  jobTitle            String
+  companyName         String
+  location            String
+  jobType             JobType
+  jobCategory         JobCategory
+  description         String          @db.LongText
+  workArrangement     WorkArrangement
+  experienceLevel     ExperienceLevel
   applicationDeadline DateTime
-  contactEmail       String
-  createdAt          DateTime         @default(now())
-  updatedAt          DateTime         @updatedAt
+  contactEmail        String
+  createdAt           DateTime        @default(now())
+  updatedAt           DateTime        @updatedAt
 }
 
 enum JobType {
@@ -78,10 +79,17 @@ enum JobType {
   internship
 }
 
-model JobNewsletterSubscribers {
-  id Int @id @default(autoincrement())
+model newsletterSubscribers {
+  id    Int    @id @default(autoincrement())
   email String
+  type Type
 }
+
+enum Type{
+  Blog
+  Job
+}
+
 enum JobCategory {
   information_technology
   hr
@@ -101,4 +109,24 @@ enum WorkArrangement {
   in_person
   remote
   hybrid
+}
+
+model Blog {
+  id          Int          @id @default(autoincrement())
+  title       String
+  content     String       @db.LongText
+  category    BlogCategory
+  image       String?
+  publishedAt DateTime     @default(now())
+  authorId    Int
+  author      User         @relation(fields: [authorId], references: [id])
+}
+
+enum BlogCategory {
+  technology
+  business
+  lifestyle
+  education
+  health
+  entertainment
 }
