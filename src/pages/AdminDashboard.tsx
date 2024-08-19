@@ -4,6 +4,7 @@ import JobPostForm from "../components/jobs/job_posting/JobPostForm";
 import UserForm from "../components/jobs/job_posting/UserForm";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faEdit } from "@fortawesome/free-solid-svg-icons";
+import BlogPostForm from "./BlogPostForm";
 
 interface Job {
   id: number;
@@ -52,6 +53,25 @@ interface JobApplication {
   portfolio: string;
 }
 
+interface BlogPost {
+  id?: number;
+  title: string;
+  authorId: number;
+  content: string;
+  category: BlogCategory;  // This will be one of the BlogCategory enum values
+  publicationDate: string; // Typically this would be a Date object, but we'll use string for simplicity
+  image?: string;       // Optional image URL
+}
+
+enum BlogCategory {
+  Business = "business",
+  SocialEnterprise = "social_enterprise",
+  Technology = "technology",
+  Education = "education",
+  Innovation = "innovation",
+  YouthDevelopment = "youth_development",
+}
+
 const AdminDashboard: React.FC = () => {
   const [activeTab, setActiveTab] = useState("employees");
   const [jobApplications, setJobApplications] = useState<JobApplication[]>([]);
@@ -61,6 +81,14 @@ const AdminDashboard: React.FC = () => {
   const [editingUser, setEditingUser] = useState<User | null>(null);
   const [isEditingJob, setIsEditingJob] = useState(false);
   const [isEditingUser, setIsEditingUser] = useState(false);
+  const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
+  const [editingBlog, setEditingBlog] = useState<BlogPost | null>(null);
+  const [isEditingBlog, setIsEditingBlog] = useState(false);
+  const currentUser = {
+    id: 1,
+    name: "John Doe",
+    role: "Admin",
+  };
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -120,9 +148,29 @@ const AdminDashboard: React.FC = () => {
       }
     };
 
+    const fetchBlogPosts = async () => {
+      try {
+        const response = await fetch(
+          "http://localhost:3001/api/blog-postings/all",
+          {
+            credentials: "include",
+          }
+        );
+        if (response.status === 401) {
+          navigate("/login");
+        } else if (isMounted) {
+          const data = await response.json();
+          setBlogPosts(data);
+        }
+      } catch (error) {
+        console.error("Error fetching blog posts:", error);
+      }
+    };
+
     fetchJobApplications();
     fetchJobPostings();
     fetchUsers();
+    fetchBlogPosts();
 
     return () => {
       isMounted = false; // Cleanup flag on component unmount
@@ -183,6 +231,25 @@ const AdminDashboard: React.FC = () => {
     }
   };
 
+  const handleDeleteBlogPost = async (id: number) => {
+    try {
+      const response = await fetch(
+        `http://localhost:3001/api/blogs/${id}`,
+        {
+          method: "DELETE",
+          credentials: "include",
+        }
+      );
+      if (response.status === 401) {
+        navigate("/login");
+      } else {
+        setBlogPosts(blogPosts.filter((post) => post.id !== id));
+      }
+    } catch (error) {
+      console.error("Error deleting blog post:", error);
+    }
+  };
+
   const handleEditJob = (job: Job) => {
     setEditingJob(job);
     setIsEditingJob(true);
@@ -193,6 +260,12 @@ const AdminDashboard: React.FC = () => {
     setEditingUser(user);
     setIsEditingUser(true);
     setActiveTab("addUser");
+  };
+
+  const handleEditBlogPost = (post: BlogPost) => {
+    setEditingBlog(post);
+    setIsEditingBlog(true);
+    setActiveTab("addBlogPost");
   };
 
   const handleLogout = async () => {
@@ -233,6 +306,16 @@ const AdminDashboard: React.FC = () => {
             }`}
           >
             Manage Job Posts
+          </button>
+          <button
+            onClick={() => setActiveTab("blogPosts")}
+            className={`px-4 py-2 rounded ${
+              activeTab === "blogPosts"
+                ? "bg-harSecondary text-white"
+                : "bg-white text-harSecondary"
+            }`}
+          >
+            Manage Blog Posts
           </button>
           <button
             onClick={() => setActiveTab("users")}
@@ -393,6 +476,75 @@ const AdminDashboard: React.FC = () => {
             {isEditingJob ? "Edit Job Posting" : "Add Job Posting"}
           </h2>
           <JobPostForm job={editingJob} />
+        </div>
+      )}
+
+      {activeTab === "blogPosts" && (
+        <div className="mb-12">
+          <h2 className="text-2xl font-bold text-harPrimary mb-4">
+            Blog Posts
+          </h2>
+          <button
+            onClick={() => {
+              setEditingBlog(null);
+              setIsEditingBlog(false);
+              setActiveTab("addBlogPost");
+            }}
+            className="px-4 py-2 bg-harSecondary text-white rounded mb-4"
+          >
+            Add Blog Post
+          </button>
+          <div className="overflow-x-auto shadow-md sm:rounded-lg mb-8">
+            <table className="min-w-full bg-white">
+              <thead className="bg-harPrimary text-white">
+                <tr>
+                  <th className="py-2 px-4">Title</th>
+                  <th className="py-2 px-4">Category</th>
+                  <th className="py-2 px-4">Content</th>
+                  <th className="py-2 px-4">Author ID</th>
+                  <th className="py-2 px-4">Publication Date</th>
+                  <th className="py-2 px-4">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {blogPosts.map((post) => (
+                  <tr key={post.id} className="border-b">
+                    <td className="py-2 px-4">{post.title}</td>
+                    <td className="py-2 px-4">{post.category}</td>
+                    <td className="py-2 px-4">{post.content}</td>
+                    <td className="py-2 px-4">{post.authorId}</td>
+                    <td className="py-2 px-4">
+                      {/* {new Date(post.publicationDate).toLocaleDateString()} */}
+                      post.publicationDate
+                    </td>
+                    <td className="py-2 px-4 flex space-x-2">
+                      <button
+                        onClick={() => handleEditBlogPost(post)}
+                        className="text-green-500"
+                      >
+                        <FontAwesomeIcon icon={faEdit} />
+                      </button>
+                      <button
+                        onClick={() => handleDeleteBlogPost(post.id)}
+                        className="text-red-500"
+                      >
+                        <FontAwesomeIcon icon={faTrash} />
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
+
+      {activeTab === "addBlogPost" && (
+        <div className="mb-12">
+          <h2 className="text-2xl font-bold text-harPrimary mb-4">
+            {isEditingBlog ? "Edit Blog Post" : "Add Blog Post"}
+          </h2>
+          <BlogPostForm post={editingBlog} currentUserId={currentUser.id} />
         </div>
       )}
 

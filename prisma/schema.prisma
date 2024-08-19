@@ -19,6 +19,9 @@ model User {
   email    String @unique
   password String
   role     Role   @default(JOBS_ADMIN)
+
+  // Relation to Blog
+  blogs    Blog[]
 }
 
 enum Role {
@@ -101,4 +104,26 @@ enum WorkArrangement {
   in_person
   remote
   hybrid
+}
+
+model Blog {
+  id           Int      @id @default(autoincrement())
+  title        String
+  content      String   @db.LongText
+  category     BlogCategory
+  image        String?
+  publishedAt  DateTime @default(now())
+
+  // Relation to User
+  author       User     @relation(fields: [authorId], references: [id])
+  authorId     Int
+}
+
+enum BlogCategory {
+  business
+  social_enterprise
+  technology
+  education
+  innovation
+  youth_development
 }

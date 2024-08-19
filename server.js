@@ -133,7 +133,7 @@ app.get(
 
 // Blog Admin Dashboard
 app.get(
-  "/blog-dashboard",requireRole('blogs_admin'),
+  "/blog-dashboard",requireRole('blog_admin'),
   (req, res) => {
     res.status(200).json({ message: "Welcome to the Blog Admin dashboard" });
   }
@@ -466,6 +466,99 @@ app.post("/api/unsubscribe", async (req, res) => {
       .json({ error: "Failed to unsubscribe", details: error.message });
   }
 });
+
+
+// Blog post endpoints
+app.post("/api/submit-blog-post", async (req, res) => {
+  const { title, content, category, authorId, image } = req.body;
+
+  try {
+    const blog = await prisma.blog.create({
+      data: {
+        title,
+        content,
+        category,
+        image,  // Include image if provided
+        author: {
+          connect: { id: authorId }, // Connect the blog post to an existing author
+        },
+      },
+    });
+    res.status(201).json({ message: "Blog created successfully", blog });
+  } catch (error) {
+    res.status(500).json({ error: "Database error", details: error.message });
+  }
+});
+
+// Fetch all blog posts
+app.get("/api/blog-postings/all", async (req, res) => {
+  try {
+    const blogs = await prisma.blog.findMany({
+      include: { author: true }, // Include author details in the response
+    });
+    res.status(200).json(blogs);
+  } catch (error) {
+    res.status(500).json({ error: "Database error", details: error.message });
+  }
+});
+
+// Fetch a single blog post by ID
+app.get("/api/blogs/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const blog = await prisma.blog.findUnique({
+      where: { id: parseInt(id) },
+      include: { author: true }, // Include author details in the response
+    });
+    if (blog) {
+      res.status(200).json(blog);
+    } else {
+      res.status(404).json({ error: "Blog not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: "Database error", details: error.message });
+  }
+});
+
+// Update a blog post by ID
+app.put("/api/blogs/:id", async (req, res) => {
+  const { id } = req.params;
+  const { title, content, category, authorId, image } = req.body;
+
+  try {
+    const updatedBlog = await prisma.blog.update({
+      where: { id: parseInt(id) },
+      data: {
+        title,
+        content,
+        category,
+        image,  // Include image if provided
+        author: {
+          connect: { id: authorId }, // Connect the updated blog post to an existing author
+        },
+      },
+    });
+    res.status(200).json({ message: "Blog updated successfully", blog: updatedBlog });
+  } catch (error) {
+    res.status(500).json({ error: "Database error", details: error.message });
+  }
+});
+
+// Delete a blog post by ID
+app.delete("/api/blogs/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    await prisma.blog.delete({
+      where: { id: parseInt(id) },
+    });
+    res.status(200).json({ message: "Blog deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ error: "Database error", details: error.message });
+  }
+});
+
 
 // eslint-disable-next-line no-undef
 const PORT = process.env.PORT || 3001;

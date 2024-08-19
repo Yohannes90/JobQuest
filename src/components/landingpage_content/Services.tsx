@@ -96,8 +96,8 @@ const Services: React.FC = () => {
             <div data-aos="fade-right">
               <div
                 key={index}
-                // className="bg-white p-8 rounded-lg text-harPrimary transition duration-500 ease-in-out hover:-translate-y-1 hover:bg-harPrimary hover:text-white shadow-2xl"
-                className="bg-white p-8 rounded-lg text-harPrimary transition duration-50 ease-in-out hover:-translate-y-1 hover:bg-gradient-to-r from-[#364117] to-[#899b22] hover:text-white shadow-2xl"
+                className="bg-white p-8 rounded-lg text-harPrimary transition duration-500 ease-in-out hover:-translate-y-1 hover:bg-harPrimary hover:text-white shadow-2xl"
+                // className="bg-white p-8 rounded-lg text-harPrimary transition duration-50 ease-in-out hover:-translate-y-1 hover:bg-gradient-to-r from-[#364117] to-[#899b22] hover:text-white shadow-2xl"
               >
                 {/* <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-[#364117] to-[#899b22] opacity-0 hover:opacity-100 transition-opacity duration-500"></div> */}
                 {/* <FontAwesomeIcon icon={category.icon} /> */}
