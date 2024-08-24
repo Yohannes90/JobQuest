@@ -6,7 +6,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 interface Blog {
-  // id: number;
+  id: number;
   blogTitle: string;
   blogCategory:
     | "technology"
@@ -27,7 +27,7 @@ interface CardProps {
 const Card: React.FC<CardProps> = ({ blog }) => {
   const navigate = useNavigate();
   const handleCardClick = () => {
-    navigate("/job-application-form", { state: { blog } });
+    navigate(`/blog-post/${blog.id}`, { state: { blog } });
   };
   const {
     blogTitle,
