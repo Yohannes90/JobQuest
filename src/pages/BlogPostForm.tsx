@@ -158,6 +158,7 @@ const BlogPostForm: React.FC<BlogPostFormProps> = ({ post, currentUserId }) => {
               />
             </div>
           </div>
+
           <div className="col-span-2">
             <CKEditor
               editor={ClassicEditor}
