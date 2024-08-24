@@ -21,9 +21,11 @@ const BlogDashboard = lazy(() => import("../pages/BlogDashboard"));
 const App: React.FC = () => {
   const { isAuthenticated, role } = useAuth();
 
+  /* 
+    this was gurding all the route, which is not desired
   if (isAuthenticated === null) {
     return <div>Loading...</div>;
-  }
+  } */
 
   const Router = createBrowserRouter([
     {
@@ -71,7 +73,7 @@ const App: React.FC = () => {
           element:
             isAuthenticated && role === "ADMIN" ? (
               <Suspense fallback={<div>Loading...</div>}>
-                <AdminDashboard />
+                {isAuthenticated ? <AdminDashboard /> : <div>Loading...</div>}
               </Suspense>
             ) : (
               <Navigate to="/login" />
@@ -82,7 +84,7 @@ const App: React.FC = () => {
           element:
             isAuthenticated && role === "JOBS_ADMIN" ? (
               <Suspense fallback={<div>Loading...</div>}>
-                <JobsDashboard />
+                {isAuthenticated ? <JobsDashboard /> : <div>Loading...</div>}
               </Suspense>
             ) : (
               <Navigate to="/login" />
@@ -93,7 +95,7 @@ const App: React.FC = () => {
           element:
             isAuthenticated && role === "BLOG_ADMIN" ? (
               <Suspense fallback={<div>Loading...</div>}>
-                <BlogDashboard />
+                {isAuthenticated ? <BlogDashboard /> : <div>Loading...</div>}
               </Suspense>
             ) : (
               <Navigate to="/login" />
