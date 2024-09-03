@@ -54,13 +54,13 @@ interface JobApplication {
 }
 
 interface BlogPost {
-  id?: number;
+  id: number;
   title: string;
   authorId: number;
   content: string;
-  category: BlogCategory;  // This will be one of the BlogCategory enum values
+  category: BlogCategory; // This will be one of the BlogCategory enum values
   publicationDate: string; // Typically this would be a Date object, but we'll use string for simplicity
-  image?: string;       // Optional image URL
+  image?: string; // Optional image URL
 }
 
 enum BlogCategory {
@@ -100,7 +100,7 @@ const AdminDashboard: React.FC = () => {
           "http://localhost:3001/api/job-applications",
           {
             credentials: "include", // Ensures cookies are sent with the request
-          },
+          }
         );
         if (response.status === 401) {
           navigate("/login"); // Redirect to login if unauthorized
@@ -119,7 +119,7 @@ const AdminDashboard: React.FC = () => {
           "http://localhost:3001/api/job-postings/all",
           {
             credentials: "include", // Ensures cookies are sent with the request
-          },
+          }
         );
         if (response.status === 401) {
           navigate("/login"); // Redirect to login if unauthorized
@@ -184,7 +184,7 @@ const AdminDashboard: React.FC = () => {
         {
           method: "DELETE",
           credentials: "include", // Ensures cookies are sent with the request
-        },
+        }
       );
       if (response.status === 401) {
         navigate("/login"); // Redirect to login if unauthorized
@@ -203,7 +203,7 @@ const AdminDashboard: React.FC = () => {
         {
           method: "DELETE",
           credentials: "include", // Ensures cookies are sent with the request
-        },
+        }
       );
       if (response.status === 401) {
         navigate("/login"); // Redirect to login if unauthorized
@@ -233,13 +233,10 @@ const AdminDashboard: React.FC = () => {
 
   const handleDeleteBlogPost = async (id: number) => {
     try {
-      const response = await fetch(
-        `http://localhost:3001/api/blogs/${id}`,
-        {
-          method: "DELETE",
-          credentials: "include",
-        }
-      );
+      const response = await fetch(`http://localhost:3001/api/blogs/${id}`, {
+        method: "DELETE",
+        credentials: "include",
+      });
       if (response.status === 401) {
         navigate("/login");
       } else {

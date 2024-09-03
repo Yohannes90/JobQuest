@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 interface BlogPostData {
   id?: number;
@@ -40,9 +40,7 @@ const BlogPostForm: React.FC<BlogPostFormProps> = ({ post, currentUserId }) => {
   }, [post]);
 
   const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLSelectElement
-    >
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
     setFormData({
@@ -139,8 +137,11 @@ const BlogPostForm: React.FC<BlogPostFormProps> = ({ post, currentUserId }) => {
                   Select Category
                 </option>
                 {Object.keys(BlogCategory).map((key) => (
-                  <option key={key} value={BlogCategory[key as keyof typeof BlogCategory]}>
-                    {key.replace('_', ' ')}
+                  <option
+                    key={key}
+                    value={BlogCategory[key as keyof typeof BlogCategory]}
+                  >
+                    {key.replace("_", " ")}
                   </option>
                 ))}
               </select>
@@ -157,6 +158,7 @@ const BlogPostForm: React.FC<BlogPostFormProps> = ({ post, currentUserId }) => {
               />
             </div>
           </div>
+
           <div className="col-span-2">
             <CKEditor
               editor={ClassicEditor}
@@ -164,13 +166,13 @@ const BlogPostForm: React.FC<BlogPostFormProps> = ({ post, currentUserId }) => {
                 placeholder: "Enter Content...",
               }}
               data={formData.content}
-              onChange={(event: any, editor: any) =>
+              onChange={(_event, editor) =>
                 handleEditorChange("content", editor.getData())
               }
             />
           </div>
-           <div className="flex w-full justify-center">
-             <button
+          <div className="flex w-full justify-center">
+            <button
               type="submit"
               className="w-1/2 py-3 px-6 outline-none text-lg font-medium rounded-md text-white bg-harPrimary hover:bg-harSecondary transition duration-200"
             >

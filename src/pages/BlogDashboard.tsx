@@ -4,16 +4,14 @@ import BlogPostForm from "./BlogPostForm";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faEdit } from "@fortawesome/free-solid-svg-icons";
 
-
-
 interface BlogPost {
-  id?: number;
+  id: number;
   title: string;
   authorId: number;
   content: string;
-  category: BlogCategory;  // This will be one of the BlogCategory enum values
+  category: BlogCategory; // This will be one of the BlogCategory enum values
   publicationDate: string; // Typically this would be a Date object, but we'll use string for simplicity
-  image?: string;       // Optional image URL
+  image?: string; // Optional image URL
 }
 
 enum BlogCategory {
@@ -24,7 +22,6 @@ enum BlogCategory {
   Innovation = "innovation",
   YouthDevelopment = "youth_development",
 }
-
 
 const BlogDashboard: React.FC = () => {
   const [activeTab, setActiveTab] = useState("blogPosts");
@@ -37,7 +34,6 @@ const BlogDashboard: React.FC = () => {
     role: "Admin",
   };
   const navigate = useNavigate();
-
 
   useEffect(() => {
     let isMounted = true; // Track whether the component is mounted
@@ -66,13 +62,10 @@ const BlogDashboard: React.FC = () => {
 
   const handleDeleteBlogPost = async (id: number) => {
     try {
-      const response = await fetch(
-        `http://localhost:3001/api/blogs/${id}`,
-        {
-          method: "DELETE",
-          credentials: "include",
-        }
-      );
+      const response = await fetch(`http://localhost:3001/api/blogs/${id}`, {
+        method: "DELETE",
+        credentials: "include",
+      });
       if (response.status === 401) {
         navigate("/login");
       } else {
