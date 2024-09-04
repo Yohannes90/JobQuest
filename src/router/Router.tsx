@@ -1,6 +1,6 @@
 import { Suspense, lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
-// import useAuth from "../auth/useAuth";
+import useAuth from "../auth/useAuth";
 
 const App = lazy(() => import("../components/App"));
 const Home = lazy(() => import("../pages/Home"));
@@ -8,18 +8,18 @@ const Jobs = lazy(() => import("../pages/Jobs"));
 
 // from joe
 const JobApplicationForm = lazy(() => import("../pages/JobApplicationForm"));
-// const JobPostForm = lazy(() => import("../pages/JobPostForm"));
+const JobPostForm = lazy(() => import("../pages/JobPostForm"));
 const LoginPage = lazy(() => import("../pages/LoginPage"));
 const AdminDashboard = lazy(() => import("../pages/AdminDashboard"));
 const JobsDashboard = lazy(() => import("../pages/JobsDashboard"));
 const BlogDashboard = lazy(() => import("../pages/BlogDashboard"));
 
-// const { isAuthenticated, role } = useAuth();
+const { isAuthenticated, role } = useAuth();
 
-//   if (isAuthenticated === null) {
-//     // Optionally, render a loading spinner or similar while checking authentication
-//     <div>Loading...</div>;
-//   }
+  if (isAuthenticated === null) {
+    // Optionally, render a loading spinner or similar while checking authentication
+    <div>Loading...</div>;
+  }
 
 const Router = createBrowserRouter([
   {
