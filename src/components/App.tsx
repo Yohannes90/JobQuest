@@ -21,11 +21,9 @@ const BlogDashboard = lazy(() => import("../pages/BlogDashboard"));
 const App: React.FC = () => {
   const { isAuthenticated, role } = useAuth();
 
-  /* 
-    this was gurding all the route, which is not desired
   if (isAuthenticated === null) {
     return <div>Loading...</div>;
-  } */
+  }
 
   const Router = createBrowserRouter([
     {
