@@ -41,7 +41,7 @@ const BlogDashboard: React.FC = () => {
     const fetchBlogPosts = async () => {
       try {
         const response = await fetch(
-          "http://localhost:3001/api/blog-postings/all",
+          `${import.meta.env.VITE_API_URL}/api/blog-postings/all`,
           {
             credentials: "include",
           }
@@ -62,7 +62,7 @@ const BlogDashboard: React.FC = () => {
 
   const handleDeleteBlogPost = async (id: number) => {
     try {
-      const response = await fetch(`http://localhost:3001/api/blogs/${id}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/blogs/${id}`, {
         method: "DELETE",
         credentials: "include",
       });

@@ -40,7 +40,7 @@ const Jobs: React.FC = () => {
   };
 const fetchTotalJobs = useCallback(async ()=>{
   try {
-    const response:Response = await fetch("http://localhost:3001/api/job-postings/count");
+    const response:Response = await fetch(`${import.meta.env.VITE_API_URL}/api/job-postings/count`);
     const data = await response.json();
     if (response.ok) {
       const count: number = data.count;
@@ -56,7 +56,7 @@ const fetchTotalJobs = useCallback(async ()=>{
 const loadJobsPostings = useCallback(async () => {
   console.log("Calling loadJobsPostings");
   console.log(`Fetching jobs for page ${currentPage} with query "${query}"`);
-  
+
   try{
     const newJobs: Job[] = await fetchJobPostings(currentPage, 5, query);
     setJobs((prevJobs) => [...prevJobs, ...newJobs]);

@@ -97,7 +97,7 @@ const AdminDashboard: React.FC = () => {
     const fetchJobApplications = async () => {
       try {
         const response = await fetch(
-          "http://localhost:3001/api/job-applications",
+          `${import.meta.env.VITE_API_URL}/api/job-applications`,
           {
             credentials: "include", // Ensures cookies are sent with the request
           }
@@ -116,7 +116,7 @@ const AdminDashboard: React.FC = () => {
     const fetchJobPostings = async () => {
       try {
         const response = await fetch(
-          "http://localhost:3001/api/job-postings/all",
+          `${import.meta.env.VITE_API_URL}/api/job-postings/all`,
           {
             credentials: "include", // Ensures cookies are sent with the request
           }
@@ -134,7 +134,7 @@ const AdminDashboard: React.FC = () => {
 
     const fetchUsers = async () => {
       try {
-        const response = await fetch("http://localhost:3001/api/users", {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/users`, {
           credentials: "include", // Ensures cookies are sent with the request
         });
         if (response.status === 401) {
@@ -151,7 +151,7 @@ const AdminDashboard: React.FC = () => {
     const fetchBlogPosts = async () => {
       try {
         const response = await fetch(
-          "http://localhost:3001/api/blog-postings/all",
+          `${import.meta.env.VITE_API_URL}/api/blog-postings/all`,
           {
             credentials: "include",
           }
@@ -180,7 +180,7 @@ const AdminDashboard: React.FC = () => {
   const handleDeleteApplication = async (id: number) => {
     try {
       const response = await fetch(
-        `http://localhost:3001/api/job-applications/${id}`,
+        `${import.meta.env.VITE_API_URL}/api/job-applications/${id}`,
         {
           method: "DELETE",
           credentials: "include", // Ensures cookies are sent with the request
@@ -199,7 +199,7 @@ const AdminDashboard: React.FC = () => {
   const handleDeleteJobPosting = async (id: number) => {
     try {
       const response = await fetch(
-        `http://localhost:3001/api/job-postings/${id}`,
+        `${import.meta.env.VITE_API_URL}/api/job-postings/${id}`,
         {
           method: "DELETE",
           credentials: "include", // Ensures cookies are sent with the request
@@ -217,7 +217,7 @@ const AdminDashboard: React.FC = () => {
 
   const handleDeleteUser = async (id: number) => {
     try {
-      const response = await fetch(`http://localhost:3001/api/users/${id}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/users/${id}`, {
         method: "DELETE",
         credentials: "include", // Ensures cookies are sent with the request
       });
@@ -233,7 +233,7 @@ const AdminDashboard: React.FC = () => {
 
   const handleDeleteBlogPost = async (id: number) => {
     try {
-      const response = await fetch(`http://localhost:3001/api/blogs/${id}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/blogs/${id}`, {
         method: "DELETE",
         credentials: "include",
       });
@@ -267,7 +267,7 @@ const AdminDashboard: React.FC = () => {
 
   const handleLogout = async () => {
     try {
-      await fetch("http://localhost:3001/api/logout", {
+      await fetch(`${import.meta.env.VITE_API_URL}/api/logout`, {
         method: "POST",
         credentials: "include", // Ensures cookies are sent with the request
       });
