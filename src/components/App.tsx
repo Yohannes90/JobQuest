@@ -9,6 +9,7 @@ import Footer from "./Footer";
 import Navbar from "./Navbar";
 import useAuth from "../auth/useAuth";
 import "../styles/App.css";
+import BlogHome from "../pages/BlogHome";
 
 const Home = lazy(() => import("../pages/Home"));
 const Jobs = lazy(() => import("../pages/Jobs"));
@@ -39,6 +40,14 @@ const App: React.FC = () => {
           element: (
             <Suspense fallback={<div>Loading...</div>}>
               <Home />
+            </Suspense>
+          ),
+        },
+        {
+          path: "/blogs",
+          element: (
+            <Suspense fallback={<div>Loading...</div>}>
+              <BlogHome />
             </Suspense>
           ),
         },

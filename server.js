@@ -5,7 +5,6 @@ import multer from "multer";
 import bcrypt from "bcryptjs";
 import session from "express-session";
 
-
 const app = express();
 const prisma = new PrismaClient();
 const upload = multer({ dest: "uploads/" });
@@ -84,14 +83,14 @@ app.post("/api/login", async (req, res) => {
 const requireRole = (role) => {
   return (req, res, next) => {
     if (!req.session.userId || req.session.role !== role) {
-      return res.status(403).json({ error: 'Access denied' });
+      return res.status(403).json({ error: "Access denied" });
     }
     next();
   };
 };
 
 // Authentication Check Endpoint
-app.get('/api/check-auth', (req, res) => {
+app.get("/api/check-auth", (req, res) => {
   if (req.session.userId) {
     res.json({ authenticated: true, role: req.session.role });
   } else {
@@ -120,24 +119,20 @@ app.post("/api/logout", (req, res) => {
 });
 
 // Admin Dashboard
-app.get("/admin", requireRole('admin')), (req, res) => {
-  res.status(200).json({ message: "Welcome to the admin dashboard" });
-};
+app.get("/admin", requireRole("admin")),
+  (req, res) => {
+    res.status(200).json({ message: "Welcome to the admin dashboard" });
+  };
 
 // Jobs Admin Dashboard
-app.get(
-  "/jobs-dashboard", requireRole('jobs_admin'), (req, res) => {
-    res.status(200).json({ message: "Welcome to the Jobs Admin dashboard" });
-  }
-);
+app.get("/jobs-dashboard", requireRole("jobs_admin"), (req, res) => {
+  res.status(200).json({ message: "Welcome to the Jobs Admin dashboard" });
+});
 
 // Blog Admin Dashboard
-app.get(
-  "/blog-dashboard",requireRole('blog_admin'),
-  (req, res) => {
-    res.status(200).json({ message: "Welcome to the Blog Admin dashboard" });
-  }
-);
+app.get("/blog-dashboard", requireRole("blog_admin"), (req, res) => {
+  res.status(200).json({ message: "Welcome to the Blog Admin dashboard" });
+});
 
 // Job Application Endpoint
 app.post(
@@ -330,14 +325,14 @@ app.post("/api/submit-job-posting", async (req, res) => {
 });
 
 //fetch the count of total jobs
-app.get("/api/job-postings/count",async(req, res)=>{
+app.get("/api/job-postings/count", async (req, res) => {
   try {
     const count = await prisma.jobPosting.count();
-    res.json({count});
+    res.json({ count });
   } catch (error) {
-    res.status(500).json({error: "Error fetching job count!"});
+    res.status(500).json({ error: "Error fetching job count!" });
   }
-})
+});
 
 // Fetch all job postings
 app.get("/api/job-postings/all", async (req, res) => {
@@ -354,7 +349,9 @@ app.get("/api/job-postings", async (req, res) => {
   const pageNumber = parseInt(page);
   const pageSize = parseInt(limit);
   const searchQuery = query;
-  console.log(`recived job postings with page: ${pageNumber}, limit: ${pageSize}, query: "${searchQuery}"`);
+  console.log(
+    `recived job postings with page: ${pageNumber}, limit: ${pageSize}, query: "${searchQuery}"`
+  );
   try {
     const jobs = await prisma.jobPosting.findMany({
       skip: (pageNumber - 1) * pageSize,
@@ -362,7 +359,7 @@ app.get("/api/job-postings", async (req, res) => {
       where: {
         OR: [
           {
-            jobTitle: { contains: searchQuery},
+            jobTitle: { contains: searchQuery },
             //if you want to add more functionality to the search method based on other criteria
           },
         ],
@@ -410,12 +407,10 @@ app.put("/api/job-postings/:id", async (req, res) => {
         contactEmail,
       },
     });
-    res
-      .status(200)
-      .json({
-        message: "Job posting updated successfully",
-        jobPosting: updatedJob,
-      });
+    res.status(200).json({
+      message: "Job posting updated successfully",
+      jobPosting: updatedJob,
+    });
   } catch (error) {
     console.error("Error updating job posting:", error);
     res.status(500).json({ error: "Database error", details: error.message });
@@ -440,17 +435,45 @@ app.delete("/api/job-postings/:id", async (req, res) => {
 // job newsletter notification
 
 app.post("/api/subscribe", async (req, res) => {
-  const { email } = req.body;
+  const { email, type } = req.body;
 
   try {
     const subscriber = await prisma.newsletterSubscriber.create({
-      data: { email },
+      data: { email, type },
     });
     res.status(201).json(subscriber);
   } catch (error) {
     res
       .status(500)
       .json({ error: "Failed to subscribe", details: error.message });
+  }
+});
+//fetch the count of total blogs
+app.get("/api/blogs/count", async (req, res) => {
+  try {
+    const count = await prisma.jobPosting.count();
+    res.json({ count });
+  } catch (error) {
+    res.status(500).json({ error: "Error fetching job count!" });
+  }
+});
+//fetch blogs by limit
+app.get("/api/blog-posts", async (req, res) => {
+  const { limit, page, query } = req.query;
+  const pageSize = parseInt(limit);
+  const pageNumber = parseInt(page);
+  const searchQuery = query;
+  try {
+    const blogs = await prisma.Blog.findMany({
+      skip: (pageNumber - 1) * pageSize,
+      take: pageSize,
+      where: {
+        OR: [{ title: { contains: searchQuery } }],
+      },
+    });
+    res.status(200).json(blogs);
+  } catch (error) {
+    res.status(500).json({ error: "Error fetching blog post!" });
   }
 });
 
@@ -467,7 +490,6 @@ app.post("/api/unsubscribe", async (req, res) => {
   }
 });
 
-
 // Blog post endpoints
 app.post("/api/submit-blog-post", async (req, res) => {
   const { title, content, category, authorId, image } = req.body;
@@ -478,7 +500,7 @@ app.post("/api/submit-blog-post", async (req, res) => {
         title,
         content,
         category,
-        image,  // Include image if provided
+        image, // Include image if provided
         author: {
           connect: { id: authorId }, // Connect the blog post to an existing author
         },
@@ -533,13 +555,15 @@ app.put("/api/blogs/:id", async (req, res) => {
         title,
         content,
         category,
-        image,  // Include image if provided
+        image, // Include image if provided
         author: {
           connect: { id: authorId }, // Connect the updated blog post to an existing author
         },
       },
     });
-    res.status(200).json({ message: "Blog updated successfully", blog: updatedBlog });
+    res
+      .status(200)
+      .json({ message: "Blog updated successfully", blog: updatedBlog });
   } catch (error) {
     res.status(500).json({ error: "Database error", details: error.message });
   }
@@ -558,7 +582,6 @@ app.delete("/api/blogs/:id", async (req, res) => {
     res.status(500).json({ error: "Database error", details: error.message });
   }
 });
-
 
 // eslint-disable-next-line no-undef
 const PORT = process.env.PORT || 3001;
