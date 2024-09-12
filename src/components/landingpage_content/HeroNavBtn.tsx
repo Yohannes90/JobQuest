@@ -22,9 +22,6 @@ const HeroNavBtn = () => {
   const [upBtn, setUpBtn] = useState(false);
   useEffect(() => {
     const handleScroll = () => {
-      console.log("ScrollY: ", window.scrollY); // Debugging log
-      console.log("Window innerHeight: ", window.innerHeight); // Debugging log
-
       if (window.scrollY >= window.innerHeight) {
         setUpBtn(true);
         setDownBtn(false);
