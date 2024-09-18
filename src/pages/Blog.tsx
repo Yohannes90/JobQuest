@@ -18,7 +18,16 @@ interface Blog {
 const Blog: React.FC = () => {
   const location = useLocation();
   const { blog } = location.state as { blog: Blog };
-  return <div>Blog</div>;
+  return (
+    <div>
+      <img src={blog.image} alt="" />
+      <h1>{blog.blogTitle}</h1>
+      <p>
+        <span>{blog.blogCategory}</span> | <span>{blog.publishedAt}</span>
+      </p>
+      <div>{blog.content}</div>
+    </div>
+  );
 };
 
 export default Blog;

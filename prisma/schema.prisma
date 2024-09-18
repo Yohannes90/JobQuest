@@ -19,13 +19,8 @@ model User {
   email    String @unique
   password String
   role     Role   @default(JOBS_ADMIN)
-<<<<<<< HEAD
-
-  // Relation to Blog
-  blogs    Blog[]
-=======
+  // relation to blog
   blogs     Blog[]
->>>>>>> 57dfe58be2095a01c0e312d7abd671cb79290395
 }
 
 enum Role {
